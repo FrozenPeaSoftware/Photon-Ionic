@@ -1,0 +1,8 @@
+{
+  "name": "photon",
+  "app_id": "ecb56683",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
