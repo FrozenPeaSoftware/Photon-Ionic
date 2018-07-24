@@ -11,35 +11,35 @@
 </tr>
 </table>
 
-- **Login**
+- :poop: **Login**
     - Photon logo
     - Email field
     - Password field
     - Login button
-- **Create Account**
+- :poop: **Create Account**
     - Name field
     - Email field
     - Password field
     - Confirm password field
     - Next Button
-- **Personalise Account** (Second step of account creation)
+- :poop: **Personalise Account** (Second step of account creation)
     - Select profile picture field
     - Biography field
     - Submit field
-- **Upload Photo** (The home page until the feed is implemented)
+- :boom: **Upload Photo** (The home page until the feed is implemented)
     - Upload photo button
     - Choose photo popup/dialog
-- **Photo options**
+- :boom: **Photo options**
     - Uploaded photo at top
     - Description field
     - Search for location field (with suggestions using Google Maps API)
     - Confirm upload button
-- **Profile**
+- :poop: **Profile**
     - Profile picture
     - Name
     - Biography
     - Grid of all the user's photos.
-- **Individual Photo**
+- :boom: **Individual Photo**
     - Close up of the photo
     - Photo location
     - Photo description
@@ -48,14 +48,14 @@
     - List of comments
     - Comment field
     - Submit comment button
-- **Map View**
+- :boom: **Map View**
     - A fullscreen map
     - A marker to show the location of the photo on the map
-- **User Search**
+- :poop: **User Search**
     - Search field
     - Search button
     - List of results
-- **Options**
+- :boom: **Options**
     - Log out button
 
 ## Tabs
