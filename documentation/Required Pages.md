@@ -1,4 +1,15 @@
 ## Primary Required Pages
+*Allocation key:*
+<table>
+<tr>
+    <td>Leyton:</td>
+    <td>:boom:</td>
+</tr>
+<tr>
+    <td>Celine:</td>
+    <td>:poop:</td>
+</tr>
+</table>
 
 - **Login**
     - Photon logo
