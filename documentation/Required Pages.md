@@ -30,11 +30,16 @@
     - Grid of all the user's photos.
 - **Individual Photo**
     - Close up of the photo
+    - Photo location
+    - Photo description
     - Like button
     - Number of likes
     - List of comments
     - Comment field
     - Submit comment button
+- **Map View**
+    - A fullscreen map
+    - A marker to show the location of the photo on the map
 - **User Search**
     - Search field
     - Search button
