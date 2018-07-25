@@ -1,3 +1,31 @@
 page-upload-photo {
+  ion-content {
+    background: linear-gradient(to bottom right, color($colors, primary), color($colors, secondary));
+  }
 
+  .vertical-align-content > * {
+    display: flex !important;
+    align-content: center !important;
+    align-items: center !important;
+  }
+
+  ion-grid {
+    height: 25%;
+  }
+
+  ion-row {
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+
+  ion-icon {
+    font-size: 80px;
+    color: color($colors, light);
+  }
+
+  #upload-button {
+    color: color($colors, primary);
+    background-color: color($colors, light);
+  }
 }
