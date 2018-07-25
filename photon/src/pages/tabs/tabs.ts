@@ -1,3 +1,4 @@
+import { UploadPhotoPage } from './../upload-photo/upload-photo';
 import { Component } from '@angular/core';
 
 import { AboutPage } from '../about/about';
@@ -9,9 +10,10 @@ import { HomePage } from '../home/home';
 })
 export class TabsPage {
 
-  tab1Root = HomePage;
+  tab1Root = UploadPhotoPage;
   tab2Root = AboutPage;
   tab3Root = ContactPage;
+  tab4Root = HomePage;
 
   constructor() {
 
