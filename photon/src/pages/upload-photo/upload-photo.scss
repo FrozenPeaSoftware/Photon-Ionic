@@ -22,10 +22,16 @@ page-upload-photo {
   ion-icon {
     font-size: 80px;
     color: color($colors, light);
+    padding-bottom: 10px;
   }
 
-  #upload-button {
+  .button {
     color: color($colors, primary);
     background-color: color($colors, light);
+    width: 50%;
+  }
+
+  .button:hover {
+    background-color: color($colors, light) !important;
   }
 }
