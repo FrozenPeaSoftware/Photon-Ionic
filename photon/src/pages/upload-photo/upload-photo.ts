@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { LoadingController, ToastController } from 'ionic-angular';
+import { AngularFireDatabase } from 'angularfire2/database';
 
 /**
  * Generated class for the UploadPhotoPage page.
@@ -15,18 +16,22 @@ import { LoadingController, ToastController } from 'ionic-angular';
   templateUrl: 'upload-photo.html',
 })
 export class UploadPhotoPage {
+  imageURI: any;
+  imageFileName: any;
 
-  imageURI:any;
-  imageFileName:any;
-
-  constructor(public navCtrl: NavController,
+  constructor(
+    public navCtrl: NavController,
+    public database: AngularFireDatabase,
     public navParams: NavParams,
     public loadingCtrl: LoadingController,
-    public toastCtrl: ToastController) {
-  }
+    public toastCtrl: ToastController
+  ) {}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad UploadPhotoPage');
   }
 
+  uploadPhoto() {
+    //
+  }
 }
