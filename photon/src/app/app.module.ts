@@ -16,10 +16,6 @@ import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
 import { File } from '@ionic-native/file';
 import { Camera } from '@ionic-native/camera';
 
-import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { FIREBASE_CONFIG } from './firebase.credentials';
-
 @NgModule({
   declarations: [
     MyApp,
@@ -31,8 +27,6 @@ import { FIREBASE_CONFIG } from './firebase.credentials';
   ],
   imports: [
     BrowserModule,
-    AngularFireModule.initializeApp(FIREBASE_CONFIG),
-    AngularFireDatabaseModule,
     IonicModule.forRoot(MyApp, {
       mode: 'md',
     })
@@ -53,7 +47,7 @@ import { FIREBASE_CONFIG } from './firebase.credentials';
     FileTransfer,
     FileTransferObject,
     File,
-    Camera
+    Camera,
   ]
 })
 export class AppModule {
