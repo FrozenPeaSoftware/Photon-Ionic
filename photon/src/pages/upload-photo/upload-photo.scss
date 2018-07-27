@@ -28,7 +28,9 @@ page-upload-photo {
   .button {
     color: color($colors, primary);
     background-color: color($colors, light);
-    width: 50%;
+    width: 65%;
+    padding-top: 10%;
+    padding-bottom: 10%;
   }
 
   .button:hover {
