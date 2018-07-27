@@ -18,6 +18,12 @@
   background-color: #ffffff;
 }
 
+.vertical-align-content > * {
+  display: flex !important;
+  align-content: center !important;
+  align-items: center !important;
+}
+
 @font-face {
   font-family: 'Circular-Book';
   src: url('../assets/fonts/circular/circular-book.ttf') format('truetype');
@@ -38,9 +44,16 @@
   src: url('../assets/fonts/circular/circularblack.ttf') format('truetype');
 }
 
+.input-cover { position: static; }
+
+button {
+  font-size: 14px;
+}
+
 body,
 span,
 button,
+ion-item,
 h1,
 h2,
 h3,
