@@ -1,19 +1,29 @@
 page-login {
+  .vertical-align-content > * {
+    display: flex !important;
+    align-content: center !important;
+    align-items: center !important;
+  }
+
+  .logo {
+    width: 20%;
+    height: 100%;
+  }
+
   .button {
-    color: color($colors, primary);
-    background-color: color($colors, light);
+    color: #ffffff;
+    background: linear-gradient(to bottom right, color($colors, primary), color($colors, secondary));
     width: 50%;
   }
 
   .input {
-    -moz-border-radius: 50px;
-    border-radius: 10px;
+    border: 10px;
     border-color: #000000;
     width: 50%;
   }
 
   ion-grid {
-    height: 30%;
+    height: 50%;
   }
 
   ion-row {
