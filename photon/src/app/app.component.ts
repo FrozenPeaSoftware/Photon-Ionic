@@ -1,3 +1,4 @@
+import { TabsPage } from './../pages/tabs/tabs';
 import { FIREBASE_CONFIG } from './firebase.config';
 import { Component } from '@angular/core';
 import { Platform } from 'ionic-angular';
@@ -10,7 +11,7 @@ import { LoginPage } from '../pages/login/login';
   templateUrl: 'app.html',
 })
 export class MyApp {
-  rootPage: any = LoginPage;
+  rootPage: any = TabsPage;
 
   constructor(
     platform: Platform,
@@ -25,6 +26,7 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
+      statusBar.hide();
     });
   }
 }

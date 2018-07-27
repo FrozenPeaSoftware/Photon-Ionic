@@ -1,6 +1,5 @@
 // http://ionicframework.com/docs/theming/
 
-
 // App Global Sass
 // --------------------------------------------------
 // Put style rules here that you want to apply globally. These
@@ -17,4 +16,40 @@
 
 .tabs .tabbar {
   background-color: #ffffff;
+}
+
+@font-face {
+  font-family: 'Circular-Book';
+  src: url('../assets/fonts/circular/circular-book.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Circular-Medium';
+  src: url('../assets/fonts/circular/circular-medium.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Circular-Bold';
+  src: url('../assets/fonts/circular/circular-bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Circular-Black';
+  src: url('../assets/fonts/circular/circularblack.ttf') format('truetype');
+}
+
+body,
+span,
+button,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Circular-Bold' !important;
+}
+
+p {
+  font-family: 'Circular-Book' !important;
 }

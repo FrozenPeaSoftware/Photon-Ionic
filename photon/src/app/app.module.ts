@@ -25,13 +25,13 @@ import { Camera } from '@ionic-native/camera';
     ContactPage,
     HomePage,
     LoginPage,
-    TabsPage
+    TabsPage,
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp, {
       mode: 'md',
-    })
+    }),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -41,22 +41,16 @@ import { Camera } from '@ionic-native/camera';
     ContactPage,
     HomePage,
     LoginPage,
-    TabsPage
+    TabsPage,
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
     FileTransfer,
     FileTransferObject,
     File,
     Camera,
-  ]
+  ],
 })
-export class AppModule {
-
-  constructor(private statusBar: StatusBar) {
-    this.statusBar.hide();
-  }
-
-}
+export class AppModule {}

@@ -9,10 +9,6 @@ page-upload-photo {
     align-items: center !important;
   }
 
-  ion-grid {
-    height: 25%;
-  }
-
   ion-row {
     justify-content: center;
     align-items: center;
@@ -22,7 +18,11 @@ page-upload-photo {
   ion-icon {
     font-size: 80px;
     color: color($colors, light);
-    padding-bottom: 10px;
+  }
+
+  ion-row {
+    margin-top: 5%;
+    margin-bottom: 5%;
   }
 
   .button {
