@@ -8,6 +8,7 @@ page-photo-options {
   }
 
   img {
+    border: 6px solid color($colors, light);
     border-radius: 8%;
   }
 
@@ -27,7 +28,7 @@ page-photo-options {
   .button {
     color: color($colors, primary);
     background-color: color($colors, light);
-    width: 65%;
+    width: 100%;
     padding-top: 8%;
     padding-bottom: 8%;
   }
