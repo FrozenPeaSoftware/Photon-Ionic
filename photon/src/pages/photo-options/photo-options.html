@@ -1,28 +1,36 @@
 <ion-header></ion-header>
 
 
-<ion-content padding class="vertical-align-content">
+<ion-content padding>
 
   <ion-grid>
-    <!--<ion-row>
-      <ion-item>
-        <ion-label color="primary" stacked>DESCRIPTION</ion-label>
-        <ion-input placeholder="Enter a description"></ion-input>
-      </ion-item>
+    <ion-row>
+      <ion-col id="description-col">
+        <ion-item class="input" id="description">
+          <ion-label color="primary">Description</ion-label>
+          <ion-textarea rows="6" placeholder="Enter a description"></ion-textarea>
+        </ion-item>
+      </ion-col>
     </ion-row>
     <ion-row>
-      <ion-item>
-        <ion-label color="primary" stacked>LOCATION</ion-label>
-        <ion-input placeholder="Search for a location"></ion-input>
-      </ion-item>
-    </ion-row>-->
-    <ion-row>
-      <img src="https://instagram.fakl1-2.fna.fbcdn.net/vp/9546e9145b22f79536a4e732de93396d/5BF72D8E/t51.2885-15/e35/36473156_2047805465293060_6121897464317345792_n.jpg"
-      />
+      <ion-col>
+        <ion-item class="input">
+          <ion-label color="primary">Location</ion-label>
+          <ion-input placeholder="Search for a location"></ion-input>
+        </ion-item>
+      </ion-col>
     </ion-row>
     <ion-row>
-      <button class="button" id="back-button" ion-button round>Back</button>
-      <button class="button" id="upload-button" ion-button round>Upload</button>
+      <ion-col>
+        <img src="{{imageURL}}"/>
+        <!--https://instagram.fakl1-2.fna.fbcdn.net/vp/9546e9145b22f79536a4e732de93396d/5BF72D8E/t51.2885-15/e35/36473156_2047805465293060_6121897464317345792_n.jpg-->
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col id="buttons-col">
+        <button class="button" id="back-button" (click)="back()" ion-button round>Back</button>
+        <button class="button" id="upload-button" (click)="upload()" ion-button round>Upload</button>
+      </ion-col>
     </ion-row>
   </ion-grid>
 

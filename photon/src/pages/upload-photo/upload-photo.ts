@@ -1,7 +1,7 @@
+import { PhotoOptionsPage } from './../photo-options/photo-options';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { LoadingController, ToastController } from 'ionic-angular';
-import { storage } from 'firebase';
 import { Camera, CameraOptions} from '@ionic-native/camera';
 
 /**
@@ -54,8 +54,9 @@ export class UploadPhotoPage {
     this.camera.getPicture(options).then(
       imageData => {
         let image = 'data:image/jpeg;base64,' + imageData;
-        const photos = storage().ref('Photos/photo.jpg');
-        photos.putString(image, 'data_url');
+        this.navCtrl.push(PhotoOptionsPage, {
+          image: image
+        });
 
       },
       err => {
