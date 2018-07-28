@@ -35,7 +35,7 @@ $app-direction: ltr;
 
 $colors: (
   primary:    #3e91fc,
-  secondary:  #7dffb6,
+  secondary:  #6ee4c8,//#7dffb6,
   danger:     #f53d3d,
   pressed:    #F5F5F5,
   light:      #ffffff,
@@ -54,6 +54,7 @@ $colors: (
 // --------------------------------------------------
 // Material Design only Sass variables can go here
 $tabs-md-tab-icon-transform-y-active: 0px;
+$tabs-md-tab-icon-color-active: color($colors, primary);
 
 
 
