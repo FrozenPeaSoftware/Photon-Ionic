@@ -1,5 +1,6 @@
 page-options {
   .main-container {
+    text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: start;
@@ -7,10 +8,44 @@ page-options {
   }
 
   .header-container {
+    padding-top: 3vh;
     text-align: center;
   }
 
-  h2 {
+  .button-list-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 100%;
+  }
+
+  .button-container {
+    padding: 2vh;
+  }
+
+  h1 {
     color: color($colors, primary);
+  }
+
+  .gradient-button {
+    background: linear-gradient(
+      to bottom right,
+      color($colors, primary),
+      color($colors, secondary)
+    );
+    width: 90%;
+    padding-top: 8%;
+    padding-bottom: 8%;
+  }
+
+  .gradient-button-red {
+    background: linear-gradient(
+      to bottom right,
+      #b71c1c,
+      #FF7043
+    );
+    width: 90%;
+    padding-top: 8%;
+    padding-bottom: 8%;
   }
 }
