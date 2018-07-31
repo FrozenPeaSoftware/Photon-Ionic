@@ -17,6 +17,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
 import { File } from '@ionic-native/file';
 import { Camera } from '@ionic-native/camera';
+import { Keyboard } from '@ionic-native/keyboard';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,9 @@ import { Camera } from '@ionic-native/camera';
     BrowserModule,
     IonicModule.forRoot(MyApp, {
       mode: 'md',
-    }),
+      scrollAssist: false,
+      autoFocusAssist: false
+    }), 
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -54,6 +57,7 @@ import { Camera } from '@ionic-native/camera';
     FileTransferObject,
     File,
     Camera,
+    Keyboard,
   ],
 })
 export class AppModule {}
