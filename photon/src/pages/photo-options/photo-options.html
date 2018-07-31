@@ -3,7 +3,37 @@
 
 <ion-content padding>
 
-  <ion-grid>
+  <div class="main-container">
+
+    <!-- Photo description input field -->
+    <div class="description-container" style="background-color: seagreen">
+      <ion-item class="input" id="description">
+        <ion-label color="primary">Description</ion-label>
+        <ion-textarea rows="6" placeholder="Enter a description"></ion-textarea>
+      </ion-item>
+    </div>
+
+    <!-- Photo location input field -->
+    <div class="location-container" style="background-color: slateblue">
+      <ion-item class="input">
+        <ion-label color="primary">Location</ion-label>
+        <ion-input placeholder="Search for a location"></ion-input>
+      </ion-item>
+    </div>
+
+    <!-- Photo preview -->
+    <div class="image-container" style="background-color:turquoise">
+      <img src="{{imageURL}}"/>
+    </div>
+
+    <!-- Back and upload buttons -->
+    <div class="button-container" style="background-color: sandybrown">
+      <button class="gradient-button" id="back-button" (click)="back()" ion-button round>Back</button>
+      <button class="gradient-button" id="upload-button" (click)="upload()" ion-button round>Upload</button>
+    </div>
+  </div>
+
+  <!--<ion-grid>
     <ion-row>
       <ion-col id="description-col">
         <ion-item class="input" id="description">
@@ -22,9 +52,9 @@
     </ion-row>
     <ion-row>
       <ion-col>
-        <img src="{{imageURL}}"/>
-        <!--https://instagram.fakl1-2.fna.fbcdn.net/vp/9546e9145b22f79536a4e732de93396d/5BF72D8E/t51.2885-15/e35/36473156_2047805465293060_6121897464317345792_n.jpg-->
-      </ion-col>
+        <img src="{{imageURL}}" />-->
+  <!--https://instagram.fakl1-2.fna.fbcdn.net/vp/9546e9145b22f79536a4e732de93396d/5BF72D8E/t51.2885-15/e35/36473156_2047805465293060_6121897464317345792_n.jpg-->
+  <!--</ion-col>
     </ion-row>
     <ion-row>
       <ion-col id="buttons-col">
@@ -32,6 +62,6 @@
         <button class="button" id="upload-button" (click)="upload()" ion-button round>Upload</button>
       </ion-col>
     </ion-row>
-  </ion-grid>
+  </ion-grid>-->
 
 </ion-content>

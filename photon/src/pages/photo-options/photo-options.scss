@@ -1,52 +1,35 @@
 page-photo-options {
-  img {
-    width: 100vw;
-    height: 80vw;
-    overflow: hidden;
-    border-radius: 5%;
-    margin-top: 4%;
-    margin-bottom: 4%;
-  }
-
-  ion-grid {
-    height: 100%;
-    padding: 2%;
-  }
-
-  ion-row {
-    padding-top: 5%;
-    padding-bottom: 5%;
-    justify-content: center;
-    align-items: center
-  }
-
-  ion-col {
-    align-self: center;
-  }
-
-  /*.spaced-row {
-    justify-content: center;
-    text-align: center;
-    height: 100%;
-  }
-
-  .packed-row {
+  .main-container {
     display: flex;
-    justify-content: center;
-    align-items: center;
-  }*/
-
-  .button {
-    color: #ffffff;
-    background: linear-gradient(
-      to bottom right,
-      color($colors, primary),
-      color($colors, secondary)
-    );
-    width: 44%;
-    padding-top: 8%;
-    padding-bottom: 8%;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 100%;
   }
+
+  .description-container {
+    margin-top: auto;
+  }
+
+  .location-container {
+    margin-top: auto;
+  }
+
+  .image-container {
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: 50%;
+    margin-top: auto;
+  }
+
+  .button-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-top: auto;
+  }
+
+
+
 
   .input {
     background-color: #f0f0f0;
@@ -55,11 +38,47 @@ page-photo-options {
     width: 100%;
   }
 
+  .gradient-button {
+    background: linear-gradient(
+      to bottom right,
+      color($colors, primary),
+      color($colors, secondary)
+    );
+    width: 40%;
+    padding-top: 8%;
+    padding-bottom: 8%;
+  }
+
+  /*img {
+    width: 100vw;
+    height: 80vw;
+    overflow: hidden;
+    border-radius: 5%;
+    //margin-top: 4%;
+    //margin-bottom: 4%;
+  }
+
+  ion-grid {
+    height: 100%;
+    //padding: 2%;
+  }
+
+  ion-row {
+    //padding-top: 5%;
+    //padding-bottom: 5%;
+    justify-content: center;
+    align-items: center
+  }
+
+  ion-col {
+    align-self: center;
+  }
+
   #back-button {
-    margin-right: 4%;
+    float: left;
   }
 
   #upload-button {
-    margin-left: 4%;
-  }
+    float: right;
+  }*/
 }
