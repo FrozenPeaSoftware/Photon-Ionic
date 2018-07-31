@@ -19,6 +19,7 @@ import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
 import { File } from '@ionic-native/file';
 import { Camera } from '@ionic-native/camera';
 import { Keyboard } from '@ionic-native/keyboard';
+import { OptionsPage } from '../pages/options/options';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { Keyboard } from '@ionic-native/keyboard';
     HomePage,
     LoginPage,
     TabsPage,
-    RegisterPage
+    RegisterPage,
+    OptionsPage
   ],
   imports: [
     BrowserModule,
@@ -38,7 +40,7 @@ import { Keyboard } from '@ionic-native/keyboard';
       mode: 'md',
       scrollAssist: false,
       autoFocusAssist: false
-    }), 
+    }),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -50,7 +52,8 @@ import { Keyboard } from '@ionic-native/keyboard';
     HomePage,
     LoginPage,
     TabsPage,
-    RegisterPage
+    RegisterPage,
+    OptionsPage
   ],
   providers: [
     StatusBar,

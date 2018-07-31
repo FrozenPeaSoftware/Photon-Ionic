@@ -7,7 +7,7 @@ page-login {
   }
 
   .button {
-    color: #ffffff;
+    color: color($colors, light);
     background: linear-gradient(to bottom right, color($colors, primary), color($colors, secondary));
     width: 50%;
     height: 75%;

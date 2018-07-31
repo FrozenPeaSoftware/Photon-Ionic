@@ -1,0 +1,16 @@
+page-options {
+  .main-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    height: 100%;
+  }
+
+  .header-container {
+    text-align: center;
+  }
+
+  h2 {
+    color: color($colors, primary);
+  }
+}

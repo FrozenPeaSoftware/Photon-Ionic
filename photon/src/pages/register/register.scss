@@ -7,7 +7,7 @@ page-register {
   }
 
   .button {
-    color: #ffffff;
+    color: color($colors, light);
     background: linear-gradient(
       to bottom right,
       color($colors, primary),

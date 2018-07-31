@@ -15,7 +15,7 @@
 // automatically applied to the <body> element in the app.
 
 .tabs .tabbar {
-  background-color: #ffffff;
+  background-color: color($colors, light);
 }
 
 .vertical-align-content > * {
