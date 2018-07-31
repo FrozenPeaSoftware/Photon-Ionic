@@ -6,19 +6,22 @@
       <ion-img class="logo" src="assets/imgs/logo.png"></ion-img>
     </ion-row>
     <ion-row>
-      <ion-item class="input">
+      <ion-item no-lines class="input">
         <ion-label color="primary" fixed>Username</ion-label>
         <ion-input></ion-input>
       </ion-item>
     </ion-row>
     <ion-row>
-      <ion-item class="input">
+      <ion-item no-lines class="input">
         <ion-label color="primary" fixed>Password</ion-label>
         <ion-input type="password"></ion-input>
       </ion-item>
     </ion-row>
     <ion-row>
       <button class="button" ion-button round (click)="login()">Login</button>
+    </ion-row>
+    <ion-row>
+      <button class="register" ion-button clear small (click)="register()">Don't have an account?</button>
     </ion-row>
   </ion-grid>
 </ion-content>
