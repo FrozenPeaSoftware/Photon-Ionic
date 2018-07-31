@@ -1,3 +1,36 @@
 page-register {
+  .logo {
+    background: transparent;
+    width: 60%;
+    height: 100%;
+    margin-bottom: 10%;
+  }
 
+  .button {
+    color: #ffffff;
+    background: linear-gradient(
+      to bottom right,
+      color($colors, primary),
+      color($colors, secondary)
+    );
+    width: 50%;
+    height: 60%;
+    margin-top: 8%;
+  }
+
+  .input {
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    width: 90%;
+  }
+
+  ion-grid {
+    height: 60%;
+  }
+
+  ion-row {
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
 }
