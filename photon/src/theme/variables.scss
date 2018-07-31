@@ -37,7 +37,8 @@ $colors: (
   primary:    #3e91fc,
   secondary:  #6ee4c8,//#7dffb6,
   danger:     #f53d3d,
-  pressed:    #F5F5F5,
+  pressed:    #f5f5f5,
+  mid:        #58bee0,
   light:      #ffffff,
   dark:       #222
 );
@@ -54,7 +55,7 @@ $colors: (
 // --------------------------------------------------
 // Material Design only Sass variables can go here
 $tabs-md-tab-icon-transform-y-active: 0px;
-$tabs-md-tab-icon-color-active: color($colors, primary);
+$tabs-md-tab-icon-color-active: color($colors, mid);
 
 
 
