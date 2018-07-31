@@ -1,3 +1,4 @@
+import { LoginPage } from './../login/login';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
@@ -20,6 +21,10 @@ export class OptionsPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad OptionsPage');
+  }
+
+  logOut() {
+    this.navCtrl.push(LoginPage);
   }
 
 }
