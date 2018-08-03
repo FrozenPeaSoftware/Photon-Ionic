@@ -56,8 +56,11 @@ $colors: (
 // Material Design only Sass variables can go here
 $tabs-md-tab-icon-transform-y-active: 0px;
 $tabs-md-tab-icon-color-active: color($colors, primary);
-
-
+$text-input-md-highlight-color-invalid: transparent;
+$text-input-md-highlight-color-valid: transparent;
+$text-input-md-show-invalid-highlight: transparent;
+$text-input-md-highlight-color: transparent;
+$text-input-md-show-valid-highlight: transparent;
 
 // App Windows Variables
 // --------------------------------------------------
