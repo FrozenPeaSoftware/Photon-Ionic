@@ -1,13 +1,18 @@
-import { LocationSearchComponent } from './../components/location-search/location-search';
-import { GoogleMapsApiProvider } from './../providers/google-maps-api/google-maps-api';
-import { PhotoOptionsPage } from './../pages/photo-options/photo-options';
+import { LocationSearchComponent } from '../components/location-search/location-search';
+import { GoogleMapsApiProvider } from '../providers/google-maps-api/google-maps-api';
+
+import { FIREBASE_CONFIG } from './firebase.config';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuth } from 'angularfire2/auth';
+
+import { PhotoOptionsPage } from '../pages/photo-options/photo-options';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { Crop } from '@ionic-native/crop';
 
-import { UploadPhotoPage } from './../pages/upload-photo/upload-photo';
+import { UploadPhotoPage } from '../pages/upload-photo/upload-photo';
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
@@ -41,6 +46,7 @@ import { Base64 } from '@ionic-native/base64';
   ],
   imports: [
     BrowserModule,
+    AngularFireModule.initializeApp(FIREBASE_CONFIG),
     IonicModule.forRoot(MyApp, {
       mode: 'md',
       scrollAssist: false,
@@ -72,7 +78,8 @@ import { Base64 } from '@ionic-native/base64';
     Keyboard,
     Crop,
     Base64,
-    GoogleMapsApiProvider
+    GoogleMapsApiProvider,
+    AngularFireAuth
   ],
 })
 export class AppModule {}

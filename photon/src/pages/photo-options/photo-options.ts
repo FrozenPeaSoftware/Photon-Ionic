@@ -1,5 +1,5 @@
-import { LocationSearchComponent } from './../../components/location-search/location-search';
-import { GoogleMapsApiProvider } from './../../providers/google-maps-api/google-maps-api';
+import { LocationSearchComponent } from '../../components/location-search/location-search';
+import { GoogleMapsApiProvider } from '../../providers/google-maps-api/google-maps-api';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { storage } from 'firebase';

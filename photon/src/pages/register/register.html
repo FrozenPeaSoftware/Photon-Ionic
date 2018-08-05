@@ -3,32 +3,54 @@
 <ion-content padding class="vertical-align-content">
   <ion-grid>
     <ion-row>
+      <div class="validation-errors">
+        <ng-container *ngFor="let validation of validation_messages.username">
+          <div class="error-message" *ngIf="validations_form.get('username').hasError(validation.type) && (validations_form.get('username').dirty || validations_form.get('username').touched)">
+            {{ validation.message }}
+          </div>
+        </ng-container>
+      </div>
+    </ion-row>
+
+    <ion-row>
       <ion-img class="logo" src="assets/imgs/logo.png"></ion-img>
     </ion-row>
+
     <ion-row>
       <ion-item no-lines class="input">
         <ion-label color="primary" fixed>Full Name</ion-label>
-        <ion-input></ion-input>
+        <ion-input type="text" formControlName="name" class="form-control"></ion-input>
       </ion-item>
     </ion-row>
+
     <ion-row>
       <ion-item no-lines class="input">
         <ion-label color="primary" fixed>Email</ion-label>
-        <ion-input type="email"></ion-input>
+        <ion-input type="email" formControlName="email" class="form-control"></ion-input>
       </ion-item>
     </ion-row>
+
     <ion-row>
       <ion-item no-lines class="input">
         <ion-label color="primary" fixed>Username</ion-label>
-        <ion-input></ion-input>
+        <ion-input type="text" formControlName="username" class="form-control"></ion-input>
       </ion-item>
     </ion-row>
+
     <ion-row>
       <ion-item no-lines class="input">
         <ion-label color="primary" fixed>Password</ion-label>
-        <ion-input type="password"></ion-input>
+        <ion-input type="password" formControlName="password" class="form-control"></ion-input>
       </ion-item>
     </ion-row>
+
+    <ion-row>
+      <ion-item no-lines class="input">
+        <ion-label color="primary" fixed>Confirm Password</ion-label>
+        <ion-input type="password" formControlName="confirm" class="form-control"></ion-input>
+      </ion-item>
+    </ion-row>
+
     <ion-row>
       <button class="button" ion-button round (click)="registerAccount()">Create Account</button>
     </ion-row>

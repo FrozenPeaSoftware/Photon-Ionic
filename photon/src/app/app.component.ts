@@ -1,4 +1,4 @@
-import { TabsPage } from './../pages/tabs/tabs';
+import { TabsPage } from '../pages/tabs/tabs';
 import { FIREBASE_CONFIG } from './firebase.config';
 import { Component } from '@angular/core';
 import { Platform } from 'ionic-angular';
