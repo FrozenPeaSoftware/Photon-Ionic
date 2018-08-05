@@ -11,6 +11,7 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+    <preference name="orientation" value="portrait" />
     <preference name="HeaderColor" value="#ffffff" />
     <preference name="SplashScreenSpinnerColor" value="#3e91fc" />
     <preference name="ScrollEnabled" value="false" />
