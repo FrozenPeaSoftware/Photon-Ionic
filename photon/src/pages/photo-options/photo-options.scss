@@ -19,6 +19,12 @@ page-photo-options {
     flex-shrink: 0;
     flex-basis: 50%;
     margin-top: auto;
+    padding: 4%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 
   .button-container {
@@ -28,8 +34,9 @@ page-photo-options {
     margin-top: auto;
   }
 
-
-
+  #preview-image {
+    border-radius: 2%;
+  }
 
   .input {
     background-color: #f0f0f0;

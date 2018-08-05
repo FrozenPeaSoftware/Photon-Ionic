@@ -15,14 +15,14 @@ import { storage } from 'firebase';
   templateUrl: 'photo-options.html',
 })
 export class PhotoOptionsPage {
-  imageURL: string;
+  image: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.imageURL = '';
+    this.image = '';
   }
 
   ionViewDidLoad() {
-    this.imageURL = this.navParams.get('image');
+    this.image = this.navParams.get('image');
   }
 
   back() {
@@ -31,6 +31,6 @@ export class PhotoOptionsPage {
 
   upload() {
     const photos = storage().ref('Photos/photo.jpg');
-    photos.putString(this.imageURL, 'data_url');
+    photos.putString(this.image, 'data_url');
   }
 }

@@ -6,7 +6,7 @@
   <div class="main-container">
 
     <!-- Photo description input field -->
-    <div class="description-container" style="background-color: seagreen">
+    <div class="description-container">
       <ion-item class="input" id="description">
         <ion-label color="primary">Description</ion-label>
         <ion-textarea rows="6" placeholder="Enter a description"></ion-textarea>
@@ -14,7 +14,7 @@
     </div>
 
     <!-- Photo location input field -->
-    <div class="location-container" style="background-color: slateblue">
+    <div class="location-container">
       <ion-item class="input">
         <ion-label color="primary">Location</ion-label>
         <ion-input placeholder="Search for a location"></ion-input>
@@ -22,12 +22,12 @@
     </div>
 
     <!-- Photo preview -->
-    <div class="image-container" style="background-color:turquoise">
-      <img src="{{imageURL}}"/>
+    <div class="image-container">
+      <img id='preview-image' [src]="image"/>
     </div>
 
     <!-- Back and upload buttons -->
-    <div class="button-container" style="background-color: sandybrown">
+    <div class="button-container">
       <button class="gradient-button" id="back-button" (click)="back()" ion-button round>Back</button>
       <button class="gradient-button" id="upload-button" (click)="upload()" ion-button round>Upload</button>
     </div>

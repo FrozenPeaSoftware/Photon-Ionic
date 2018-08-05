@@ -3,6 +3,7 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
+import { Crop } from '@ionic-native/crop';
 
 import { UploadPhotoPage } from './../pages/upload-photo/upload-photo';
 import { AboutPage } from '../pages/about/about';
@@ -20,6 +21,7 @@ import { File } from '@ionic-native/file';
 import { Camera } from '@ionic-native/camera';
 import { Keyboard } from '@ionic-native/keyboard';
 import { OptionsPage } from '../pages/options/options';
+import { Base64 } from '@ionic-native/base64';
 
 @NgModule({
   declarations: [
@@ -64,6 +66,8 @@ import { OptionsPage } from '../pages/options/options';
     File,
     Camera,
     Keyboard,
+    Crop,
+    Base64
   ],
 })
 export class AppModule {}
