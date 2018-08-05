@@ -65,10 +65,11 @@ export class UploadPhotoPage {
 
         this.cropImage(imageURI).then(
           image => {
-            this.base64.encodeFile(image).then((base64File: string) => {
-              let safeURL = this.sanitizer.bypassSecurityTrustUrl(base64File);
+            this.base64.encodeFile(image).then((base64Image: string) => {
+              let safeImageURL = this.sanitizer.bypassSecurityTrustUrl(base64Image);
               this.navCtrl.push(PhotoOptionsPage, {
-                image: safeURL,
+                safeImageURL: safeImageURL,
+                base64Image: base64Image
               });
             }, (error) => {
               console.error('Error encoding image to base64.', error);
@@ -95,31 +96,4 @@ export class UploadPhotoPage {
       error => console.error('Error cropping image.', error)
     );
   }
-
-
-
-
-
-
-
-  /*this.navCtrl.push(PhotoOptionsPage, {
-          image: imageURI,
-        });*/
-
-    /*this.crop
-      .crop(
-        'https://wellington.govt.nz/~/media/global/images/megamenu/2017/mega-about.jpg',
-        {
-          quality: 100,
-        }
-      )
-      .then(
-        croppedImage => {
-          let image = 'data:image/jpeg;base64,' + croppedImage;
-          this.navCtrl.push(PhotoOptionsPage, {
-            image: image,
-          });
-        },
-        error => console.error('Error cropping image', error)
-      );*/
 }
