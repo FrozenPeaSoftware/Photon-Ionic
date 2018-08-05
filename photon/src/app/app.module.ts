@@ -1,3 +1,5 @@
+import { LocationSearchComponent } from './../components/location-search/location-search';
+import { GoogleMapsApiProvider } from './../providers/google-maps-api/google-maps-api';
 import { PhotoOptionsPage } from './../pages/photo-options/photo-options';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -34,7 +36,8 @@ import { Base64 } from '@ionic-native/base64';
     LoginPage,
     TabsPage,
     RegisterPage,
-    OptionsPage
+    OptionsPage,
+    LocationSearchComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +58,8 @@ import { Base64 } from '@ionic-native/base64';
     LoginPage,
     TabsPage,
     RegisterPage,
-    OptionsPage
+    OptionsPage,
+    LocationSearchComponent
   ],
   providers: [
     StatusBar,
@@ -67,7 +71,8 @@ import { Base64 } from '@ionic-native/base64';
     Camera,
     Keyboard,
     Crop,
-    Base64
+    Base64,
+    GoogleMapsApiProvider
   ],
 })
 export class AppModule {}

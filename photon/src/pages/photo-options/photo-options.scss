@@ -14,6 +14,28 @@ page-photo-options {
     margin-top: auto;
   }
 
+  .location-results-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding-top: 2vh;
+
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+
+    width: 88vw;
+    border-radius: 10px;
+    background-color: #f0f0f0;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    margin-top: 1vh;
+  }
+
+  .location-item {
+    background-color: #f0f0f0;
+  }
+
   .image-container {
     flex-grow: 0;
     flex-shrink: 0;
