@@ -1,38 +1,40 @@
 page-login {
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    justify-content: space-between;
+  }
+
   .logo {
     background: transparent;
-    width: 60%;
-    height: 100%;
+    width: 70%;
     margin-bottom: 10%;
   }
 
   .button {
     color: color($colors, light);
-    background: linear-gradient(to bottom right, color($colors, primary), color($colors, secondary));
+    background: linear-gradient(
+      to bottom right,
+      color($colors, primary),
+      color($colors, secondary)
+    );
     width: 50%;
-    height: 75%;
-    margin-top:8%;
+    padding-top: 7%;
+    padding-bottom: 7%;
+    margin-top: 7%;
   }
 
   .input {
-    background-color: #F0F0F0;
+    background-color: #f0f0f0;
     border-radius: 10px;
-    width: 90%;
   }
 
   .register {
     background: transparent;
     color: color($colors, primary);
     text-transform: none;
-  }
-
-  ion-grid {
-    height: 50%;
-  }
-
-  ion-row {
-    justify-content: center;
-    align-items: center;
-    height: 100%;
   }
 }

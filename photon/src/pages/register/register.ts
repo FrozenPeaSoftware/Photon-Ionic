@@ -1,13 +1,13 @@
 import { LoginPage } from "../login/login";
 import { Component } from "@angular/core";
 import { IonicPage, NavController, NavParams } from "ionic-angular";
-/*
+
 import {
   FormGroup,
   FormBuilder,
   Validators,
   FormControl
-} from "@angular/forms";*/
+} from "@angular/forms";
 import { AngularFireAuth } from "angularfire2/auth";
 import { UsernameValidator } from "../../validators/username.validator";
 import { PasswordValidator } from "../../validators/password.validator";
@@ -25,9 +25,9 @@ import { PasswordValidator } from "../../validators/password.validator";
   templateUrl: "register.html"
 })
 export class RegisterPage {
-  //registerForm: FormGroup;
-  //registerError: string;
-/*
+  registerForm: FormGroup;
+  registerError: string;
+
   validation_messages = {
     username: [
       { type: "required", message: "Username is required" },
@@ -64,13 +64,13 @@ export class RegisterPage {
       { type: "areEqual", message: "Passwords do not match" }
     ]
   };
-*/
+  
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    //public fb: FormBuilder
+    public fb: FormBuilder
   ) {
-    /*
+    
     this.registerForm = fb.group(
       {
         name: new FormControl("", Validators.required),
@@ -106,7 +106,6 @@ export class RegisterPage {
         return PasswordValidator.areEqual(formGroup);
       }
     );
-    */
   }
 
   registerAccount() {
