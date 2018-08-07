@@ -4,9 +4,14 @@ import { TabsPage } from "../tabs/tabs";
 import { Component } from "@angular/core";
 import { IonicPage, NavController, NavParams } from "ionic-angular";
 
-import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms";
+import {
+  FormGroup,
+  FormBuilder,
+  Validators,
+  FormControl
+} from "@angular/forms";
 import { AngularFireAuth } from "angularfire2/auth";
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from "../../services/auth.service";
 
 /**
  * Generated class for the LoginPage page.
@@ -30,34 +35,43 @@ export class LoginPage {
     private auth: AuthService,
     public fb: FormBuilder
   ) {
-    
     this.loginForm = fb.group({
-			email: new FormControl('', Validators.compose([Validators.required, Validators.email])),
-			password: new FormControl('', Validators.compose([Validators.required, Validators.minLength(6)]))
-		});
+      email: new FormControl(
+        "",
+        Validators.compose([Validators.required, Validators.email])
+      ),
+      password: new FormControl(
+        "",
+        Validators.compose([Validators.required, Validators.minLength(6)])
+      )
+    });
   }
 
   register() {
     this.navCtrl.push(RegisterPage);
   }
 
+  loginTest() {
+    this.navCtrl.push(TabsPage);
+  }
+
   login() {
-    //this.navCtrl.push(TabsPage);
     let data = this.loginForm.value;
 
-		if (!data.email) {
-			return;
-		}
+    if (!data.email) {
+      return;
+    }
 
-		let credentials = {
-			email: data.email,
-			password: data.password
-		};
-		this.auth.signInWithEmail(credentials)
-			.then(
-				() => this.navCtrl.setRoot(TabsPage),
-				error => this.loginError = error.message
-			);
+    let credentials = {
+      email: data.email,
+      password: data.password
+    };
+    this.auth
+      .signInWithEmail(credentials)
+      .then(
+        () => this.navCtrl.setRoot(TabsPage),
+        error => (this.loginError = error.message)
+      );
   }
 
   loginWithGoogle() {}
