@@ -12,13 +12,6 @@ import { AngularFireAuth } from "angularfire2/auth";
 import { UsernameValidator } from "../../validators/username.validator";
 import { PasswordValidator } from "../../validators/password.validator";
 
-/**
- * Generated class for the RegisterPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: "page-register",
@@ -49,7 +42,6 @@ export class RegisterPage {
     name: [{ type: "required", message: "Name is required" }],
     email: [
       { type: "required", message: "Email is required" },
-      { type: "email", message: "Please enter a valid email" }
     ],
     password: [
       { type: "required", message: "Password is required" },
@@ -64,7 +56,7 @@ export class RegisterPage {
       { type: "areEqual", message: "Passwords do not match" }
     ]
   };
-  
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -84,7 +76,7 @@ export class RegisterPage {
             UsernameValidator.validUsername,
             Validators.maxLength(25),
             Validators.minLength(5),
-            Validators.pattern("^([A-Za-z0-9_-]+$"),
+            //Validators.pattern("^(?=[A-Za-z0-9]+$"),
             Validators.required
           ])
         ),
@@ -95,9 +87,7 @@ export class RegisterPage {
             Validators.minLength(6),
             Validators.required,
             //this is for the letters (both uppercase and lowercase) and numbers validation
-            Validators.pattern(
-              "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$"
-            )
+            Validators.pattern("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$")
           ])
         ),
         confirm_password: new FormControl("", Validators.required)

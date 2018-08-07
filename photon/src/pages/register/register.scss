@@ -2,19 +2,18 @@ page-register {
   .logo {
     background: transparent;
     width: 60%;
-    height: 100%;
     margin-bottom: 10%;
   }
 
   .button {
-    color: color($colors, light);
     background: linear-gradient(
       to bottom right,
       color($colors, primary),
       color($colors, secondary)
     );
     width: 50%;
-    height: 60%;
+    padding-top: 7%;
+    padding-bottom: 7%;
     margin-top: 8%;
   }
 
@@ -22,6 +21,10 @@ page-register {
     background-color: #f0f0f0;
     border-radius: 10px;
     width: 90%;
+  }
+
+  .error-message {
+    color: red;
   }
 
   ion-grid {

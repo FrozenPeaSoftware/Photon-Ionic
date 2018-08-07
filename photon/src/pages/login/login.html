@@ -2,23 +2,24 @@
 
 <ion-content padding class="vertical-align-content">
   <div class="container">
-    <img class="logo" src="assets/imgs/logo.png">
+    <form (ngSubmit)="login()" [formGroup]="loginForm">
+      <div class="form">
 
-    <form (ngSubmit)="signup()" [formGroup]="loginForm">
-      <ion-item no-lines class="input">
-        <ion-label color="primary" fixed>Email</ion-label>
-        <ion-input type="text" formControlName="email"></ion-input>
-      </ion-item>
+        <img class="logo" src="assets/imgs/logo.png">
 
-      <ion-item no-lines class="input">
-        <ion-label color="primary" fixed>Password</ion-label>
-        <ion-input type="password" formControlName="password"></ion-input>
-      </ion-item>
+        <ion-item no-lines class="input">
+          <ion-label color="primary" fixed>Email</ion-label>
+          <ion-input type="text" formControlName="email"></ion-input>
+        </ion-item>
+
+        <ion-item no-lines class="input">
+          <ion-label color="primary" fixed>Password</ion-label>
+          <ion-input type="password" formControlName="password"></ion-input>
+        </ion-item>
+
+        <button class="button" ion-button round type="submit">Login</button>
+      </div>
     </form>
-
-    <button class="button" ion-button round (click)="login()">Login</button>
-
     <button class="register" ion-button clear small (click)="register()">Don't have an account?</button>
   </div>
-
 </ion-content>

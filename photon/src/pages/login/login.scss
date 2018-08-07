@@ -5,7 +5,13 @@ page-login {
     flex-direction: column;
     align-content: center;
     align-items: center;
-    justify-content: space-between;
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
   }
 
   .logo {
@@ -15,7 +21,6 @@ page-login {
   }
 
   .button {
-    color: color($colors, light);
     background: linear-gradient(
       to bottom right,
       color($colors, primary),
