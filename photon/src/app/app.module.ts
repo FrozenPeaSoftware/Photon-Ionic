@@ -1,12 +1,13 @@
 import { AuthService } from './../services/auth.service';
+import { PhotoPage } from './../pages/photo/photo';
+import { GoogleMapsApiProvider } from './../providers/google-maps-api/google-maps-api';
+import { PhotoOptionsPage } from './../pages/photo-options/photo-options';
 import { LocationSearchComponent } from '../components/location-search/location-search';
-import { GoogleMapsApiProvider } from '../providers/google-maps-api/google-maps-api';
 
 import { FIREBASE_CONFIG } from './firebase.config';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuth } from 'angularfire2/auth';
 
-import { PhotoOptionsPage } from '../pages/photo-options/photo-options';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
@@ -15,7 +16,6 @@ import { Crop } from '@ionic-native/crop';
 
 import { UploadPhotoPage } from '../pages/upload-photo/upload-photo';
 import { AboutPage } from '../pages/about/about';
-import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from '../pages/login/login';
@@ -37,13 +37,13 @@ import { Base64 } from '@ionic-native/base64';
     UploadPhotoPage,
     PhotoOptionsPage,
     AboutPage,
-    ContactPage,
     HomePage,
     LoginPage,
     TabsPage,
     RegisterPage,
     OptionsPage,
-    LocationSearchComponent
+    LocationSearchComponent,
+    PhotoPage
   ],
   imports: [
     BrowserModule,
@@ -60,13 +60,13 @@ import { Base64 } from '@ionic-native/base64';
     UploadPhotoPage,
     PhotoOptionsPage,
     AboutPage,
-    ContactPage,
     HomePage,
     LoginPage,
     TabsPage,
     RegisterPage,
     OptionsPage,
-    LocationSearchComponent
+    LocationSearchComponent,
+    PhotoPage
   ],
   providers: [
     StatusBar,

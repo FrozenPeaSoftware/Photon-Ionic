@@ -1,0 +1,83 @@
+page-photo {
+
+  #heading {
+    margin-top: 2vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    height: 8vh;
+  }
+
+  #profile-picture-container {
+    margin-left: 4vw;
+    margin-right: 5vw;
+  }
+
+  #profile-picture {
+    border-radius: 50%;
+    max-width: 100%;
+    max-height: 100%
+  }
+
+  #name-location-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+  }
+
+  #name {
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+    color: color($colors, dark);
+    padding-bottom: 0.3vh;
+  }
+
+  #location-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    padding-top: 0.3vh;
+  }
+
+  #location {
+    font-size: 12px;
+    margin: 0;
+    padding: 0;
+    color: color($colors, dark);
+  }
+
+  #pin {
+    font-size: 14px;
+    padding-right: 1vw;
+    color: color($colors, dark);
+  }
+
+  #image-container {
+    margin-top: 2vh;
+    padding: 2vw;
+  }
+
+  #image {
+    border-radius: 4%;
+  }
+
+  #photo-buttons {
+    margin-top: 2vh;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .photo-button {
+    background: linear-gradient(
+      to bottom right,
+      color($colors, primary),
+      color($colors, secondary)
+    );
+  }
+
+}
