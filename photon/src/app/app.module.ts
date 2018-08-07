@@ -1,3 +1,4 @@
+import { AuthService } from './../services/auth.service';
 import { LocationSearchComponent } from '../components/location-search/location-search';
 import { GoogleMapsApiProvider } from '../providers/google-maps-api/google-maps-api';
 
@@ -79,7 +80,8 @@ import { Base64 } from '@ionic-native/base64';
     Crop,
     Base64,
     GoogleMapsApiProvider,
-    AngularFireAuth
+    AngularFireAuth,
+    AuthService
   ],
 })
 export class AppModule {}

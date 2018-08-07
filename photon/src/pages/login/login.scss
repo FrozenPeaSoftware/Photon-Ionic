@@ -1,8 +1,13 @@
 page-login {
 
+  .form-error {
+    color: red;
+  }
+
   .container {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     align-content: center;
     align-items: center;
   }
@@ -16,7 +21,7 @@ page-login {
 
   .logo {
     background: transparent;
-    width: 70%;
+    width: 60%;
     margin-bottom: 10%;
   }
 

@@ -1,3 +1,4 @@
+import { AuthService } from './../services/auth.service';
 import { TabsPage } from '../pages/tabs/tabs';
 import { FIREBASE_CONFIG } from './firebase.config';
 import { Component } from '@angular/core';
@@ -18,10 +19,11 @@ export class MyApp {
     platform: Platform,
     statusBar: StatusBar,
     splashScreen: SplashScreen,
+    private authService: AuthService,
     keyboard: Keyboard
   ) {
 
-    initializeApp(FIREBASE_CONFIG);
+    //initializeApp(FIREBASE_CONFIG);
 
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.

@@ -6,6 +6,7 @@ import { IonicPage, NavController, NavParams } from "ionic-angular";
 
 import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms";
 import { AngularFireAuth } from "angularfire2/auth";
+import { AuthService } from '../../services/auth.service';
 
 /**
  * Generated class for the LoginPage page.
@@ -26,6 +27,7 @@ export class LoginPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
+    private auth: AuthService,
     public fb: FormBuilder
   ) {
     
@@ -40,7 +42,22 @@ export class LoginPage {
   }
 
   login() {
-    this.navCtrl.push(TabsPage);
+    //this.navCtrl.push(TabsPage);
+    let data = this.loginForm.value;
+
+		if (!data.email) {
+			return;
+		}
+
+		let credentials = {
+			email: data.email,
+			password: data.password
+		};
+		this.auth.signInWithEmail(credentials)
+			.then(
+				() => this.navCtrl.setRoot(TabsPage),
+				error => this.loginError = error.message
+			);
   }
 
   loginWithGoogle() {}
