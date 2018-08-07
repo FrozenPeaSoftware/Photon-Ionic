@@ -5,12 +5,12 @@ page-photo {
     display: flex;
     flex-direction: row;
     justify-content: left;
-    height: 10vh;
+    height: 8vh;
   }
 
   #profile-picture-container {
     margin-left: 4vw;
-    margin-right: 6vw;
+    margin-right: 5vw;
   }
 
   #profile-picture {
@@ -53,6 +53,31 @@ page-photo {
     font-size: 14px;
     padding-right: 1vw;
     color: color($colors, dark);
+  }
+
+  #image-container {
+    margin-top: 2vh;
+    padding: 2vw;
+  }
+
+  #image {
+    border-radius: 4%;
+  }
+
+  #photo-buttons {
+    margin-top: 2vh;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .photo-button {
+    background: linear-gradient(
+      to bottom right,
+      color($colors, primary),
+      color($colors, secondary)
+    );
   }
 
 }
