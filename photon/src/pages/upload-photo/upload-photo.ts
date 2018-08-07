@@ -1,4 +1,4 @@
-import { PhotoOptionsPage } from './../photo-options/photo-options';
+import { PhotoOptionsPage } from '../photo-options/photo-options';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { LoadingController, ToastController } from 'ionic-angular';
