@@ -1,18 +1,12 @@
-<<<<<<< HEAD
 import { PhotoPage } from './../pages/photo/photo';
-import { LocationSearchComponent } from './../components/location-search/location-search';
 import { GoogleMapsApiProvider } from './../providers/google-maps-api/google-maps-api';
 import { PhotoOptionsPage } from './../pages/photo-options/photo-options';
-=======
 import { LocationSearchComponent } from '../components/location-search/location-search';
-import { GoogleMapsApiProvider } from '../providers/google-maps-api/google-maps-api';
 
 import { FIREBASE_CONFIG } from './firebase.config';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuth } from 'angularfire2/auth';
 
-import { PhotoOptionsPage } from '../pages/photo-options/photo-options';
->>>>>>> f8da274afe90f829eebab5f8d145d93f8a7fe855
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
