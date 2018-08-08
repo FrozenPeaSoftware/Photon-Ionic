@@ -1,11 +1,11 @@
 page-photo {
-
   #heading {
-    margin-top: 2vh;
+    //margin-top: 2vh;
     display: flex;
     flex-direction: row;
     justify-content: left;
     height: 8vh;
+    background: purple;
   }
 
   #profile-picture-container {
@@ -16,7 +16,7 @@ page-photo {
   #profile-picture {
     border-radius: 50%;
     max-width: 100%;
-    max-height: 100%
+    max-height: 100%;
   }
 
   #name-location-container {
@@ -56,8 +56,9 @@ page-photo {
   }
 
   #image-container {
-    margin-top: 2vh;
-    padding: 2vw;
+    //margin-top: 1vh;
+    //padding: 2vw;
+    background: red;
   }
 
   #image {
@@ -65,19 +66,40 @@ page-photo {
   }
 
   #photo-buttons {
-    margin-top: 2vh;
     width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: start;
+    align-content: center;
+    align-items: center;
+    text-align: center;
+    //background-color: greenyellow;
   }
 
-  .photo-button {
+  #like-icon {
+    font-size: 35px;
+  }
+
+  .gradient-icon {
+    background: -moz-linear-gradient(
+      to bottom right,
+      color($colors, primary),
+      color($colors, secondary)
+    );
+    background: -webkit-linear-gradient(
+      to bottom right,
+      color($colors, primary),
+      color($colors, secondary)
+    );
     background: linear-gradient(
       to bottom right,
       color($colors, primary),
       color($colors, secondary)
     );
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline;
   }
-
 }
