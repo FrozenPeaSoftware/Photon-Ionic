@@ -25,7 +25,7 @@
     />
   </div>
   <div id="photo-buttons">
-    <i id="like-icon" class="fa fa-heart-o gradient-icon" aria-hidden="true"></i>
+    <i id="like-icon" (click)="toggleLike()" [ngClass]="liked ? 'fa-heart' : 'fa-heart-o'" class="fa gradient-icon" aria-hidden="true"></i>
     <p id="grad">462</p>
     <!--<button class="photo-button" ion-fab>
       <ion-icon name="heart"></ion-icon>

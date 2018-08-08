@@ -79,27 +79,4 @@ page-photo {
   #like-icon {
     font-size: 35px;
   }
-
-  .gradient-icon {
-    background: -moz-linear-gradient(
-      to bottom right,
-      color($colors, primary),
-      color($colors, secondary)
-    );
-    background: -webkit-linear-gradient(
-      to bottom right,
-      color($colors, primary),
-      color($colors, secondary)
-    );
-    background: linear-gradient(
-      to bottom right,
-      color($colors, primary),
-      color($colors, secondary)
-    );
-    -webkit-background-clip: text;
-    -moz-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    display: inline;
-  }
 }

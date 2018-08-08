@@ -24,6 +24,29 @@
   align-items: center !important;
 }
 
+.gradient-icon {
+  background: -moz-linear-gradient(
+    to bottom right,
+    color($colors, primary),
+    color($colors, secondary)
+  );
+  background: -webkit-linear-gradient(
+    to bottom right,
+    color($colors, primary),
+    color($colors, secondary)
+  );
+  background: linear-gradient(
+    to bottom right,
+    color($colors, primary),
+    color($colors, secondary)
+  );
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline;
+}
+
 @font-face {
   font-family: 'Circular-Book';
   src: url('../assets/fonts/circular/circular-book.ttf') format('truetype');
