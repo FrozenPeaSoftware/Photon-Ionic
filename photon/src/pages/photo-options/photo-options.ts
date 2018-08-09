@@ -1,3 +1,4 @@
+import { PhotoPage } from './../photo/photo';
 import { LocationSearchComponent } from '../../components/location-search/location-search';
 import { GoogleMapsApiProvider } from '../../providers/google-maps-api/google-maps-api';
 import { Component } from '@angular/core';
@@ -30,7 +31,6 @@ export class PhotoOptionsPage {
   }
 
   back() {
-    this.navCtrl.pop();
   }
 
   upload() {

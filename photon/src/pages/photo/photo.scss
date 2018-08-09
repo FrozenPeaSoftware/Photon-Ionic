@@ -53,7 +53,7 @@ page-photo {
     color: color($colors, dark);
   }
 
-  #pin {
+  #mini-location-icon {
     font-size: 14px;
     padding-right: 1vw;
     color: color($colors, dark);
@@ -95,6 +95,11 @@ page-photo {
     font-size: 32px;
     padding-right: 2vw;
     padding-bottom: 0.7vh;
+  }
+
+  #main-location-icon {
+    font-size: 32px;
+    margin-left: auto;
   }
 
   #description-container {
