@@ -1,25 +1,29 @@
 page-photo {
+  #main-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 100%;
+  }
+
   #heading {
-    //margin-top: 2vh;
     display: flex;
     flex-direction: row;
     justify-content: left;
-    height: 8vh;
-    background: purple;
-  }
-
-  #profile-picture-container {
-    margin-left: 4vw;
-    margin-right: 5vw;
+    flex-shrink: 0;
+    height: 6vh;
+    margin-bottom: 1.5vh;
   }
 
   #profile-picture {
     border-radius: 50%;
     max-width: 100%;
     max-height: 100%;
+    margin-right: 2vw;
   }
 
   #name-location-container {
+    flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -56,16 +60,20 @@ page-photo {
   }
 
   #image-container {
-    //margin-top: 1vh;
-    //padding: 2vw;
-    background: red;
+    margin-bottom: 0.5vh;
   }
 
   #image {
     border-radius: 4%;
+    margin-bottom: 1vh;
   }
 
-  #photo-buttons {
+  #scroll-area {
+    flex: 1;
+    //background: peru;
+  }
+
+  #likes-container {
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -73,10 +81,23 @@ page-photo {
     align-content: center;
     align-items: center;
     text-align: center;
+    margin-top: -2.5vh;
+    margin-bottom: 0.5vh;
     //background-color: greenyellow;
   }
 
   #like-icon {
-    font-size: 35px;
+    font-size: 32px;
+    padding-right: 2vw;
+  }
+
+  #comment-icon {
+    font-size: 32px;
+    padding-right: 2vw;
+    padding-bottom: 0.7vh;
+  }
+
+  #description-container {
+    //
   }
 }

@@ -87,3 +87,33 @@ h6 {
 p {
   font-family: 'Circular-Book' !important;
 }
+
+// Hacks for font awesome icons in tabbar
+// see https://forum.ionicframework.com/t/anyway-to-custom-the-tabbars-icon-with-my-own-svg-file/46131/2
+// the content code of each fa-icon can be found here: 'node_modules/font-awesome/css/font-awesome.css'
+.fa-icons-general {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transform: translate(0, 0);
+}
+.ion-md-fa-cloud-upload::before {
+  @extend .fa-icons-general;
+  content: '\f0ee';
+}
+
+.ion-md-fa-search::before {
+  @extend .fa-icons-general;
+  content: '\f002';
+}
+.ion-md-fa-user::before {
+  @extend .fa-icons-general;
+  content: '\f007';
+}
+.ion-md-fa-cog::before {
+  @extend .fa-icons-general;
+  content: '\f013';
+}
