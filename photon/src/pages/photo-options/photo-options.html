@@ -8,7 +8,7 @@
     <!-- Photo description input field -->
     <div class="description-container">
       <ion-item class="input" id="description">
-        <ion-label color="primary">Description</ion-label>
+        <ion-label color="mid">Description</ion-label>
         <ion-textarea rows="6" placeholder="Enter a description"></ion-textarea>
       </ion-item>
     </div>
@@ -16,7 +16,7 @@
     <!-- Photo location input field -->
     <div class="location-container">
       <ion-item class="input">
-        <ion-label color="primary">Location</ion-label>
+        <ion-label color="mid">Location</ion-label>
         <ion-input [(ngModel)]="locationSearchInput" (keyup)="updateSearchResults()" placeholder="Search for a location"></ion-input>
       </ion-item>
       <div [hidden]="hideLocationSearch()" class="location-results-container">
