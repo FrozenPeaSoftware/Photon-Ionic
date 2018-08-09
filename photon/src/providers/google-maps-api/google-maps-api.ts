@@ -1,10 +1,11 @@
-import { Injectable } from '@angular/core';
+import { Injectable, ElementRef } from '@angular/core';
 import { Component, NgZone } from '@angular/core';
 import { LoadingController } from 'ionic-angular';
 import {
   GoogleMaps,
   GoogleMap,
   GoogleMapsEvent,
+  GoogleMapOptions,
   LatLng,
   CameraPosition,
   MarkerOptions,
@@ -50,6 +51,21 @@ export class GoogleMapsApiProvider {
         }
       }
     );
+  }
+
+  createMap(): any {
+    console.log("Making map...");
+    let mapOptions: GoogleMapOptions = {
+      camera: {
+         target: {
+           lat: 43.0741904,
+           lng: -89.3809802
+         },
+         zoom: 18,
+         tilt: 30
+       }
+    };
+    return GoogleMaps.create('map_canvas', mapOptions);
   }
 
   selectSearchResult(item) {

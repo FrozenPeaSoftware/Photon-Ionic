@@ -1,5 +1,6 @@
+import { MapPage } from './../map/map';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { ModalController, IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -15,7 +16,7 @@ export class PhotoPage {
 
   liked: boolean;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController) {
     this.name = "Leyton Blackler";
     this.location = "Red Rocks"
     this.likes = 462;
@@ -25,6 +26,11 @@ export class PhotoPage {
 
   toggleLike() {
     this.liked = !this.liked;
+  }
+
+  showMap() {
+    let mapModal = this.modalCtrl.create(MapPage, { userId: 8675309 });
+    mapModal.present();
   }
 
 }

@@ -18,6 +18,7 @@
           <p id="location">{{location}}</p>
         </div>
       </div>
+      <i id="main-location-icon" (click)="showMap()" class="fa fa-map-marker gradient-icon" aria-hidden="true"></i>
     </div>
 
     <div id="image-container">
@@ -32,7 +33,6 @@
         <p>
           <strong>{{likes}}</strong>
         </p>
-        <i id="main-location-icon" class="fa fa-map-marker gradient-icon" aria-hidden="true"></i>
       </div>
       <div id="description-container">{{description}}</div>
     </ion-scroll>

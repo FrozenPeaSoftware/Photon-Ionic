@@ -1,3 +1,4 @@
+import { MapPage } from './../pages/map/map';
 import { AuthService } from './../services/auth.service';
 import { PhotoPage } from './../pages/photo/photo';
 import { GoogleMapsApiProvider } from './../providers/google-maps-api/google-maps-api';
@@ -43,7 +44,8 @@ import { Base64 } from '@ionic-native/base64';
     RegisterPage,
     OptionsPage,
     LocationSearchComponent,
-    PhotoPage
+    PhotoPage,
+    MapPage
   ],
   imports: [
     BrowserModule,
@@ -66,7 +68,8 @@ import { Base64 } from '@ionic-native/base64';
     RegisterPage,
     OptionsPage,
     LocationSearchComponent,
-    PhotoPage
+    PhotoPage,
+    MapPage
   ],
   providers: [
     StatusBar,
