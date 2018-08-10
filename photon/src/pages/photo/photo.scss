@@ -103,7 +103,7 @@ page-photo {
   }
 
   #send-icon {
-    font-size: 32px;
+    font-size: 28px;
   }
 
   #send-container {
@@ -148,13 +148,14 @@ page-photo {
     );
   }
 
-  #comment-container {
-    margin-bottom: -1vh;
-    text-align: left;
+  #new-comment-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
   }
 
   .input {
-    margin-top: 50px;
+    margin-top: 55px;
     width: 100%;
     background-color: #f0f0f0;
     border-radius: 10px;
