@@ -11,6 +11,7 @@ page-photo {
     flex-direction: row;
     justify-content: left;
     flex-shrink: 0;
+    margin-left: 1vw;
     height: 6vh;
     margin-bottom: 1.5vh;
   }
@@ -61,6 +62,8 @@ page-photo {
 
   #image-container {
     margin-bottom: 0.5vh;
+    margin-left: 1vw;
+    margin-right: 1vw;
   }
 
   #image {
@@ -70,11 +73,16 @@ page-photo {
 
   #scroll-area {
     flex: 1;
-    margin-left: -2vw;
-    //background: peru;
   }
 
-  #likes-container {
+  #scroll-content {
+    margin-top: -22px;
+    margin-bottom: -40px;
+    margin-left: -1vw;
+    margin-right: -1vw;
+  }
+
+  #like-comment-container {
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -82,20 +90,20 @@ page-photo {
     align-content: center;
     align-items: center;
     text-align: center;
-    margin-top: -2.5vh;
-    margin-bottom: 0.5vh;
-    //background-color: greenyellow;
   }
 
   #like-icon {
     font-size: 32px;
-    padding-right: 2vw;
   }
 
   #comment-icon {
     font-size: 32px;
-    padding-right: 2vw;
     padding-bottom: 0.7vh;
+    margin-left: 1vw;
+  }
+
+  .like-comment-item {
+    margin-right: 2vw;
   }
 
   #main-location-icon {
@@ -106,7 +114,9 @@ page-photo {
     margin-right: 4vw;
   }
 
-  #description-container {
-    //
+  #description-container > p {
+    margin-top: -0.2vh;
+    line-height: 200%;
+    text-align: justify;
   }
 }

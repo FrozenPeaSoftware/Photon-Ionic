@@ -27,14 +27,21 @@
     </div>
 
     <ion-scroll id="scroll-area" scrollY="true">
-      <div id="likes-container">
-        <i id="comment-icon" class="fa fa-comment-o gradient-icon" aria-hidden="true"></i>
-        <i id="like-icon" (click)="toggleLike()" [ngClass]="liked ? 'fa-heart' : 'fa-heart-o'" class="fa gradient-icon" aria-hidden="true"></i>
-        <p>
-          <strong>{{likes}}</strong>
-        </p>
+      <div id=scroll-content>
+        <div id="like-comment-container">
+          <i id="like-icon" (click)="toggleLike()" [ngClass]="liked ? 'fa-heart' : 'fa-heart-o'" class="fa gradient-icon like-comment-item" aria-hidden="true"></i>
+          <p class="like-comment-item">
+            <strong>{{likes}}</strong>
+          </p>
+          <i id="comment-icon" class="fa fa-comment-o gradient-icon like-comment-item" aria-hidden="true"></i>
+          <p class="like-comment-item">
+            <strong>{{comments}}</strong>
+          </p>
+        </div>
+        <div id="description-container">
+          <p>{{description}}</p>
+        </div>
       </div>
-      <div id="description-container">{{description}}</div>
     </ion-scroll>
   </div>
 
