@@ -102,6 +102,18 @@ page-photo {
     margin-left: 1vw;
   }
 
+  #send-icon {
+    font-size: 32px;
+  }
+
+  #send-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-top: 2vh;
+    margin-right: 2vh;
+  }
+
   .like-comment-item {
     margin-right: 2vw;
   }
