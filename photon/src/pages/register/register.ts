@@ -9,6 +9,7 @@ import {
   FormControl
 } from "@angular/forms";
 import { AngularFireAuth } from "angularfire2/auth";
+import { AuthService } from './../../services/auth.service';
 import { UsernameValidator } from "../../validators/username.validator";
 import { PasswordValidator } from "../../validators/password.validator";
 
@@ -60,7 +61,8 @@ export class RegisterPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public fb: FormBuilder
+    public fb: FormBuilder,
+    private auth: AuthService
   ) {
     
     this.registerForm = fb.group(
@@ -99,7 +101,16 @@ export class RegisterPage {
   }
 
   registerAccount() {
-    this.navCtrl.push(LoginPage);
+    //this.navCtrl.push(LoginPage);
+    let data = this.registerForm.value;
+		let credentials = {
+			email: data.email,
+			password: data.password
+		};
+		this.auth.register(credentials).then(
+			() => this.navCtrl.setRoot(LoginPage),
+			error => this.registerError = error.message
+		);
   }
 
   ionViewDidLoad() {
