@@ -1,3 +1,4 @@
+import { AuthService } from './../../services/auth.service';
 import { LoginPage } from '../login/login';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
@@ -16,7 +17,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class OptionsPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private auth: AuthService) {
   }
 
   ionViewDidLoad() {
@@ -24,6 +25,7 @@ export class OptionsPage {
   }
 
   logOut() {
+    this.auth.logOut();
     this.navCtrl.push(LoginPage);
   }
 }
