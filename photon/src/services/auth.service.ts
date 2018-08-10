@@ -27,4 +27,12 @@ export class AuthService {
       credentials.password
     );
   }
+
+  logOut(): Promise<void> {
+    return this.afAuth.auth.signOut();
+  }
+
+  get authenticated(): boolean {
+    return this.user !== null;
+  }
 }
