@@ -9,6 +9,8 @@ import {
   FormControl
 } from "@angular/forms";
 import { AngularFireAuth } from "angularfire2/auth";
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { AuthService } from './../../services/auth.service';
 import { UsernameValidator } from "../../validators/username.validator";
 import { PasswordValidator } from "../../validators/password.validator";
@@ -62,9 +64,10 @@ export class RegisterPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public fb: FormBuilder,
-    private auth: AuthService
+    private auth: AuthService,
+    private firestore: AngularFirestore
   ) {
-    
+
     this.registerForm = fb.group(
       {
         name: new FormControl("", Validators.required),
@@ -108,7 +111,21 @@ export class RegisterPage {
 			password: data.password
 		};
 		this.auth.register(credentials).then(
-			() => this.navCtrl.setRoot(LoginPage),
+			() => {
+        //Put details in database
+        const docRef = this.firestore.doc("users/123456");
+        docRef.set({
+          name: "Yeet",
+          username: "yeetus123",
+          email: "yeet@thebeat.com",
+          biography: "Hello people"
+        }).then(function() {
+          console.log("Success");
+        }).catch(function(error) {
+          console.log("Error: " + error);
+        })
+        this.navCtrl.setRoot(LoginPage);
+      },
 			error => this.registerError = error.message
 		);
   }

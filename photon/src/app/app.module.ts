@@ -31,6 +31,7 @@ import { Camera } from '@ionic-native/camera';
 import { Keyboard } from '@ionic-native/keyboard';
 import { OptionsPage } from '../pages/options/options';
 import { Base64 } from '@ionic-native/base64';
+import { AngularFirestore } from '../../node_modules/angularfire2/firestore';
 
 @NgModule({
   declarations: [
@@ -84,7 +85,8 @@ import { Base64 } from '@ionic-native/base64';
     Base64,
     GoogleMapsApiProvider,
     AngularFireAuth,
-    AuthService
+    AuthService,
+    AngularFirestore
   ],
 })
 export class AppModule {}
