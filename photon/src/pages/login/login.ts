@@ -67,14 +67,20 @@ export class LoginPage {
       password: data.password
     };
     this.auth
-      .signInWithEmail(credentials)
+      .loginWithEmail(credentials)
       .then(
         () => this.navCtrl.setRoot(TabsPage),
         error => (this.loginError = error.message)
       );
   }
 
-  loginWithGoogle() {}
+  loginWithGoogle() {
+    this.auth.loginWithGoogle()
+      .then(
+        () => this.navCtrl.setRoot(TabsPage),
+        error => console.log(error.message)
+      );
+  }
 
   ionViewDidLoad() {
     console.log("ionViewDidLoad LoginPage");
