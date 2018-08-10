@@ -29,19 +29,32 @@
     <ion-scroll id="scroll-area" scrollY="true">
       <div id=scroll-content>
         <div id="like-comment-container">
-          <i id="like-icon" (click)="toggleLike()" [ngClass]="liked ? 'fa-heart' : 'fa-heart-o'" class="fa gradient-icon like-comment-item" aria-hidden="true"></i>
+          <i id="like-icon" (click)="toggleLike()" [ngClass]="liked ? 'fa-heart' : 'fa-heart-o'" class="fa gradient-icon like-comment-item"
+            aria-hidden="true"></i>
           <p class="like-comment-item">
             <strong>{{likes}}</strong>
           </p>
           <i id="comment-icon" class="fa fa-comment-o gradient-icon like-comment-item" aria-hidden="true"></i>
           <p class="like-comment-item">
-            <strong>{{comments}}</strong>
+            <strong>{{commentCount}}</strong>
           </p>
         </div>
         <div id="description-container">
           <p>{{description}}</p>
         </div>
+        <div id="separator"></div>
+        <div id="comment-container" *ngFor="let comment of comments">
+          <p>
+            <strong>{{comment.name}}</strong> {{comment.comment}}</p>
+        </div>
       </div>
+      <!-- Photo description input field -->
+      <div class="new-comment-container">
+          <ion-item class="input" id="new-comment">
+            <ion-label color="mid">Comment</ion-label>
+            <ion-textarea rows="4" placeholder="Write a comment"></ion-textarea>
+          </ion-item>
+        </div>
     </ion-scroll>
   </div>
 
