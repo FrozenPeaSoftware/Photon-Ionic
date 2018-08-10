@@ -7,15 +7,19 @@
 
         <img class="logo" src="assets/imgs/logo.png">
 
-        <ion-item no-lines class="input">
-          <ion-label color="primary" fixed>Email</ion-label>
-          <ion-input type="text" formControlName="email"></ion-input>
-        </ion-item>
+        <div class="input-div">
+          <ion-item no-lines class="input">
+            <ion-label color="primary" fixed>Email</ion-label>
+            <ion-input type="text" formControlName="email"></ion-input>
+          </ion-item>
+        </div>
 
-        <ion-item no-lines class="input">
-          <ion-label color="primary" fixed>Password</ion-label>
-          <ion-input type="password" formControlName="password"></ion-input>
-        </ion-item>
+        <div class="input-div">
+          <ion-item no-lines class="input">
+            <ion-label color="primary" fixed>Password</ion-label>
+            <ion-input type="password" formControlName="password"></ion-input>
+          </ion-item>
+        </div>
 
         <div class="form-error">{{loginError}}</div>
 
