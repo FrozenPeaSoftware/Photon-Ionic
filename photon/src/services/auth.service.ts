@@ -37,6 +37,6 @@ export class AuthService {
   }
 
   get getUID(): string {
-    return this.user.uid;
+    if (this.user !== null) { return this.user.uid; }
   }  
 }

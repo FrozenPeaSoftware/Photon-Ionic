@@ -8,7 +8,6 @@ import { Keyboard } from '@ionic-native/keyboard';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { initializeApp } from 'firebase';
 import { LoginPage } from '../pages/login/login';
-import firebase from 'firebase';
 
 
 @Component({
@@ -21,21 +20,18 @@ export class MyApp {
     platform: Platform,
     statusBar: StatusBar,
     splashScreen: SplashScreen,
-    private authService: AuthService,
-    keyboard: Keyboard
+    private auth: AuthService,
+    keyboard: Keyboard,
   ) {
 
     // Allows user to bypass the login page if they are already authenticated
     /*
-    const unsubscribe = firebase.auth().onAuthStateChanged(user => {
-      if (!user) {
+      if (!auth.authenticated) {
         this.rootPage = 'LoginPage';
-        //unsubscribe();
       } else {
         this.rootPage = TabsPage;
-        //unsubscribe();
       }
-    });*/
+      */
 
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.

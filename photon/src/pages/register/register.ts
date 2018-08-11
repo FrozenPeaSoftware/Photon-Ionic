@@ -106,7 +106,6 @@ export class RegisterPage {
   }
 
   registerAccount() {
-    //this.navCtrl.push(LoginPage);
     let data = this.registerForm.value;
     let credentials = {
       email: data.email,
@@ -115,7 +114,7 @@ export class RegisterPage {
     this.auth.register(credentials).then(() => {
       this.navCtrl.setRoot(LoginPage);
     }, error => (this.registerError = error.message));
-
+    
     //Put details in database
     const docRef = this.firestore.doc("users/" + this.auth.getUID);
     docRef
