@@ -52,7 +52,7 @@ export class CustomiseProfilePage {
     name: [{ type: "required", message: "Name is required" }]
   };
 
-  constructor(public auth: AuthService, private firestore: AngularFirestore, private fb: FormBuilder, private navCtl: NavController) {
+  constructor(public auth: AuthService, private firestore: AngularFirestore, private fb: FormBuilder, private navCtrl: NavController) {
     this.customiseForm = fb.group({
       name: new FormControl("", Validators.required),
       username: new FormControl(
