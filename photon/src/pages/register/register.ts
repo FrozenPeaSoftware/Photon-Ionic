@@ -1,3 +1,4 @@
+import { CustomiseProfilePage } from './../customise-profile/customise-profile';
 import { LoginPage } from "../login/login";
 import { Component } from "@angular/core";
 import { IonicPage, NavController, NavParams } from "ionic-angular";
@@ -9,11 +10,7 @@ import {
   FormControl
 } from "@angular/forms";
 import { AngularFireAuth } from "angularfire2/auth";
-import { AngularFirestoreModule } from "angularfire2/firestore";
-import {
-  AngularFirestore,
-  AngularFirestoreDocument
-} from "angularfire2/firestore";
+
 import { AuthService } from "./../../services/auth.service";
 import { UsernameValidator } from "../../validators/username.validator";
 import { PasswordValidator } from "../../validators/password.validator";
@@ -65,8 +62,8 @@ export class RegisterPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public fb: FormBuilder,
-    private auth: AuthService,
-    private firestore: AngularFirestore
+    public auth: AuthService,
+    public afAuth: AngularFireAuth
   ) {
     this.registerForm = fb.group(
       {
@@ -106,33 +103,14 @@ export class RegisterPage {
   }
 
   registerAccount() {
-    let success = false;
     let data = this.registerForm.value;
     let credentials = {
       email: data.email,
       password: data.password
     };
     this.auth.register(credentials).then(() => {
-      success = true;
-      this.navCtrl.setRoot(LoginPage);
+      this.navCtrl.setRoot(CustomiseProfilePage);
     }, error => (this.registerError = error.message));
-
-    if (success) {
-      //Put details in database
-      const docRef = this.firestore.doc("users/" + this.auth.getUID);
-      docRef
-        .set({
-          name: data.name,
-          username: data.username,
-          email: data.email
-        })
-        .then(function() {
-          console.log("Success");
-        })
-        .catch(function(error) {
-          console.log("Error: " + error);
-        });
-    }
   }
 
   ionViewDidLoad() {
