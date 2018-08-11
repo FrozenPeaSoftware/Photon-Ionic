@@ -1,3 +1,5 @@
+import { Photo } from '../../app/models/photo.interface';
+import { User } from '../../app/models/user.interface';
 import { MapPage } from './../map/map';
 import { Component } from '@angular/core';
 import {
@@ -6,6 +8,14 @@ import {
   NavController,
   NavParams,
 } from 'ionic-angular';
+import { AuthService } from '../../services/auth.service';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+import {
+  AngularFirestore,
+  AngularFirestoreDocument,
+} from 'angularfire2/firestore';
+import { Observable } from 'rxjs';
 
 @IonicPage()
 @Component({
@@ -18,8 +28,11 @@ export class PhotoPage {
   likes: Number;
   commentCount: Number;
   description: string;
+  photoURL: string;
 
   liked: boolean;
+
+  photoData: Photo;
 
   comments = [
     {
@@ -39,15 +52,37 @@ export class PhotoPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public modalCtrl: ModalController
+    public modalCtrl: ModalController,
+    private auth: AuthService,
+    private firestore: AngularFirestore
   ) {
-    this.name = 'Leyton Blackler';
-    this.location = 'Red Rocks';
     this.likes = 462;
     this.commentCount = 38;
-    this.description =
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac mi et elit pharetra lacinia et sed turpis. Fusce convallis enim eu nulla malesuada hendrerit. Phasellus pellentesque commodo est, eu dictum sem fermentum a. Etiam ornare varius scelerisque. Etiam consectetur odio ut sem auctor dapibus. Maecenas sit amet faucibus elit. Morbi in leo a risus facilisis facilisis a sagittis tortor.\n\nNam quis pharetra ipsum. Quisque condimentum metus at leo pellentesque hendrerit. Vestibulum dapibus volutpat sapien, malesuada suscipit erat tincidunt ut. Vivamus viverra neque hendrerit erat porta condimentum. Donec vel arcu iaculis, sagittis leo eget, blandit velit. Nullam sit amet vulputate nulla, condimentum mattis ligula. Etiam vel sollicitudin ex, ut maximus ante. Curabitur at odio sed sapien feugiat lacinia. Maecenas ultrices, lacus sit amet porta iaculis, ipsum dui rutrum ipsum, quis convallis nulla dolor eu erat. Ut lacus neque, maximus et libero ac, lacinia cursus augue. Sed elit augue, suscipit ac sapien ac, dictum tempor risus. Donec eu ornare ex, in condimentum odio. Aliquam augue justo, luctus quis quam at, tincidunt condimentum elit. Praesent posuere quam eu risus feugiat, vel dictum augue porta. Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n\nDonec ornare hendrerit est vitae malesuada. Quisque convallis arcu tellus, ac iaculis erat lobortis in. Nam rhoncus purus odio, vitae elementum elit tincidunt in. Nulla facilisi. Suspendisse id justo facilisis, iaculis lectus a, tempor dolor. Ut odio ante, commodo vitae sagittis quis, bibendum vel tellus. Sed porta scelerisque dui, pretium tincidunt elit mollis at. Nam metus diam, consequat ut nisl non, dictum molestie sapien. In hac habitasse platea dictumst. Nulla aliquam, lacus id commodo interdum, justo ex interdum justo, sed accumsan massa sapien nec neque. Fusce luctus justo ac est maximus fringilla. Duis hendrerit neque odio, sit amet finibus justo bibendum sed.';
     this.liked = false;
+
+    const userID = this.auth.getUID;
+    const photoID = "9f232d93-ab5c-b369-0c7c-c4bf387d7ad2";
+
+    const photoRef = this.getPhotoData(userID, photoID);
+    photoRef.valueChanges().subscribe((photo: Photo) => {
+      this.photoData = photo;
+      this.description = photo.description;
+      this.location = photo.location;
+      this.photoURL = photo.url;
+    });
+
+    const userRef = this.getUserData(userID);
+    userRef.valueChanges().subscribe((user: User) => {
+      this.name = user.name;
+    });
+  }
+
+  getPhotoData(userID, photoID): AngularFirestoreDocument<Photo> {
+    return this.firestore.collection('users').doc(userID).collection('photos').doc(photoID);
+  }
+
+  getUserData(userID) {
+    return this.firestore.collection('users').doc(userID);
   }
 
   toggleLike() {

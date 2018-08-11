@@ -48,23 +48,34 @@ export class PhotoOptionsPage {
   upload() {
     const userID = this.auth.getUID;
     const photoID = this.generatePhotoID();
-    const photoRef = this.firestore.doc('users/' + userID + '/photos/' + photoID);
-    photoRef
-      .set({
-        description: this.description,
-        location: this.locationSearchInput,
-        coordinates: {
-          latitude: 0,
-          longitude: 0
-        },
-        url: 'users/' + userID + '/photos/' + photoID + '.jpg'
-      })
-      .then(function() {
-        console.log('Success');
-      })
-      .catch(function(error) {
-        console.log('Error: ' + error);
+
+    const storageLocation = storage().ref(
+      'users/' + userID + '/photos/' + photoID + '.jpg'
+    );
+    storageLocation.putString(this.base64Image, 'data_url').then(image => {
+      storageLocation.getDownloadURL().then(url => {
+        console.log('firebase response: ' + url);
+        const photoRef = this.firestore.doc(
+          'users/' + userID + '/photos/' + photoID
+        );
+        photoRef
+          .set({
+            description: this.description,
+            location: this.locationSearchInput,
+            coordinates: {
+              latitude: 0,
+              longitude: 0,
+            },
+            url: url
+          })
+          .then(function() {
+            console.log('Success');
+          })
+          .catch(function(error) {
+            console.log('Error: ' + error);
+          });
       });
+    });
 
     /*const commentID = 2468;
     const commentRef = this.firestore.doc(
@@ -81,9 +92,6 @@ export class PhotoOptionsPage {
       .catch(function(error) {
         console.log('Error: ' + error);
       });*/
-
-    const storageLocation = storage().ref('users/' + UID + '/photos/' + photoID + '.jpg');
-    storageLocation.putString(this.base64Image, 'data_url');
   }
 
   generatePhotoID(): string {
