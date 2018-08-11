@@ -25,17 +25,17 @@ export class MyApp {
     keyboard: Keyboard
   ) {
 
-    //initializeApp(FIREBASE_CONFIG);
-
+    // Allows user to bypass the login page if they are already authenticated
+    /*
     const unsubscribe = firebase.auth().onAuthStateChanged(user => {
       if (!user) {
         this.rootPage = 'LoginPage';
-        unsubscribe();
+        //unsubscribe();
       } else {
         this.rootPage = TabsPage;
-        unsubscribe();
+        //unsubscribe();
       }
-    });
+    });*/
 
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
