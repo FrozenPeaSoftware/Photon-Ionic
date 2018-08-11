@@ -1,3 +1,4 @@
+import { CustomiseProfilePage } from './../pages/customise-profile/customise-profile';
 import { MapPage } from './../pages/map/map';
 import { AuthService } from './../services/auth.service';
 import { PhotoPage } from './../pages/photo/photo';
@@ -46,7 +47,8 @@ import { AngularFirestore } from '../../node_modules/angularfire2/firestore';
     OptionsPage,
     LocationSearchComponent,
     PhotoPage,
-    MapPage
+    MapPage,
+    CustomiseProfilePage
   ],
   imports: [
     BrowserModule,
@@ -70,7 +72,8 @@ import { AngularFirestore } from '../../node_modules/angularfire2/firestore';
     OptionsPage,
     LocationSearchComponent,
     PhotoPage,
-    MapPage
+    MapPage,
+    CustomiseProfilePage
   ],
   providers: [
     StatusBar,

@@ -1,3 +1,4 @@
+import { CustomiseProfilePage } from './../customise-profile/customise-profile';
 import { LoginPage } from "../login/login";
 import { Component } from "@angular/core";
 import { IonicPage, NavController, NavParams } from "ionic-angular";
@@ -9,13 +10,8 @@ import {
   FormControl
 } from "@angular/forms";
 import { AngularFireAuth } from "angularfire2/auth";
-import { AngularFirestoreModule } from "angularfire2/firestore";
-import {
-  AngularFirestore,
-  AngularFirestoreDocument
-} from "angularfire2/firestore";
+
 import { AuthService } from "./../../services/auth.service";
-import { UsernameValidator } from "../../validators/username.validator";
 import { PasswordValidator } from "../../validators/password.validator";
 
 @IonicPage()
@@ -28,24 +24,6 @@ export class RegisterPage {
   registerError: string;
 
   validation_messages = {
-    username: [
-      { type: "required", message: "Username is required" },
-      {
-        type: "minlength",
-        message: "Username must be at least 5 characters long"
-      },
-      {
-        type: "maxlength",
-        message: "Username cannot be more than 25 characters long"
-      },
-      {
-        type: "pattern",
-        message:
-          "Your username must contain only numbers, letters and -/_ characters"
-      },
-      { type: "validUsername", message: "Your username has already been taken" }
-    ],
-    name: [{ type: "required", message: "Name is required" }],
     email: [{ type: "required", message: "Email is required" }],
     password: [
       { type: "required", message: "Password is required" },
@@ -65,25 +43,14 @@ export class RegisterPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public fb: FormBuilder,
-    private auth: AuthService,
-    private firestore: AngularFirestore
+    public auth: AuthService,
+    public afAuth: AngularFireAuth
   ) {
     this.registerForm = fb.group(
       {
-        name: new FormControl("", Validators.required),
         email: new FormControl(
           "",
           Validators.compose([Validators.required, Validators.email])
-        ),
-        username: new FormControl(
-          "",
-          Validators.compose([
-            UsernameValidator.validUsername,
-            Validators.maxLength(25),
-            Validators.minLength(5),
-            //Validators.pattern("^(?=[A-Za-z0-9]+$"),
-            Validators.required
-          ])
         ),
         password: new FormControl(
           "",
@@ -106,33 +73,14 @@ export class RegisterPage {
   }
 
   registerAccount() {
-    let success = false;
     let data = this.registerForm.value;
     let credentials = {
       email: data.email,
       password: data.password
     };
     this.auth.register(credentials).then(() => {
-      success = true;
-      this.navCtrl.setRoot(LoginPage);
+      this.navCtrl.setRoot(CustomiseProfilePage);
     }, error => (this.registerError = error.message));
-
-    if (success) {
-      //Put details in database
-      const docRef = this.firestore.doc("users/" + this.auth.getUID);
-      docRef
-        .set({
-          name: data.name,
-          username: data.username,
-          email: data.email
-        })
-        .then(function() {
-          console.log("Success");
-        })
-        .catch(function(error) {
-          console.log("Error: " + error);
-        });
-    }
   }
 
   ionViewDidLoad() {
