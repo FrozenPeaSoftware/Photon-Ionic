@@ -9,9 +9,12 @@ import {
   FormControl
 } from "@angular/forms";
 import { AngularFireAuth } from "angularfire2/auth";
-import { AngularFirestoreModule } from 'angularfire2/firestore';
-import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
-import { AuthService } from './../../services/auth.service';
+import { AngularFirestoreModule } from "angularfire2/firestore";
+import {
+  AngularFirestore,
+  AngularFirestoreDocument
+} from "angularfire2/firestore";
+import { AuthService } from "./../../services/auth.service";
 import { UsernameValidator } from "../../validators/username.validator";
 import { PasswordValidator } from "../../validators/password.validator";
 
@@ -43,9 +46,7 @@ export class RegisterPage {
       { type: "validUsername", message: "Your username has already been taken" }
     ],
     name: [{ type: "required", message: "Name is required" }],
-    email: [
-      { type: "required", message: "Email is required" },
-    ],
+    email: [{ type: "required", message: "Email is required" }],
     password: [
       { type: "required", message: "Password is required" },
       {
@@ -67,7 +68,6 @@ export class RegisterPage {
     private auth: AuthService,
     private firestore: AngularFirestore
   ) {
-
     this.registerForm = fb.group(
       {
         name: new FormControl("", Validators.required),
@@ -92,7 +92,9 @@ export class RegisterPage {
             Validators.minLength(6),
             Validators.required,
             //this is for the letters (both uppercase and lowercase) and numbers validation
-            Validators.pattern("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$")
+            Validators.pattern(
+              "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$"
+            )
           ])
         ),
         confirm_password: new FormControl("", Validators.required)
@@ -106,28 +108,28 @@ export class RegisterPage {
   registerAccount() {
     //this.navCtrl.push(LoginPage);
     let data = this.registerForm.value;
-		let credentials = {
-			email: data.email,
-			password: data.password
-		};
-		this.auth.register(credentials).then(
-			() => {
-        //Put details in database
-        const docRef = this.firestore.doc("users/123456");
-        docRef.set({
-          name: "Yeet",
-          username: "yeetus123",
-          email: "yeet@thebeat.com",
-          biography: "Hello people"
-        }).then(function() {
-          console.log("Success");
-        }).catch(function(error) {
-          console.log("Error: " + error);
-        })
-        this.navCtrl.setRoot(LoginPage);
-      },
-			error => this.registerError = error.message
-		);
+    let credentials = {
+      email: data.email,
+      password: data.password
+    };
+    this.auth.register(credentials).then(() => {
+      this.navCtrl.setRoot(LoginPage);
+    }, error => (this.registerError = error.message));
+
+    //Put details in database
+    const docRef = this.firestore.doc("users/" + this.auth.getUID);
+    docRef
+      .set({
+        name: data.name,
+        username: data.username,
+        email: data.email
+      })
+      .then(function() {
+        console.log("Success");
+      })
+      .catch(function(error) {
+        console.log("Error: " + error);
+      });
   }
 
   ionViewDidLoad() {

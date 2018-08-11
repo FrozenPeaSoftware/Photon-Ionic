@@ -74,14 +74,6 @@ export class LoginPage {
       );
   }
 
-  loginWithGoogle() {
-    this.auth.loginWithGoogle()
-      .then(
-        () => this.navCtrl.setRoot(TabsPage),
-        error => console.log(error.message)
-      );
-  }
-
   ionViewDidLoad() {
     console.log("ionViewDidLoad LoginPage");
   }
