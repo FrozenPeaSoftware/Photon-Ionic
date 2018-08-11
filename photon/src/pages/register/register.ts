@@ -106,29 +106,33 @@ export class RegisterPage {
   }
 
   registerAccount() {
+    let success = false;
     let data = this.registerForm.value;
     let credentials = {
       email: data.email,
       password: data.password
     };
     this.auth.register(credentials).then(() => {
+      success = true;
       this.navCtrl.setRoot(LoginPage);
     }, error => (this.registerError = error.message));
-    
-    //Put details in database
-    const docRef = this.firestore.doc("users/" + this.auth.getUID);
-    docRef
-      .set({
-        name: data.name,
-        username: data.username,
-        email: data.email
-      })
-      .then(function() {
-        console.log("Success");
-      })
-      .catch(function(error) {
-        console.log("Error: " + error);
-      });
+
+    if (success) {
+      //Put details in database
+      const docRef = this.firestore.doc("users/" + this.auth.getUID);
+      docRef
+        .set({
+          name: data.name,
+          username: data.username,
+          email: data.email
+        })
+        .then(function() {
+          console.log("Success");
+        })
+        .catch(function(error) {
+          console.log("Error: " + error);
+        });
+    }
   }
 
   ionViewDidLoad() {
