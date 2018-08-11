@@ -12,7 +12,6 @@ import {
 import { AngularFireAuth } from "angularfire2/auth";
 
 import { AuthService } from "./../../services/auth.service";
-import { UsernameValidator } from "../../validators/username.validator";
 import { PasswordValidator } from "../../validators/password.validator";
 
 @IonicPage()
@@ -25,24 +24,6 @@ export class RegisterPage {
   registerError: string;
 
   validation_messages = {
-    username: [
-      { type: "required", message: "Username is required" },
-      {
-        type: "minlength",
-        message: "Username must be at least 5 characters long"
-      },
-      {
-        type: "maxlength",
-        message: "Username cannot be more than 25 characters long"
-      },
-      {
-        type: "pattern",
-        message:
-          "Your username must contain only numbers, letters and -/_ characters"
-      },
-      { type: "validUsername", message: "Your username has already been taken" }
-    ],
-    name: [{ type: "required", message: "Name is required" }],
     email: [{ type: "required", message: "Email is required" }],
     password: [
       { type: "required", message: "Password is required" },
@@ -67,20 +48,9 @@ export class RegisterPage {
   ) {
     this.registerForm = fb.group(
       {
-        name: new FormControl("", Validators.required),
         email: new FormControl(
           "",
           Validators.compose([Validators.required, Validators.email])
-        ),
-        username: new FormControl(
-          "",
-          Validators.compose([
-            UsernameValidator.validUsername,
-            Validators.maxLength(25),
-            Validators.minLength(5),
-            //Validators.pattern("^(?=[A-Za-z0-9]+$"),
-            Validators.required
-          ])
         ),
         password: new FormControl(
           "",

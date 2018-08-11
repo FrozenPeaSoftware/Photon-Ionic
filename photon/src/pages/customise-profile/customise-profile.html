@@ -1,18 +1,53 @@
-<!--
-  Generated template for the CustomiseProfilePage page.
+<ion-header></ion-header>
 
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<ion-header>
+<ion-content padding class="vertical-align-content">
+  <form (ngSubmit)="saveProfile()" [formGroup]="customiseForm">
+    <ion-grid>
+      <ion-row>
+        <h1>Customise Your Profile</h1>
+      </ion-row>
 
-  <ion-navbar>
-    <ion-title>customiseProfile</ion-title>
-  </ion-navbar>
+      <div class="input-div">
+        <ion-row>
+          <ion-item no-lines class="input">
+            <ion-label color="primary" fixed>Full Name</ion-label>
+            <ion-input type="text" formControlName="name" class="form-control"></ion-input>
+          </ion-item>
+        </ion-row>
 
-</ion-header>
+        <ion-row>
+          <ng-container *ngFor="let validation of validation_messages.name">
+            <div class="error-message" *ngIf="customiseForm.get('name').hasError(validation.type) && (customiseForm.get('name').dirty || customiseForm.get('name').touched)">
+              {{ validation.message }}
+            </div>
+          </ng-container>
+        </ion-row>
+      </div>
 
+      <div class="input-div">
+        <ion-row>
+          <ion-item no-lines class="input">
+            <ion-label color="primary" fixed>Username</ion-label>
+            <ion-input type="text" formControlName="username" class="form-control"></ion-input>
+          </ion-item>
+        </ion-row>
 
-<ion-content padding>
+        <ion-row>
+          <ng-container *ngFor="let validation of validation_messages.username">
+            <div class="error-message" *ngIf="customiseForm.get('username').hasError(validation.type) && (customiseForm.get('username').dirty || customiseForm.get('username').touched)">
+              {{ validation.message }}
+            </div>
+          </ng-container>
+        </ion-row>
+      </div>
 
+      
+      <div class="error-message">
+        {{ this.customiseError }}
+      </div>
+      <ion-row>
+        <button class="button" ion-button round type="submit">Save Profile</button>
+      </ion-row>
+    </ion-grid>
+  </form>
 </ion-content>
