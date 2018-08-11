@@ -5,6 +5,14 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { storage } from 'firebase';
 
+import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+import {
+  AngularFirestore,
+  AngularFirestoreDocument,
+} from 'angularfire2/firestore';
+import { AuthService } from './../../services/auth.service';
+
 @IonicPage()
 @Component({
   selector: 'page-photo-options',
@@ -19,7 +27,9 @@ export class PhotoOptionsPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public googleMapsAPI: GoogleMapsApiProvider
+    public googleMapsAPI: GoogleMapsApiProvider,
+    private auth: AuthService,
+    private firestore: AngularFirestore
   ) {
     this.locationSearchInput = '';
     this.selectedLocation = false;
@@ -30,12 +40,37 @@ export class PhotoOptionsPage {
     this.base64Image = this.navParams.get('base64Image');
   }
 
-  back() {
-  }
+  back() {}
 
   upload() {
-    const photos = storage().ref('Photos/photo.jpg');
-    photos.putString(this.base64Image, 'data_url');
+    const UID = this.auth.getUID;
+    const photoID = this.generatePhotoID();
+    const docRef = this.firestore.doc('users/' + UID + '/photos/' + photoID);
+    docRef
+      .set({
+        url: 'users/' + UID + '/photos/' + photoID + '.jpg',
+        comments: {},
+        likes: {},
+      })
+      .then(function() {
+        console.log('Success');
+      })
+      .catch(function(error) {
+        console.log('Error: ' + error);
+      });
+
+    docRef.update({
+      comments: {
+        name: "test user",
+        comment: 'this is a comment'
+      }
+    })
+    //const storageLocation = storage().ref('users/' + UID + '/photos/' + photoID + '.jpg');
+    //storageLocation.putString(this.base64Image, 'data_url');
+  }
+
+  generatePhotoID(): string {
+    return '123456';
   }
 
   updateSearchResults() {
