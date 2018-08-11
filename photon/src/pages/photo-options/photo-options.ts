@@ -13,6 +13,8 @@ import {
 } from 'angularfire2/firestore';
 import { AuthService } from './../../services/auth.service';
 
+import { UUID } from 'angular2-uuid';
+
 @IonicPage()
 @Component({
   selector: 'page-photo-options',
@@ -23,6 +25,7 @@ export class PhotoOptionsPage {
   base64Image: any;
   locationSearchInput: string;
   selectedLocation: boolean;
+  description: string;
 
   constructor(
     public navCtrl: NavController,
@@ -43,14 +46,18 @@ export class PhotoOptionsPage {
   back() {}
 
   upload() {
-    const UID = this.auth.getUID;
+    const userID = this.auth.getUID;
     const photoID = this.generatePhotoID();
-    const docRef = this.firestore.doc('users/' + UID + '/photos/' + photoID);
-    docRef
+    const photoRef = this.firestore.doc('users/' + userID + '/photos/' + photoID);
+    photoRef
       .set({
-        url: 'users/' + UID + '/photos/' + photoID + '.jpg',
-        comments: {},
-        likes: {},
+        description: this.description,
+        location: this.locationSearchInput,
+        coordinates: {
+          latitude: 0,
+          longitude: 0
+        },
+        url: 'users/' + userID + '/photos/' + photoID + '.jpg'
       })
       .then(function() {
         console.log('Success');
@@ -59,18 +66,28 @@ export class PhotoOptionsPage {
         console.log('Error: ' + error);
       });
 
-    docRef.update({
-      comments: {
-        name: "test user",
-        comment: 'this is a comment'
-      }
-    })
-    //const storageLocation = storage().ref('users/' + UID + '/photos/' + photoID + '.jpg');
-    //storageLocation.putString(this.base64Image, 'data_url');
+    /*const commentID = 2468;
+    const commentRef = this.firestore.doc(
+      'users/' + UID + '/photos/' + photoID + '/comments/' + commentID
+    );
+    commentRef
+      .set({
+        name: 'Celine Young',
+        comment: 'This is a comment'
+      })
+      .then(function() {
+        console.log('Success');
+      })
+      .catch(function(error) {
+        console.log('Error: ' + error);
+      });*/
+
+    const storageLocation = storage().ref('users/' + UID + '/photos/' + photoID + '.jpg');
+    storageLocation.putString(this.base64Image, 'data_url');
   }
 
   generatePhotoID(): string {
-    return '123456';
+    return UUID.UUID();
   }
 
   updateSearchResults() {
