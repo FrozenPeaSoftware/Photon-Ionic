@@ -7,6 +7,7 @@ import {
   IonicPage,
   NavController,
   NavParams,
+  LoadingController,
 } from 'ionic-angular';
 import { AuthService } from '../../services/auth.service';
 import { AngularFireAuth } from 'angularfire2/auth';
@@ -23,6 +24,8 @@ import { Observable } from 'rxjs';
   templateUrl: 'photo.html',
 })
 export class PhotoPage {
+  loading: any;
+
   name: string;
   location: string;
   likes: Number;
@@ -54,14 +57,16 @@ export class PhotoPage {
     public navParams: NavParams,
     public modalCtrl: ModalController,
     private auth: AuthService,
-    private firestore: AngularFirestore
+    private firestore: AngularFirestore,
+    public loadingCtrl: LoadingController
   ) {
+    this.showLoading();
     this.likes = 462;
     this.commentCount = 38;
     this.liked = false;
 
-    const userID = this.auth.getUID;
-    const photoID = "9f232d93-ab5c-b369-0c7c-c4bf387d7ad2";
+    const userID = this.auth.getUID();
+    const photoID = '8dc9f481-40c1-08f6-6aa7-faba953eb60f';
 
     const photoRef = this.getPhotoData(userID, photoID);
     photoRef.valueChanges().subscribe((photo: Photo) => {
@@ -78,7 +83,11 @@ export class PhotoPage {
   }
 
   getPhotoData(userID, photoID): AngularFirestoreDocument<Photo> {
-    return this.firestore.collection('users').doc(userID).collection('photos').doc(photoID);
+    return this.firestore
+      .collection('users')
+      .doc(userID)
+      .collection('photos')
+      .doc(photoID);
   }
 
   getUserData(userID) {
@@ -92,5 +101,18 @@ export class PhotoPage {
   showMap() {
     let mapModal = this.modalCtrl.create(MapPage, { userId: 8675309 });
     mapModal.present();
+  }
+
+  showLoading() {
+    this.loading = this.loadingCtrl.create({
+      spinner: 'crescent',
+      content: 'Loading photo...',
+      showBackdrop: false
+    });
+    this.loading.present();
+  }
+
+  ionViewDidLoad() {
+    this.loading.dismiss();
   }
 }

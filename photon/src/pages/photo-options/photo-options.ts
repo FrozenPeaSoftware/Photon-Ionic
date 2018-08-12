@@ -46,13 +46,13 @@ export class PhotoOptionsPage {
   back() {}
 
   upload() {
-    const userID = this.auth.getUID;
+    const userID = this.auth.getUID();
     const photoID = this.generatePhotoID();
 
     const storageLocation = storage().ref(
       'users/' + userID + '/photos/' + photoID + '.jpg'
     );
-    storageLocation.putString(this.base64Image, 'data_url').then(image => {
+    storageLocation.putString(this.base64Image, 'data_url').then(data => {
       storageLocation.getDownloadURL().then(url => {
         console.log('firebase response: ' + url);
         const photoRef = this.firestore.doc(
@@ -60,6 +60,7 @@ export class PhotoOptionsPage {
         );
         photoRef
           .set({
+            userID: userID,
             description: this.description,
             location: this.locationSearchInput,
             coordinates: {
