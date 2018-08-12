@@ -79,6 +79,7 @@ export class CustomiseProfilePage {
       .set({
         name: data.name,
         username: data.username,
+        biography: data.biography
       })
       .then(function() {
         console.log("Success");
