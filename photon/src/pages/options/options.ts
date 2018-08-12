@@ -1,3 +1,4 @@
+import { CustomiseProfilePage } from './../customise-profile/customise-profile';
 import { AuthService } from './../../services/auth.service';
 import { LoginPage } from '../login/login';
 import { Component } from '@angular/core';
@@ -22,6 +23,10 @@ export class OptionsPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad OptionsPage');
+  }
+
+  editProfile() {
+    this.navCtrl.push(CustomiseProfilePage);
   }
 
   logOut() {
