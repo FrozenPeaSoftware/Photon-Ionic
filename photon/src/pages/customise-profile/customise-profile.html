@@ -36,7 +36,7 @@
       <div class="input-div">
         <ion-item no-lines class="input">
           <ion-label color="primary">Biography</ion-label>
-          <ion-textarea type="text" formControlName="biography" class="form-control"></ion-textarea>
+          <ion-textarea type="text" formControlName="biography" class="form-control" rows=5></ion-textarea>
         </ion-item>
 
         <ng-container *ngFor="let validation of validation_messages.username">
@@ -51,5 +51,6 @@
       </div>
       <button class="button" ion-button round type="submit">Save Profile</button>
     </form>
+    <button class="button" ion-button round (click)="getCurrentUser()">Test</button>
   </div>
 </ion-content>

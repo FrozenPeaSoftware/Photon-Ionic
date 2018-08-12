@@ -36,6 +36,10 @@ export class AuthService {
     return this.user !== null;
   }
 
+  getUser(): firebase.User {
+    return this.user;
+  }
+
   getUID(): string {
     if (this.user !== null) { return this.user.uid; }
   }  

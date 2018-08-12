@@ -1,3 +1,5 @@
+import { UUID } from 'angular2-uuid';
+import { AngularFireAuth } from 'angularfire2/auth';
 import { TabsPage } from './../tabs/tabs';
 import { Component } from "@angular/core";
 import { IonicPage, NavController, NavParams } from "ionic-angular";
@@ -68,6 +70,11 @@ export class CustomiseProfilePage {
       ),
       biography: new FormControl("", Validators.maxLength(100))
     });
+  }
+
+  getCurrentUser() {
+    console.log(this.auth.getUser().uid);
+    return this.auth.getUser();
   }
 
   saveProfile() {
