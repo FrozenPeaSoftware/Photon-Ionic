@@ -1,3 +1,4 @@
+import { CustomiseProfilePage } from './../pages/customise-profile/customise-profile';
 import { AuthService } from './../services/auth.service';
 import { TabsPage } from '../pages/tabs/tabs';
 import { FIREBASE_CONFIG } from './firebase.config';
@@ -14,7 +15,7 @@ import { LoginPage } from '../pages/login/login';
   templateUrl: 'app.html',
 })
 export class MyApp {
-  rootPage: any = LoginPage;
+  rootPage: any = CustomiseProfilePage;
 
   constructor(
     platform: Platform,

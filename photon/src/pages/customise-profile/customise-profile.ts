@@ -49,7 +49,8 @@ export class CustomiseProfilePage {
       },
       { type: "validUsername", message: "Your username has already been taken" }
     ],
-    name: [{ type: "required", message: "Name is required" }]
+    name: [{ type: "required", message: "Name is required" }],
+    biography: [{ type: "maxlength", message: "Biography cannot be more than 100 characters long" }]
   };
 
   constructor(public auth: AuthService, private firestore: AngularFirestore, private fb: FormBuilder, private navCtrl: NavController) {
@@ -64,7 +65,8 @@ export class CustomiseProfilePage {
           //Validators.pattern("^(?=[A-Za-z0-9]+$"),
           Validators.required
         ])
-      )
+      ),
+      biography: new FormControl("", Validators.maxLength(100))
     });
   }
 

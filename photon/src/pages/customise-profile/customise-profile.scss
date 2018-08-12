@@ -1,10 +1,24 @@
 page-customise-profile {
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    text-align: center;
+    margin: 2%;
+    width: 100%;
+  }
+
   h1 {
-    color: linear-gradient(
-        to bottom right,
-        color($colors, primary),
-        color($colors, secondary)
+    font-size: 30pt;
+    background: linear-gradient(
+      to bottom right,
+      color($colors, primary),
+      color($colors, secondary)
     );
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    padding-bottom: 10%;
   }
 
   .button {
@@ -20,26 +34,17 @@ page-customise-profile {
   }
 
   .input-div {
+    align-content: center;
     padding-bottom: 6%;
   }
 
   .input {
     background-color: #f0f0f0;
     border-radius: 10px;
-    width: 90%;
+    height: 100%;
   }
 
   .error-message {
     color: red;
-  }
-
-  ion-grid {
-    height: 60%;
-  }
-
-  ion-row {
-    justify-content: center;
-    align-items: center;
-    height: 100%;
   }
 }
