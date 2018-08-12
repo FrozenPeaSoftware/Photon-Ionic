@@ -25,7 +25,7 @@ export class OptionsPage {
     console.log('ionViewDidLoad OptionsPage');
   }
 
-  editProfile() {
+  customiseProfile() {
     this.navCtrl.push(CustomiseProfilePage);
   }
 

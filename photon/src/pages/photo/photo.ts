@@ -39,16 +39,16 @@ export class PhotoPage {
 
   comments = [
     {
-      name: 'Celine Young',
-      comment: 'Yeet this is a comment.',
+      name: 'Person1',
+      comment: 'Comment1',
     },
     {
-      name: 'Mohsen Javaher',
-      comment: 'Good morning beautiful',
+      name: 'Person2',
+      comment: 'Comment2',
     },
     {
-      name: 'Mohsen Javaher',
-      comment: 'pls reply',
+      name: 'Person3',
+      comment: 'Comment3',
     },
   ];
 
