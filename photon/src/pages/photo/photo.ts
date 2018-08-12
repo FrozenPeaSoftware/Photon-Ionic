@@ -11,12 +11,13 @@ import {
 } from 'ionic-angular';
 import { AuthService } from '../../services/auth.service';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFirestoreModule, DocumentSnapshot } from 'angularfire2/firestore';
 import {
   AngularFirestore,
   AngularFirestoreDocument,
 } from 'angularfire2/firestore';
 import { Observable } from 'rxjs';
+import { storage } from 'firebase';
 
 @IonicPage()
 @Component({
@@ -25,6 +26,10 @@ import { Observable } from 'rxjs';
 })
 export class PhotoPage {
   loading: any;
+
+  photoUserID: string;
+  currentUserID: string;
+  photoID: string;
 
   name: string;
   location: string;
@@ -63,12 +68,14 @@ export class PhotoPage {
     this.showLoading();
     this.likes = 462;
     this.commentCount = 38;
-    this.liked = false;
 
-    const userID = this.auth.getUID();
-    const photoID = '8dc9f481-40c1-08f6-6aa7-faba953eb60f';
+    this.currentUserID = this.auth.getUID();
+    this.photoUserID = 'WuXkSZ55Q0MWzPJ1x3qt0YTWvdg1';
+    this.photoID = '8dc9f481-40c1-08f6-6aa7-faba953eb60f';
 
-    const photoRef = this.getPhotoData(userID, photoID);
+    this.setLikedState(this.currentUserID);
+
+    const photoRef = this.getPhotoData(this.photoUserID, this.photoID);
     photoRef.valueChanges().subscribe((photo: Photo) => {
       this.photoData = photo;
       this.description = photo.description;
@@ -76,7 +83,7 @@ export class PhotoPage {
       this.photoURL = photo.url;
     });
 
-    const userRef = this.getUserData(userID);
+    const userRef = this.getUserData(this.photoUserID);
     userRef.valueChanges().subscribe((user: User) => {
       this.name = user.name;
     });
@@ -94,7 +101,44 @@ export class PhotoPage {
     return this.firestore.collection('users').doc(userID);
   }
 
+  setLikedState(userID) {
+    const likesRef = this.firestore
+      .collection('users')
+      .doc(this.photoUserID)
+      .collection('photos')
+      .doc(this.photoID)
+      .collection('likes')
+      .doc(userID);
+
+      likesRef.snapshotChanges().subscribe((snapshot) => {
+        this.liked = snapshot.payload.exists;
+      });
+  }
+
   toggleLike() {
+    const likeRef = this.firestore.doc(
+      'users/' +
+        this.photoUserID +
+        '/photos/' +
+        this.photoID +
+        '/likes/' +
+        this.currentUserID
+    );
+    if (this.liked) {
+      likeRef.delete();
+    } else {
+      likeRef
+      .set({
+        liked: true,
+      })
+      .then(function() {
+        console.log('Success');
+      })
+      .catch(function(error) {
+        this.liked = !this.liked;
+        console.log('Error: ' + error);
+      });
+    }
     this.liked = !this.liked;
   }
 
@@ -107,7 +151,7 @@ export class PhotoPage {
     this.loading = this.loadingCtrl.create({
       spinner: 'crescent',
       content: 'Loading photo...',
-      showBackdrop: false
+      showBackdrop: false,
     });
     this.loading.present();
   }
