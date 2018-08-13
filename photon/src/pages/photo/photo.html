@@ -22,7 +22,7 @@
     </div>
 
     <div id="image-container">
-      <img id='image' src="{{this.photoURL}}" (load)="imageLoaded()" />
+      <img id='image' src="{{this.photoURL}}" (load)="this.loading.dismiss()" />
     </div>
 
     <ion-scroll id="scroll-area" scrollY="true">

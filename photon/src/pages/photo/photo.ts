@@ -66,6 +66,9 @@ export class PhotoPage {
     private firestore: AngularFirestore,
     public loadingCtrl: LoadingController
   ) {
+    this.loaded = false;
+    this.showLoading();
+
     this.likes = 462;
     this.commentCount = 38;
 
@@ -154,15 +157,5 @@ export class PhotoPage {
       showBackdrop: true,
     });
     this.loading.present();
-  }
-
-  ionViewWillEnter() {
-    this.loaded = false;
-    this.showLoading();
-  }
-
-  imageLoaded() {
-    this.loaded = true;
-    this.loading.dismiss();
   }
 }
