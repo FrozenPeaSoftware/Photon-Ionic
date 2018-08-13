@@ -21,12 +21,11 @@
       <i id="main-location-icon" (click)="showMap()" class="fa fa-map-marker gradient-icon" aria-hidden="true"></i>
     </div>
 
-    <div id="image-container">
-      <img id='image' src="{{this.photoURL}}" (load)="this.loadingScreenProvider.dismiss()" />
-    </div>
-
     <ion-scroll id="scroll-area" scrollY="true">
       <div id=scroll-content>
+        <div id="image-container">
+          <img id='image' src="{{this.photoURL}}" (load)="this.loadingScreenProvider.dismiss()" />
+        </div>
         <div id="like-comment-container">
           <i id="like-icon" (click)="toggleLike()" [ngClass]="liked ? 'fa-heart' : 'fa-heart-o'" class="fa gradient-icon like-comment-item"
             aria-hidden="true"></i>
@@ -46,15 +45,14 @@
           <p>
             <strong>{{comment.name}}</strong> {{comment.comment}}</p>
         </div>
-      </div>
-      <!-- Photo description input field -->
-      <div class="new-comment-container">
-        <ion-item class="input" id="new-comment">
-          <ion-label color="primary">Comment</ion-label>
-          <ion-textarea rows="4" placeholder="Write a comment"></ion-textarea>
-        </ion-item>
-        <div id="send-container">
-          <i id="send-icon" class="fa fa-paper-plane-o gradient-icon" aria-hidden="true"></i>
+        <!-- Photo comment input field -->
+        <div id="new-comment-container">
+          <ion-item class="input" id="new-comment">
+            <ion-textarea rows="5" placeholder="Write a comment"></ion-textarea>
+          </ion-item>
+          <div id="send-container">
+            <i id="send-icon" class="fa fa-paper-plane-o gradient-icon" aria-hidden="true"></i>
+          </div>
         </div>
       </div>
     </ion-scroll>

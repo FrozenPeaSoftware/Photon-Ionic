@@ -62,8 +62,9 @@ page-photo {
 
   #image-container {
     margin-bottom: 0.5vh;
-    margin-left: 1vw;
-    margin-right: 1vw;
+    margin-top: 2vh;
+    //margin-left: 1vw;
+    //margin-right: 1vw;
   }
 
   #image {
@@ -151,12 +152,11 @@ page-photo {
 
   #new-comment-container {
     display: flex;
-    flex-direction: row;
-    justify-content: left;
+    flex-direction: column;
+    justify-content: flex-start;
   }
 
   .input {
-    margin-top: 55px;
     width: 100%;
     background-color: color($colors, field);
     border-radius: 10px;
