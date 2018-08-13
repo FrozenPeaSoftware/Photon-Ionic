@@ -26,6 +26,7 @@ import { storage } from 'firebase';
 })
 export class PhotoPage {
   loading: any;
+  loaded: boolean;
 
   photoUserID: string;
   currentUserID: string;
@@ -65,7 +66,6 @@ export class PhotoPage {
     private firestore: AngularFirestore,
     public loadingCtrl: LoadingController
   ) {
-    this.showLoading();
     this.likes = 462;
     this.commentCount = 38;
 
@@ -151,12 +151,18 @@ export class PhotoPage {
     this.loading = this.loadingCtrl.create({
       spinner: 'crescent',
       content: 'Loading photo...',
-      showBackdrop: false,
+      showBackdrop: true,
     });
     this.loading.present();
   }
 
-  ionViewDidLoad() {
+  ionViewWillEnter() {
+    this.loaded = false;
+    this.showLoading();
+  }
+
+  imageLoaded() {
+    this.loaded = true;
     this.loading.dismiss();
   }
 }

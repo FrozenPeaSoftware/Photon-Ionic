@@ -22,8 +22,7 @@
     </div>
 
     <div id="image-container">
-      <img id='image' src="{{this.photoURL}}"
-      />
+      <img id='image' src="{{this.photoURL}}" (load)="imageLoaded()" />
     </div>
 
     <ion-scroll id="scroll-area" scrollY="true">
@@ -51,7 +50,7 @@
       <!-- Photo description input field -->
       <div class="new-comment-container">
         <ion-item class="input" id="new-comment">
-          <ion-label color="mid">Comment</ion-label>
+          <ion-label color="primary">Comment</ion-label>
           <ion-textarea rows="4" placeholder="Write a comment"></ion-textarea>
         </ion-item>
         <div id="send-container">

@@ -13,7 +13,7 @@
     <allow-intent href="geo:*" />
     <preference name="orientation" value="portrait" />
     <preference name="HeaderColor" value="#ffffff" />
-    <preference name="SplashScreenSpinnerColor" value="#4ca7ed" />
+    <preference name="SplashScreenSpinnerColor" value="#3e91fc" />
     <preference name="ScrollEnabled" value="false" />
     <preference name="android-minSdkVersion" value="19" />
     <preference name="BackupWebStorage" value="none" />

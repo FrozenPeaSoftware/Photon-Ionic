@@ -39,6 +39,7 @@ $colors: (
   danger:     #f53d3d,
   pressed:    #f5f5f5,
   mid:        #4ca7ed,
+  field:      #f0f0f0,
   light:      #ffffff,
   dark:       #222
 );
@@ -55,12 +56,17 @@ $colors: (
 // --------------------------------------------------
 // Material Design only Sass variables can go here
 $tabs-md-tab-icon-transform-y-active: 0px;
-$tabs-md-tab-icon-color-active: color($colors, mid);
+$tabs-md-tab-icon-color-active: color($colors, primary);
 $text-input-md-highlight-color-invalid: transparent;
 $text-input-md-highlight-color-valid: transparent;
 $text-input-md-show-invalid-highlight: transparent;
 $text-input-md-highlight-color: transparent;
 $text-input-md-show-valid-highlight: transparent;
+
+$loading-md-spinner-color: color($colors, primary);
+$loading-md-background: color($colors, field);
+$loading-md-text-color: color($colors, primary);
+$loading-md-border-radius: 10px;
 
 // App Windows Variables
 // --------------------------------------------------

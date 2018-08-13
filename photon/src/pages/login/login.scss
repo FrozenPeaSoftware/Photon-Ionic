@@ -39,7 +39,7 @@ page-login {
   }
 
   .input {
-    background-color: #f0f0f0;
+    background-color: color($colors, field);
     border-radius: 10px;
   }
 
