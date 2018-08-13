@@ -69,14 +69,11 @@ export class PhotoPage {
     this.loaded = false;
     this.loadingScreenProvider.show('Loading photo...');
 
-    this.likes = 462;
     this.commentCount = 38;
 
     this.currentUserID = this.auth.getUID();
     this.photoUserID = 'WuXkSZ55Q0MWzPJ1x3qt0YTWvdg1';
     this.photoID = '8dc9f481-40c1-08f6-6aa7-faba953eb60f';
-
-    this.setLikedState(this.currentUserID);
 
     const photoRef = this.getPhotoData(this.photoUserID, this.photoID);
     photoRef.valueChanges().subscribe((photo: Photo) => {
@@ -85,6 +82,9 @@ export class PhotoPage {
       this.location = photo.location;
       this.photoURL = photo.url;
     });
+
+    this.getLikeCount();
+    this.setLikedState(this.currentUserID);
 
     const userRef = this.getUserData(this.photoUserID);
     userRef.valueChanges().subscribe((user: User) => {
@@ -115,6 +115,19 @@ export class PhotoPage {
 
       likesRef.snapshotChanges().subscribe((snapshot) => {
         this.liked = snapshot.payload.exists;
+      });
+  }
+
+  getLikeCount() {
+    const likesRef = this.firestore
+      .collection('users')
+      .doc(this.photoUserID)
+      .collection('photos')
+      .doc(this.photoID)
+      .collection('likes')
+
+      likesRef.snapshotChanges().subscribe((snapshot) => {
+        this.likes = snapshot.length;
       });
   }
 
