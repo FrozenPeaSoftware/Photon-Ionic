@@ -2,7 +2,7 @@ import { LoadingScreenProvider } from './../../providers/loading-screen/loading-
 import { Photo } from '../../app/models/photo.interface';
 import { User } from '../../app/models/user.interface';
 import { MapPage } from './../map/map';
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import {
   ModalController,
   IonicPage,
@@ -18,7 +18,7 @@ import {
   AngularFirestoreDocument,
 } from 'angularfire2/firestore';
 import { Observable } from 'rxjs';
-import { storage } from 'firebase';
+import { storage, database } from 'firebase';
 
 @IonicPage()
 @Component({
@@ -32,7 +32,9 @@ export class PhotoPage {
   currentUserID: string;
   photoID: string;
 
-  name: string;
+  photoUserName: string;
+  currentUserName: string;
+
   location: string;
   likes: Number;
   commentCount: Number;
@@ -45,20 +47,7 @@ export class PhotoPage {
 
   commentInput: string;
 
-  comments = [
-    {
-      name: 'Person1',
-      comment: 'Comment1',
-    },
-    {
-      name: 'Person2',
-      comment: 'Comment2',
-    },
-    {
-      name: 'Person3',
-      comment: 'Comment3',
-    },
-  ];
+  comments = [];
 
   constructor(
     public navCtrl: NavController,
@@ -66,7 +55,8 @@ export class PhotoPage {
     public modalCtrl: ModalController,
     private auth: AuthService,
     private firestore: AngularFirestore,
-    public loadingScreenProvider: LoadingScreenProvider
+    public loadingScreenProvider: LoadingScreenProvider,
+    private changeDetector: ChangeDetectorRef
   ) {
     this.loaded = false;
     this.loadingScreenProvider.show('Loading photo...');
@@ -89,10 +79,17 @@ export class PhotoPage {
     this.setLikedState(this.currentUserID);
 
     this.getCommentCount();
+    this.getComments();
 
-    const userRef = this.getUserData(this.photoUserID);
-    userRef.valueChanges().subscribe((user: User) => {
-      this.name = user.name;
+    const photoUserRef = this.getUserData(this.photoUserID);
+    photoUserRef.valueChanges().subscribe((user: User) => {
+      this.photoUserName = user.name;
+      console.log(user.name);
+    });
+    const currentUserRef = this.getUserData(this.currentUserID);
+    currentUserRef.valueChanges().subscribe((user: User) => {
+      this.currentUserName = user.name;
+      console.log(user.name);
     });
   }
 
@@ -128,11 +125,29 @@ export class PhotoPage {
       .doc(this.photoUserID)
       .collection('photos')
       .doc(this.photoID)
-      .collection('likes')
+      .collection('likes');
 
       likesRef.snapshotChanges().subscribe((snapshot) => {
         this.likes = snapshot.length;
       });
+  }
+
+  getComments() {
+    const commentsRef = this.firestore
+      .collection('users')
+      .doc(this.photoUserID)
+      .collection('photos')
+      .doc(this.photoID)
+      .collection('comments');
+
+      commentsRef.valueChanges().subscribe((value => {
+        let count = 0;
+        value.forEach(doc => {
+          this.comments[count] = doc;
+          console.log(this.comments[count])
+          count = count + 1;
+        });
+      }));
   }
 
   getCommentCount() {
@@ -177,6 +192,8 @@ export class PhotoPage {
     );
     photoRef
       .set({
+        id: this.currentUserID,
+        name: this.currentUserName,
         comment: this.commentInput
       })
       .catch(function(error) {
