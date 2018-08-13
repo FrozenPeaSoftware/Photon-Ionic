@@ -43,7 +43,7 @@ export class PhotoPage {
 
   photoData: Photo;
 
-  commentInput: any;
+  commentInput: string;
 
   comments = [
     {
@@ -71,7 +71,7 @@ export class PhotoPage {
     this.loaded = false;
     this.loadingScreenProvider.show('Loading photo...');
 
-    this.commentCount = 38;
+    this.commentInput = "";
 
     this.currentUserID = this.auth.getUID();
     this.photoUserID = 'WuXkSZ55Q0MWzPJ1x3qt0YTWvdg1';
@@ -87,6 +87,8 @@ export class PhotoPage {
 
     this.getLikeCount();
     this.setLikedState(this.currentUserID);
+
+    this.getCommentCount();
 
     const userRef = this.getUserData(this.photoUserID);
     userRef.valueChanges().subscribe((user: User) => {
@@ -133,6 +135,19 @@ export class PhotoPage {
       });
   }
 
+  getCommentCount() {
+    const commentsRef = this.firestore
+      .collection('users')
+      .doc(this.photoUserID)
+      .collection('photos')
+      .doc(this.photoID)
+      .collection('comments')
+
+      commentsRef.snapshotChanges().subscribe((snapshot) => {
+        this.commentCount = snapshot.length;
+      });
+  }
+
   toggleLike() {
     const likeRef = this.firestore.doc(
       'users/' +
@@ -163,9 +178,6 @@ export class PhotoPage {
     photoRef
       .set({
         comment: this.commentInput
-      })
-      .then(function() {
-        this.commentInput = "";
       })
       .catch(function(error) {
         console.log('Error: ' + error);
