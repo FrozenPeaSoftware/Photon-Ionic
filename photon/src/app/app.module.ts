@@ -33,6 +33,7 @@ import { Keyboard } from '@ionic-native/keyboard';
 import { OptionsPage } from '../pages/options/options';
 import { Base64 } from '@ionic-native/base64';
 import { AngularFirestore } from '../../node_modules/angularfire2/firestore';
+import { LoadingScreenProvider } from '../providers/loading-screen/loading-screen';
 
 @NgModule({
   declarations: [
@@ -89,7 +90,8 @@ import { AngularFirestore } from '../../node_modules/angularfire2/firestore';
     GoogleMapsApiProvider,
     AngularFireAuth,
     AuthService,
-    AngularFirestore
+    AngularFirestore,
+    LoadingScreenProvider
   ],
 })
 export class AppModule {}

@@ -1,3 +1,4 @@
+import { LoadingScreenProvider } from './../../providers/loading-screen/loading-screen';
 import { RegisterPage } from "../register/register";
 import { TabsPage } from "../tabs/tabs";
 
@@ -33,7 +34,8 @@ export class LoginPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     private auth: AuthService,
-    public fb: FormBuilder
+    public fb: FormBuilder,
+    public loadingScreenProvider: LoadingScreenProvider
   ) {
     this.loginForm = fb.group({
       email: new FormControl(
@@ -56,6 +58,7 @@ export class LoginPage {
   }
 
   login() {
+    this.loadingScreenProvider.show("Logging in...");
     let data = this.loginForm.value;
 
     if (!data.email) {
@@ -69,8 +72,14 @@ export class LoginPage {
     this.auth
       .loginWithEmail(credentials)
       .then(
-        () => this.navCtrl.setRoot(TabsPage),
-        error => (this.loginError = error.message)
+        () => {
+          this.navCtrl.setRoot(TabsPage);
+          this.loadingScreenProvider.dismiss();
+        },
+        error => {
+          this.loadingScreenProvider.dismiss();
+          this.loginError = error.message;
+        }
       );
   }
 

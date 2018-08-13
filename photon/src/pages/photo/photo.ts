@@ -1,3 +1,4 @@
+import { LoadingScreenProvider } from './../../providers/loading-screen/loading-screen';
 import { Photo } from '../../app/models/photo.interface';
 import { User } from '../../app/models/user.interface';
 import { MapPage } from './../map/map';
@@ -25,7 +26,6 @@ import { storage } from 'firebase';
   templateUrl: 'photo.html',
 })
 export class PhotoPage {
-  loading: any;
   loaded: boolean;
 
   photoUserID: string;
@@ -64,10 +64,10 @@ export class PhotoPage {
     public modalCtrl: ModalController,
     private auth: AuthService,
     private firestore: AngularFirestore,
-    public loadingCtrl: LoadingController
+    public loadingScreenProvider: LoadingScreenProvider
   ) {
     this.loaded = false;
-    this.showLoading();
+    this.loadingScreenProvider.show('Loading photo...');
 
     this.likes = 462;
     this.commentCount = 38;
@@ -148,14 +148,5 @@ export class PhotoPage {
   showMap() {
     let mapModal = this.modalCtrl.create(MapPage, { userId: 8675309 });
     mapModal.present();
-  }
-
-  showLoading() {
-    this.loading = this.loadingCtrl.create({
-      spinner: 'crescent',
-      content: 'Loading photo...',
-      showBackdrop: true,
-    });
-    this.loading.present();
   }
 }
