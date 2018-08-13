@@ -54,7 +54,6 @@ export class PhotoOptionsPage {
     );
     storageLocation.putString(this.base64Image, 'data_url').then(data => {
       storageLocation.getDownloadURL().then(url => {
-        console.log('firebase response: ' + url);
         const photoRef = this.firestore.doc(
           'users/' + userID + '/photos/' + photoID
         );

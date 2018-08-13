@@ -48,10 +48,10 @@
         <!-- Photo comment input field -->
         <div id="new-comment-container">
           <ion-item class="input" id="new-comment">
-            <ion-textarea rows="5" placeholder="Write a comment"></ion-textarea>
+            <ion-textarea [(ngModel)]="commentInput" rows="5" placeholder="Write a comment"></ion-textarea>
           </ion-item>
           <div id="send-container">
-            <i id="send-icon" class="fa fa-paper-plane-o gradient-icon" aria-hidden="true"></i>
+            <button ion-fab mini (click)="submitComment()"><i id="send-icon" class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
           </div>
         </div>
       </div>

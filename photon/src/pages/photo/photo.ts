@@ -43,6 +43,8 @@ export class PhotoPage {
 
   photoData: Photo;
 
+  commentInput: any;
+
   comments = [
     {
       name: 'Person1',
@@ -100,7 +102,7 @@ export class PhotoPage {
       .doc(photoID);
   }
 
-  getUserData(userID) {
+  getUserData(userID): AngularFirestoreDocument<User> {
     return this.firestore.collection('users').doc(userID);
   }
 
@@ -147,15 +149,27 @@ export class PhotoPage {
       .set({
         liked: true,
       })
-      .then(function() {
-        console.log('Success');
-      })
-      .catch(function(error) {
+      .catch(function() {
         this.liked = !this.liked;
-        console.log('Error: ' + error);
       });
     }
     this.liked = !this.liked;
+  }
+
+  submitComment() {
+    const photoRef = this.firestore.doc(
+      'users/' + this.photoUserID + '/photos/' + this.photoID + '/comments/' + this.currentUserID
+    );
+    photoRef
+      .set({
+        comment: this.commentInput
+      })
+      .then(function() {
+        this.commentInput = "";
+      })
+      .catch(function(error) {
+        console.log('Error: ' + error);
+      });
   }
 
   showMap() {

@@ -104,15 +104,17 @@ page-photo {
   }
 
   #send-icon {
-    font-size: 28px;
+    font-size: 18px;
+    margin-top: 2px;
+    margin-right: 1px;
   }
 
   #send-container {
     display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    margin-top: 2vh;
-    margin-right: 2vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-right: -2.5vw;
   }
 
   .like-comment-item {
@@ -152,15 +154,25 @@ page-photo {
 
   #new-comment-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: flex-start;
+    align-content: center;
   }
 
   .input {
-    width: 100%;
     background-color: color($colors, field);
     border-radius: 10px;
     border-color: #000000;
     width: 100%;
+  }
+
+  button {
+    height: 50%;
+    width: 50%;
+    background: linear-gradient(
+      to bottom right,
+      color($colors, primary),
+      color($colors, secondary)
+    );
   }
 }
