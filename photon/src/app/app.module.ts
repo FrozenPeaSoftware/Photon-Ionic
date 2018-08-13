@@ -1,3 +1,4 @@
+import { UserService } from './../services/user.service';
 import { CustomiseProfilePage } from './../pages/customise-profile/customise-profile';
 import { MapPage } from './../pages/map/map';
 import { AuthService } from './../services/auth.service';
@@ -91,7 +92,8 @@ import { LoadingScreenProvider } from '../providers/loading-screen/loading-scree
     AngularFireAuth,
     AuthService,
     AngularFirestore,
-    LoadingScreenProvider
+    LoadingScreenProvider,
+    UserService
   ],
 })
 export class AppModule {}

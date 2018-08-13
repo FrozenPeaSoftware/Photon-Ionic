@@ -1,6 +1,7 @@
-import { UUID } from 'angular2-uuid';
-import { AngularFireAuth } from 'angularfire2/auth';
-import { TabsPage } from './../tabs/tabs';
+import { UserService } from "./../../services/user.service";
+import { UUID } from "angular2-uuid";
+import { AngularFireAuth } from "angularfire2/auth";
+import { TabsPage } from "./../tabs/tabs";
 import { Component } from "@angular/core";
 import { IonicPage, NavController, NavParams } from "ionic-angular";
 import { AngularFirestoreModule } from "angularfire2/firestore";
@@ -32,6 +33,9 @@ import { UsernameValidator } from "../../validators/username.validator";
 export class CustomiseProfilePage {
   customiseForm: FormGroup;
   customiseError: string;
+  name: string;
+  username: string;
+  biography: string;
 
   validation_messages = {
     username: [
@@ -52,10 +56,21 @@ export class CustomiseProfilePage {
       { type: "validUsername", message: "Your username has already been taken" }
     ],
     name: [{ type: "required", message: "Name is required" }],
-    biography: [{ type: "maxlength", message: "Biography cannot be more than 100 characters long" }]
+    biography: [
+      {
+        type: "maxlength",
+        message: "Biography cannot be more than 100 characters long"
+      }
+    ]
   };
 
-  constructor(public auth: AuthService, private firestore: AngularFirestore, private fb: FormBuilder, private navCtrl: NavController) {
+  constructor(
+    public auth: AuthService,
+    private firestore: AngularFirestore,
+    private fb: FormBuilder,
+    private navCtrl: NavController,
+    private userService: UserService
+  ) {
     this.customiseForm = fb.group({
       name: new FormControl("", Validators.required),
       username: new FormControl(
@@ -70,11 +85,24 @@ export class CustomiseProfilePage {
       ),
       biography: new FormControl("", Validators.maxLength(100))
     });
+    this.name = this.getName();
+    this.username = this.getUsername();
+    this.biography = this.getBiography();
   }
 
-  getCurrentUser() {
-    console.log(this.auth.getUser().uid);
-    return this.auth.getUser();
+  getName() {
+    console.log(this.userService.getName());
+    return this.userService.getName();
+  }
+
+  getUsername() {
+    console.log(this.userService.getUsername());
+    return this.userService.getUsername();
+  }
+
+  getBiography() {
+    console.log(this.userService.getBiography());
+    return this.userService.getBiography();
   }
 
   saveProfile() {

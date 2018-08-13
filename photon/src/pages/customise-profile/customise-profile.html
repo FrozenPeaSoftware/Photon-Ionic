@@ -10,7 +10,7 @@
       <div class="input-div">
         <ion-item no-lines class="input">
           <ion-label color="primary">Full Name</ion-label>
-          <ion-input type="text" formControlName="name" class="form-control"></ion-input>
+          <ion-input type="text" formControlName="name" class="form-control" value="{{this.name}}"></ion-input>
         </ion-item>
 
         <ng-container *ngFor="let validation of validation_messages.name">
@@ -23,7 +23,7 @@
       <div class="input-div">
         <ion-item no-lines class="input">
           <ion-label color="primary">Username</ion-label>
-          <ion-input type="text" formControlName="username" class="form-control"></ion-input>
+          <ion-input type="text" formControlName="username" class="form-control" value="{{this.username}}"></ion-input>
         </ion-item>
 
         <ng-container *ngFor="let validation of validation_messages.username">
@@ -36,7 +36,7 @@
       <div class="input-div">
         <ion-item no-lines class="input">
           <ion-label color="primary">Biography</ion-label>
-          <ion-textarea type="text" formControlName="biography" class="form-control" rows=5></ion-textarea>
+          <ion-textarea type="text" formControlName="biography" class="form-control" rows=5 value="{{this.biography}}"></ion-textarea>
         </ion-item>
 
         <ng-container *ngFor="let validation of validation_messages.username">
@@ -51,6 +51,6 @@
       </div>
       <button class="button" ion-button round type="submit">Save Profile</button>
     </form>
-    <button class="button" ion-button round (click)="getCurrentUser()">Test</button>
+    <!--<button class="button" ion-button round (click)="getCurrentUser()">Test</button>-->
   </div>
 </ion-content>
