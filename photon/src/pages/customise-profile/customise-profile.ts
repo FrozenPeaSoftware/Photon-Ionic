@@ -33,9 +33,9 @@ import { UsernameValidator } from "../../validators/username.validator";
 export class CustomiseProfilePage {
   customiseForm: FormGroup;
   customiseError: string;
-  name: string;
-  username: string;
-  biography: string;
+  name: string = this.getName();
+  username: string = this.getUsername();
+  biography: string = this.getBiography();
 
   validation_messages = {
     username: [
@@ -85,24 +85,48 @@ export class CustomiseProfilePage {
       ),
       biography: new FormControl("", Validators.maxLength(100))
     });
-    this.name = this.getName();
-    this.username = this.getUsername();
-    this.biography = this.getBiography();
   }
 
-  getName() {
-    console.log(this.userService.getName());
-    return this.userService.getName();
+  getName(): string {
+    //console.log(this.userService.getName());
+    //return this.userService.getName();
+    this.firestore
+      .collection('users')
+      .doc(this.auth.getUID())
+      .valueChanges()
+      .subscribe((user: User) => {
+        this.name = user.name;
+        console.log(this.name);
+      });
+    return this.name;
   }
 
-  getUsername() {
-    console.log(this.userService.getUsername());
-    return this.userService.getUsername();
+  getUsername(): string {
+    //console.log(this.userService.getUsername());
+    //return this.userService.getUsername();
+    this.firestore
+      .collection('users')
+      .doc(this.auth.getUID())
+      .valueChanges()
+      .subscribe((user: User) => {
+        this.username = user.username;
+        console.log(this.username);
+      });
+    return this.username;
   }
 
-  getBiography() {
-    console.log(this.userService.getBiography());
-    return this.userService.getBiography();
+  getBiography(): string {
+    this.firestore
+      .collection('users')
+      .doc(this.auth.getUID())
+      .valueChanges()
+      .subscribe((user: User) => {
+        this.biography = user.biography;
+        console.log(this.biography);
+      });
+    return this.biography;
+    /* console.log(this.userService.getBiography());
+    return this.userService.getBiography(); */
   }
 
   saveProfile() {

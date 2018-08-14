@@ -49,8 +49,8 @@
       <div class="error-message">
         {{ this.customiseError }}
       </div>
-      <button class="button" ion-button round type="submit">Save Profile</button>
+      <button class="button" ion-button round type="submit" [disabled]="!customiseForm.valid">Save Profile</button>
     </form>
-    <!--<button class="button" ion-button round (click)="getCurrentUser()">Test</button>-->
+    <!--<button class="button" ion-button round (click)="getName()">Test</button>-->
   </div>
 </ion-content>

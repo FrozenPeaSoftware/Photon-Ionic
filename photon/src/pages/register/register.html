@@ -61,7 +61,7 @@
         {{ this.registerError }}
       </div>
       <ion-row>
-        <button class="button" ion-button round type="submit">Create Account</button>
+        <button class="button" ion-button round type="submit" [disabled]="!registerForm.valid">Create Account</button>
       </ion-row>
     </ion-grid>
   </form>
