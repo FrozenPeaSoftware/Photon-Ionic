@@ -86,17 +86,17 @@ export class PhotoPage {
     this.getLikeCount();
     this.setLikedState(this.currentUserID);
 
+    this.getCommentCount();
     this.getComments();
 
     const photoUserRef = this.getUserData(this.photoUserID);
     photoUserRef.valueChanges().subscribe((user: User) => {
       this.photoUserName = user.name;
-      console.log(user.name);
     });
+
     const currentUserRef = this.getUserData(this.currentUserID);
     currentUserRef.valueChanges().subscribe((user: User) => {
       this.currentUserName = user.name;
-      console.log(user.name);
     });
   }
 
@@ -148,7 +148,6 @@ export class PhotoPage {
       .collection("comments");
 
     commentsRef.valueChanges().subscribe(value => {
-      let count = 0;
       value.forEach((commentData: Comment) => {
         const userRef = this.getUserData(commentData.userID);
         userRef.valueChanges().subscribe((user: User) => {
@@ -157,15 +156,11 @@ export class PhotoPage {
             name: user.name
           };
         });
-        //count = count + 1;
       });
-      //this.commentCount = value.length;
-
-      //this.commentCount = count;
     });
   }
 
-  /*getCommentCount() {
+  getCommentCount() {
     const commentsRef = this.firestore
       .collection('users')
       .doc(this.photoUserID)
@@ -176,7 +171,7 @@ export class PhotoPage {
       commentsRef.snapshotChanges().subscribe((snapshot) => {
         this.commentCount = snapshot.length;
       });
-  }*/
+  }
 
   toggleLike() {
     const likeRef = this.firestore.doc(
@@ -199,10 +194,6 @@ export class PhotoPage {
         });
     }
     this.liked = !this.liked;
-
-    console.log(
-      this.comments[0].name + " " + this.comments[0].commentData.comment
-    );
   }
 
   submitComment() {
