@@ -3,14 +3,7 @@ import { CustomiseProfilePage } from './../customise-profile/customise-profile';
 import { AuthService } from './../../services/auth.service';
 import { LoginPage } from '../login/login';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the OptionsPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { IonicPage, NavController, NavParams, IonicApp } from 'ionic-angular';
 
 @IonicPage()
 @Component({

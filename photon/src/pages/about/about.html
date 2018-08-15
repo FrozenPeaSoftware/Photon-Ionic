@@ -1,11 +1,24 @@
-<ion-header>
+<!--<ion-header>
   <ion-navbar>
     <ion-title>
       About
     </ion-title>
   </ion-navbar>
-</ion-header>
+</ion-header>-->
 
-<ion-content padding>
+<ion-content>
+
+  <div id="main-container">
+
+    <img id="logo" src="assets/imgs/frozen_pea_software_logo.png">
+
+    <div id="button-container">
+        <button class="circle-button" ion-fab (click)="linkToGitHub()"><i id="github-icon" class="fa fa-github icon" aria-hidden="true"></i></button>
+        <button class="circle-button" ion-fab (click)="email()"><i id="email-icon" class="fa fa-envelope icon" aria-hidden="true"></i></button>
+    </div>
+
+    <button id="back-button" (click)="back()" ion-button round outline>Back</button>
+
+  </div>
 
 </ion-content>
