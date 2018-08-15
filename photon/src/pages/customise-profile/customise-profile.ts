@@ -1,4 +1,5 @@
 import { UserService } from "./../../services/user.service";
+import { User } from '../../app/models/user.interface';
 import { UUID } from "angular2-uuid";
 import { AngularFireAuth } from "angularfire2/auth";
 import { TabsPage } from "./../tabs/tabs";
@@ -17,13 +18,6 @@ import {
 } from "@angular/forms";
 import { AuthService } from "./../../services/auth.service";
 import { UsernameValidator } from "../../validators/username.validator";
-
-/**
- * Generated class for the CustomiseProfilePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
