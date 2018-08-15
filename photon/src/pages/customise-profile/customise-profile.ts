@@ -33,9 +33,9 @@ import { UsernameValidator } from "../../validators/username.validator";
 export class CustomiseProfilePage {
   customiseForm: FormGroup;
   customiseError: string;
-  name: string = this.getName();
-  username: string = this.getUsername();
-  biography: string = this.getBiography();
+  name: string;
+  username: string;
+  biography: string;
 
   validation_messages = {
     username: [
@@ -85,6 +85,9 @@ export class CustomiseProfilePage {
       ),
       biography: new FormControl("", Validators.maxLength(100))
     });
+    this.name = this.getName();
+    this.username = this.getUsername();
+    this.biography = this.getBiography();
   }
 
   getName(): string {
