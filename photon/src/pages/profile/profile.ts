@@ -1,3 +1,4 @@
+import { OptionsPage } from './../options/options';
 import { CustomiseProfilePage } from './../customise-profile/customise-profile';
 import { AngularFirestore } from "angularfire2/firestore";
 import { AuthService } from "./../../services/auth.service";
@@ -45,7 +46,7 @@ export class ProfilePage {
   }
 
   optionsButtonClicked() {
-    this.navCtrl.push(CustomiseProfilePage);
+    this.navCtrl.push(OptionsPage);
   }
 
   ionViewDidLoad() {

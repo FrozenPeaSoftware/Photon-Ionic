@@ -56,7 +56,7 @@ export class CustomiseProfilePage {
     biography: [
       {
         type: "maxlength",
-        message: "Biography cannot be more than 100 characters long"
+        message: "Biography cannot be more than 50 characters long"
       }
     ]
   };
@@ -79,7 +79,7 @@ export class CustomiseProfilePage {
           Validators.required
         ])
       ),
-      biography: new FormControl("", Validators.maxLength(100))
+      biography: new FormControl("", Validators.maxLength(50))
     });
     this.getUser();
   }

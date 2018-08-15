@@ -36,10 +36,10 @@
       <div class="input-div">
         <ion-item no-lines class="input">
           <ion-label color="primary">Biography</ion-label>
-          <ion-textarea type="text" formControlName="biography" class="form-control" rows=5 value="{{this.user.biography}}"></ion-textarea>
+          <ion-textarea type="text" formControlName="biography" class="form-control" rows=4 value="{{this.user.biography}}"></ion-textarea>
         </ion-item>
 
-        <ng-container *ngFor="let validation of validation_messages.username">
+        <ng-container *ngFor="let validation of validation_messages.biography">
           <div class="error-message" *ngIf="customiseForm.get('biography').hasError(validation.type) && (customiseForm.get('biography').dirty || customiseForm.get('biography').touched)">
             {{validation.message}}
           </div>
