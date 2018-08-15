@@ -60,7 +60,8 @@ import { LoadingScreenProvider } from '../providers/loading-screen/loading-scree
     IonicModule.forRoot(MyApp, {
       mode: 'md',
       scrollAssist: false,
-      autoFocusAssist: false
+      autoFocusAssist: false,
+      tabsHideOnSubPages: true
     }),
   ],
   bootstrap: [IonicApp],
@@ -99,4 +100,6 @@ import { LoadingScreenProvider } from '../providers/loading-screen/loading-scree
     UserService
   ],
 })
-export class AppModule {}
+export class AppModule {
+
+}

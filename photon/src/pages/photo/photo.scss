@@ -63,8 +63,6 @@ page-photo {
   #image-container {
     margin-bottom: 0.5vh;
     margin-top: 2vh;
-    //margin-left: 1vw;
-    //margin-right: 1vw;
   }
 
   #image {
@@ -166,9 +164,7 @@ page-photo {
     width: 100%;
   }
 
-  button {
-    height: 50%;
-    width: 50%;
+  #send-button {
     background: linear-gradient(
       to bottom right,
       color($colors, primary),

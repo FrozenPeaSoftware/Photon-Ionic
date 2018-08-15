@@ -1,3 +1,50 @@
 page-about {
 
+  #main-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 100%;
+    background-color: #1b2226;
+  }
+
+  #button-container {
+    width: 75vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  .circle-button {
+    background-color: #77cfd2;
+  }
+
+  .icon {
+    color: #1b2226;
+  }
+
+  #github-icon {
+    font-size: 36px;
+  }
+
+  #email-icon {
+    font-size: 26px;
+  }
+
+  #logo {
+    height: 40vh;
+    min-width: 40vh;
+    min-height: 40vh;
+  }
+
+  #back-button {
+    border-color: #77cfd2;
+    color: #77cfd2;
+    width: 50%;
+    padding-top: 4vh;
+    padding-bottom: 4vh;
+  }
+
 }
