@@ -5,5 +5,6 @@ export interface Photo {
     latitude: Number;
     longitude: Number;
   };
+  timestamp: any,
   url: string;
 }

@@ -1,6 +1,7 @@
 import { LoadingScreenProvider } from './../../providers/loading-screen/loading-screen';
 import { Photo } from '../../app/models/photo.interface';
 import { User } from '../../app/models/user.interface';
+import { Comment } from '../../app/models/comment.interface';
 import { MapPage } from './../map/map';
 import { Component, ChangeDetectorRef } from '@angular/core';
 import {
@@ -12,13 +13,20 @@ import {
 } from 'ionic-angular';
 import { AuthService } from '../../services/auth.service';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { AngularFirestoreModule, DocumentSnapshot } from 'angularfire2/firestore';
+import {
+  AngularFirestoreModule,
+  DocumentSnapshot,
+} from 'angularfire2/firestore';
 import {
   AngularFirestore,
   AngularFirestoreDocument,
 } from 'angularfire2/firestore';
 import { Observable } from 'rxjs';
 import { storage, database } from 'firebase';
+
+import * as firebase from 'firebase';
+
+import { UUID } from 'angular2-uuid';
 
 @IonicPage()
 @Component({
@@ -47,7 +55,7 @@ export class PhotoPage {
 
   commentInput: string;
 
-  comments = [];
+  comments: { commentData: Comment, name: string }[] = [];
 
   constructor(
     public navCtrl: NavController,
@@ -61,7 +69,7 @@ export class PhotoPage {
     this.loaded = false;
     this.loadingScreenProvider.show('Loading photo...');
 
-    this.commentInput = "";
+    this.commentInput = '';
 
     this.currentUserID = this.auth.getUID();
     this.photoUserID = 'WuXkSZ55Q0MWzPJ1x3qt0YTWvdg1';
@@ -78,7 +86,6 @@ export class PhotoPage {
     this.getLikeCount();
     this.setLikedState(this.currentUserID);
 
-    this.getCommentCount();
     this.getComments();
 
     const photoUserRef = this.getUserData(this.photoUserID);
@@ -114,9 +121,9 @@ export class PhotoPage {
       .collection('likes')
       .doc(userID);
 
-      likesRef.snapshotChanges().subscribe((snapshot) => {
-        this.liked = snapshot.payload.exists;
-      });
+    likesRef.snapshotChanges().subscribe(snapshot => {
+      this.liked = snapshot.payload.exists;
+    });
   }
 
   getLikeCount() {
@@ -127,9 +134,9 @@ export class PhotoPage {
       .doc(this.photoID)
       .collection('likes');
 
-      likesRef.snapshotChanges().subscribe((snapshot) => {
-        this.likes = snapshot.length;
-      });
+    likesRef.snapshotChanges().subscribe(snapshot => {
+      this.likes = snapshot.length;
+    });
   }
 
   getComments() {
@@ -140,17 +147,23 @@ export class PhotoPage {
       .doc(this.photoID)
       .collection('comments');
 
-      commentsRef.valueChanges().subscribe((value => {
-        let count = 0;
-        value.forEach(doc => {
-          this.comments[count] = doc;
-          console.log(this.comments[count])
-          count = count + 1;
+    commentsRef.valueChanges().subscribe(value => {
+      let count = 0;
+      value.forEach((commentData: Comment) => {
+        const userRef = this.getUserData(commentData.userID);
+        userRef.valueChanges().subscribe((user: User) => {
+          this.comments[count] = {
+            commentData: commentData,
+            name: user.name
+          };
         });
-      }));
+        count = count + 1;
+      });
+      this.commentCount = count;
+    });
   }
 
-  getCommentCount() {
+  /*getCommentCount() {
     const commentsRef = this.firestore
       .collection('users')
       .doc(this.photoUserID)
@@ -161,7 +174,7 @@ export class PhotoPage {
       commentsRef.snapshotChanges().subscribe((snapshot) => {
         this.commentCount = snapshot.length;
       });
-  }
+  }*/
 
   toggleLike() {
     const likeRef = this.firestore.doc(
@@ -176,25 +189,32 @@ export class PhotoPage {
       likeRef.delete();
     } else {
       likeRef
-      .set({
-        liked: true,
-      })
-      .catch(function() {
-        this.liked = !this.liked;
-      });
+        .set({
+          liked: true,
+        })
+        .catch(function() {
+          this.liked = !this.liked;
+        });
     }
     this.liked = !this.liked;
+
+    console.log(this.comments[0].name + " " + this.comments[0].commentData.comment);
   }
 
   submitComment() {
     const photoRef = this.firestore.doc(
-      'users/' + this.photoUserID + '/photos/' + this.photoID + '/comments/' + this.currentUserID
+      'users/' +
+        this.photoUserID +
+        '/photos/' +
+        this.photoID +
+        '/comments/' +
+        this.generateCommentID()
     );
     photoRef
       .set({
-        id: this.currentUserID,
-        name: this.currentUserName,
-        comment: this.commentInput
+        userID: this.currentUserID,
+        comment: this.commentInput,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
       })
       .catch(function(error) {
         console.log('Error: ' + error);
@@ -204,5 +224,9 @@ export class PhotoPage {
   showMap() {
     let mapModal = this.modalCtrl.create(MapPage, { userId: 8675309 });
     mapModal.present();
+  }
+
+  generateCommentID(): string {
+    return UUID.UUID();
   }
 }

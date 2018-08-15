@@ -15,6 +15,8 @@ import { AuthService } from './../../services/auth.service';
 
 import { UUID } from 'angular2-uuid';
 
+import * as firebase from 'firebase';
+
 @IonicPage()
 @Component({
   selector: 'page-photo-options',
@@ -66,6 +68,7 @@ export class PhotoOptionsPage {
               latitude: 0,
               longitude: 0,
             },
+            timestamp: firebase.firestore.FieldValue.serverTimestamp(),
             url: url
           })
           .then(function() {
