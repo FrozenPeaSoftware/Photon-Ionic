@@ -18,7 +18,12 @@ import { IonicPage, NavController, NavParams } from "ionic-angular";
   templateUrl: "profile.html"
 })
 export class ProfilePage {
-  public user: User = "";
+  public user: User = {
+    name: "",
+    username: "",
+    email: "",
+    biography: ""
+  };
 
   constructor(
     public navCtrl: NavController,

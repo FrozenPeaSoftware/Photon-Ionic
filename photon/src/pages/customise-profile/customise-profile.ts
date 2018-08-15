@@ -27,7 +27,12 @@ import { UsernameValidator } from "../../validators/username.validator";
 export class CustomiseProfilePage {
   customiseForm: FormGroup;
   customiseError: string;
-  user: User = "";
+  public user: User = {
+    name: "",
+    username: "",
+    email: "",
+    biography: ""
+  };
 
   validation_messages = {
     username: [
@@ -61,7 +66,6 @@ export class CustomiseProfilePage {
     private firestore: AngularFirestore,
     private fb: FormBuilder,
     private navCtrl: NavController,
-    private userService: UserService
   ) {
     this.customiseForm = fb.group({
       name: new FormControl("", Validators.required),

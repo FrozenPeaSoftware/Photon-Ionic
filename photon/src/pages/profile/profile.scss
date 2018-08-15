@@ -15,7 +15,7 @@ page-profile {
     display: flex;
     flex-direction: column;
     //background: blue;
-    height: 25%;
+    height: 30%;
     width: 100%;
   }
 
@@ -79,12 +79,12 @@ page-profile {
   }
 
   .profile-container-bottom {
+    height: 40%;
     flex-direction: column;
     justify-content: space-evenly;
   }
 
   .name-label {
-    margin-top: 2%;
     margin-bottom: 0;
   }
 
