@@ -13,7 +13,8 @@ page-profile {
 
   .profile-container {
     display: flex;
-    background: blue;
+    flex-direction: column;
+    //background: blue;
     height: 25%;
     width: 100%;
   }
@@ -21,15 +22,15 @@ page-profile {
   .profile-container-top {
     display: flex;
     justify-content: space-evenly;
-    background: violet;
-    width: 75%;
+    //background: violet;
+    width: 100%;
     height: 60%;
   }
 
   .image-container {
-    width: 25%;
-    height: 60%;
-    background: magenta;
+    width: 30%;
+    height: 100%;
+    //background: magenta;
   }
 
   .profile-picture {
@@ -38,16 +39,56 @@ page-profile {
     max-height: 100%;
   }
 
+  .followers-options-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 90%;
+    height: 100%;
+    //background: cyan;
+  }
+
   .followers-container {
     display: flex;
-    width: 100% - 10%;
-    height: 100%;
-    background: cyan;
+    text-align: center;
+    justify-content: space-evenly;
+    margin-left: 3%;
+  }
+
+  .value-label {
+    color: #313131;
+    margin-bottom: 0;
+    font-size: 15pt;
+  }
+
+  .type-label {
+    color: #858585;
+    margin-top: 0;
   }
 
   .options-button {
+    margin: 0;
+    background: linear-gradient(
+      to bottom right,
+      color($colors, primary),
+      color($colors, secondary)
+    );
     height: 30%;
-    width: 100%;
+    width: 90%;
+    margin-left: 5%;
+  }
+
+  .profile-container-bottom {
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+
+  .name-label {
+    margin-bottom: 0;
+  }
+
+  .biography-label {
+    margin-top: 2%;
   }
 
   .divider {
