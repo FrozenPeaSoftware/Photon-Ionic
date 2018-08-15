@@ -1,4 +1,3 @@
-import { User } from './../../app/models/user.interface';
 import { UserService } from "./../../services/user.service";
 import { User } from '../../app/models/user.interface';
 import { UUID } from "angular2-uuid";
@@ -81,7 +80,7 @@ export class CustomiseProfilePage {
     this.getUser();
   }
 
-  getUser(): string {
+  getUser() {
     this.firestore
       .collection('users')
       .doc(this.auth.getUID())
