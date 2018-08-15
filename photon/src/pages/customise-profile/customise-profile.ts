@@ -1,3 +1,4 @@
+import { User } from './../../app/models/user.interface';
 import { UserService } from "./../../services/user.service";
 import { User } from '../../app/models/user.interface';
 import { UUID } from "angular2-uuid";
@@ -27,9 +28,7 @@ import { UsernameValidator } from "../../validators/username.validator";
 export class CustomiseProfilePage {
   customiseForm: FormGroup;
   customiseError: string;
-  name: string;
-  username: string;
-  biography: string;
+  user: User = "";
 
   validation_messages = {
     username: [
@@ -79,51 +78,17 @@ export class CustomiseProfilePage {
       ),
       biography: new FormControl("", Validators.maxLength(100))
     });
-    this.name = this.getName();
-    this.username = this.getUsername();
-    this.biography = this.getBiography();
+    this.getUser();
   }
 
-  getName(): string {
-    //console.log(this.userService.getName());
-    //return this.userService.getName();
+  getUser(): string {
     this.firestore
       .collection('users')
       .doc(this.auth.getUID())
       .valueChanges()
       .subscribe((user: User) => {
-        this.name = user.name;
-        console.log(this.name);
+        this.user = user;
       });
-    return this.name;
-  }
-
-  getUsername(): string {
-    //console.log(this.userService.getUsername());
-    //return this.userService.getUsername();
-    this.firestore
-      .collection('users')
-      .doc(this.auth.getUID())
-      .valueChanges()
-      .subscribe((user: User) => {
-        this.username = user.username;
-        console.log(this.username);
-      });
-    return this.username;
-  }
-
-  getBiography(): string {
-    this.firestore
-      .collection('users')
-      .doc(this.auth.getUID())
-      .valueChanges()
-      .subscribe((user: User) => {
-        this.biography = user.biography;
-        console.log(this.biography);
-      });
-    return this.biography;
-    /* console.log(this.userService.getBiography());
-    return this.userService.getBiography(); */
   }
 
   saveProfile() {

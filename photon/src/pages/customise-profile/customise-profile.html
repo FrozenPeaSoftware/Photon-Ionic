@@ -10,12 +10,12 @@
       <div class="input-div">
         <ion-item no-lines class="input">
           <ion-label color="primary">Full Name</ion-label>
-          <ion-input type="text" formControlName="name" class="form-control" value="{{this.name}}"></ion-input>
+          <ion-input type="text" formControlName="name" class="form-control" value="{{this.user.name}}"></ion-input>
         </ion-item>
 
         <ng-container *ngFor="let validation of validation_messages.name">
           <div class="error-message" *ngIf="customiseForm.get('name').hasError(validation.type) && (customiseForm.get('name').dirty || customiseForm.get('name').touched)">
-            {{ validation.message }}
+            {{validation.message}}
           </div>
         </ng-container>
       </div>
@@ -23,12 +23,12 @@
       <div class="input-div">
         <ion-item no-lines class="input">
           <ion-label color="primary">Username</ion-label>
-          <ion-input type="text" formControlName="username" class="form-control" value="{{this.username}}"></ion-input>
+          <ion-input type="text" formControlName="username" class="form-control" value="{{this.user.username}}"></ion-input>
         </ion-item>
 
         <ng-container *ngFor="let validation of validation_messages.username">
           <div class="error-message" *ngIf="customiseForm.get('username').hasError(validation.type) && (customiseForm.get('username').dirty || customiseForm.get('username').touched)">
-            {{ validation.message }}
+            {{validation.message}}
           </div>
         </ng-container>
       </div>
@@ -36,21 +36,20 @@
       <div class="input-div">
         <ion-item no-lines class="input">
           <ion-label color="primary">Biography</ion-label>
-          <ion-textarea type="text" formControlName="biography" class="form-control" rows=5 value="{{this.biography}}"></ion-textarea>
+          <ion-textarea type="text" formControlName="biography" class="form-control" rows=5 value="{{this.user.biography}}"></ion-textarea>
         </ion-item>
 
         <ng-container *ngFor="let validation of validation_messages.username">
           <div class="error-message" *ngIf="customiseForm.get('biography').hasError(validation.type) && (customiseForm.get('biography').dirty || customiseForm.get('biography').touched)">
-            {{ validation.message }}
+            {{validation.message}}
           </div>
         </ng-container>
       </div>
 
       <div class="error-message">
-        {{ this.customiseError }}
+        {{this.customiseError}}
       </div>
       <button class="button" ion-button round type="submit" [disabled]="!customiseForm.valid">Save Profile</button>
     </form>
-    <!--<button class="button" ion-button round (click)="getName()">Test</button>-->
   </div>
 </ion-content>

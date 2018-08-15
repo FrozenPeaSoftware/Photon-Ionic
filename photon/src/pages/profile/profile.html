@@ -39,16 +39,16 @@
               </ion-label>
             </div>
           </div>
-          <button ion-button class="options-button" round>Options</button>
+          <button ion-button class="options-button" round (click)="this.optionsButtonClicked()">Options</button>
         </div>
       </div>
 
       <div class="profile-container-bottom">
         <ion-label class="name-label">
-          <b>Leyton Blackler</b>
+          <b>{{this.user.name}}</b>
         </ion-label>
         <ion-label class="biography-label">
-          This is Leyton's biography
+          {{this.user.biography}}
         </ion-label>
       </div>
     </div>
