@@ -1,3 +1,4 @@
+import { ProfilePage } from './../pages/profile/profile';
 import { UserService } from './../services/user.service';
 import { CustomiseProfilePage } from './../pages/customise-profile/customise-profile';
 import { MapPage } from './../pages/map/map';
@@ -50,6 +51,7 @@ import { LoadingScreenProvider } from '../providers/loading-screen/loading-scree
     LocationSearchComponent,
     PhotoPage,
     MapPage,
+    ProfilePage,
     CustomiseProfilePage
   ],
   imports: [
@@ -75,6 +77,7 @@ import { LoadingScreenProvider } from '../providers/loading-screen/loading-scree
     LocationSearchComponent,
     PhotoPage,
     MapPage,
+    ProfilePage,
     CustomiseProfilePage
   ],
   providers: [

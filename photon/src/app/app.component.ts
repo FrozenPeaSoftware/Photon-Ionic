@@ -1,4 +1,4 @@
-import { CustomiseProfilePage } from './../pages/customise-profile/customise-profile';
+import { ProfilePage } from './../pages/profile/profile';
 import { AuthService } from './../services/auth.service';
 import { TabsPage } from '../pages/tabs/tabs';
 import { FIREBASE_CONFIG } from './firebase.config';
