@@ -42,6 +42,10 @@
         </div>
         <div id="separator"></div>
         <div id="comment-container" *ngFor="let comment of comments">
+          <!-- {{comments.length}}
+          <p *ngIf="comment == null">comment is null</p>
+          <p *ngIf="comment != null">{{comment.name}}</p> -->
+
           <p>
             <strong>{{comment.name}}</strong>&nbsp;&nbsp;&nbsp;{{comment.commentData.comment}}</p>
         </div>
