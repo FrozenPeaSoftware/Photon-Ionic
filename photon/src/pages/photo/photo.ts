@@ -10,6 +10,7 @@ import {
   NavController,
   NavParams,
   LoadingController,
+  AlertController,
 } from 'ionic-angular';
 import { AuthService } from '../../services/auth.service';
 import { AngularFireAuth } from 'angularfire2/auth';
@@ -64,7 +65,7 @@ export class PhotoPage {
     private auth: AuthService,
     private firestore: AngularFirestore,
     public loadingScreenProvider: LoadingScreenProvider,
-    private changeDetector: ChangeDetectorRef
+    private alertCtrl: AlertController
   ) {
     this.loaded = false;
     this.loadingScreenProvider.show('Loading photo...');
@@ -229,8 +230,6 @@ export class PhotoPage {
       latitude: -40.900263,
       longitude: 176.231751
     });
-    //let mapModal = this.modalCtrl.create(MapPage);
-    //mapModal.present();
   }
 
   generateCommentID(): string {

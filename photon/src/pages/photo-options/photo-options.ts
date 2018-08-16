@@ -16,6 +16,13 @@ import { AuthService } from './../../services/auth.service';
 import { UUID } from 'angular2-uuid';
 
 import * as firebase from 'firebase';
+import { LatLng } from '../../../node_modules/@ionic-native/google-maps';
+
+export interface LocationItem {
+  description: string,
+  location: LatLng,
+  placeID: string
+}
 
 @IonicPage()
 @Component({
@@ -29,15 +36,21 @@ export class PhotoOptionsPage {
   selectedLocation: boolean;
   description: string;
 
+  locationItem: LocationItem;
+
+  GooglePlaces: any;
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public googleMapsAPI: GoogleMapsApiProvider,
     private auth: AuthService,
-    private firestore: AngularFirestore
+    private firestore: AngularFirestore,
   ) {
     this.locationSearchInput = '';
     this.selectedLocation = false;
+    let elem = document.createElement('div');
+    this.GooglePlaces = new google.maps.places.PlacesService(elem);
   }
 
   ionViewDidLoad() {
@@ -79,22 +92,6 @@ export class PhotoOptionsPage {
           });
       });
     });
-
-    /*const commentID = 2468;
-    const commentRef = this.firestore.doc(
-      'users/' + UID + '/photos/' + photoID + '/comments/' + commentID
-    );
-    commentRef
-      .set({
-        name: 'Celine Young',
-        comment: 'This is a comment'
-      })
-      .then(function() {
-        console.log('Success');
-      })
-      .catch(function(error) {
-        console.log('Error: ' + error);
-      });*/
   }
 
   generatePhotoID(): string {
@@ -107,9 +104,29 @@ export class PhotoOptionsPage {
   }
 
   selectSearchResult(item) {
+
+    let locationItem: LocationItem;
+
+    function fn(place, status) {
+      if (status != google.maps.places.PlacesServiceStatus.OK) {
+        console.log('Error getting place details, status code: ' + status);
+      }
+      locationItem = {
+        description: item.description,
+        location: place.geometry.location,
+        placeID: item.place_id
+      }
+      console.log(locationItem.location);
+    };
+
+    this.locationItem = locationItem;
+
     this.locationSearchInput = item.description;
     this.selectedLocation = true;
-    return this.googleMapsAPI.selectSearchResult(item);
+
+    this.GooglePlaces.getDetails({
+      placeId: item.place_id
+    }, fn);
   }
 
   autocompleteItems() {

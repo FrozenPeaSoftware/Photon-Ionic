@@ -16,7 +16,9 @@ export class MapPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController, public googleMapsAPI: GoogleMapsApiProvider) {}
 
   ionViewDidLoad() {
-    this.map = this.googleMapsAPI.initialiseMap(this.mapElement);
+    const latitude = this.navParams.get('latitude');
+    const longitude = this.navParams.get('longitude');
+    this.map = this.googleMapsAPI.initialiseMap(this.mapElement, latitude, longitude);
   }
 
   dismiss() {

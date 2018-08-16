@@ -7,7 +7,7 @@
     <div id="heading">
 
       <div id="back-container">
-        <button id="back-button" class="circle-button" ion-fab mini (click)="this.navCtrl.pop()">
+        <button ion-fab mini id="back-button" class="circle-button" (click)="this.navCtrl.pop()">
           <i id="back-icon" class="fa fa-chevron-left" aria-hidden="true"></i>
         </button>
       </div>
@@ -58,7 +58,7 @@
             <ion-textarea [(ngModel)]="commentInput" rows="5" placeholder="Write a comment"></ion-textarea>
           </ion-item>
           <div id="send-container">
-            <button class="circle-button" ion-fab mini (click)="submitComment()">
+            <button ion-fab mini class="circle-button" (click)="submitComment()">
               <i id="send-icon" class="fa fa-paper-plane-o" aria-hidden="true"></i>
             </button>
           </div>

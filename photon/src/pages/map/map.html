@@ -9,8 +9,14 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
 
-    <div #map id="map"></div>
+  <ion-fab top left>
+    <button ion-fab class="circle-button" (click)="this.navCtrl.pop()">
+      <i id="back-icon" class="fa fa-chevron-left" aria-hidden="true"></i>
+    </button>
+  </ion-fab>
+
+  <div #map id="map"></div>
 
 </ion-content>
