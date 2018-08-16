@@ -72,8 +72,9 @@ export class PhotoPage {
     this.commentInput = '';
 
     this.currentUserID = this.auth.getUID();
-    this.photoUserID = 'WuXkSZ55Q0MWzPJ1x3qt0YTWvdg1';
-    this.photoID = '8dc9f481-40c1-08f6-6aa7-faba953eb60f';
+
+    this.photoUserID = navParams.get('userID');
+    this.photoID = navParams.get('photoID');
 
     const photoRef = this.getPhotoData(this.photoUserID, this.photoID);
     photoRef.valueChanges().subscribe((photo: Photo) => {

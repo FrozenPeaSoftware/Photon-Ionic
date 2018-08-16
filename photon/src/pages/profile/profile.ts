@@ -1,3 +1,4 @@
+import { PhotoPage } from './../photo/photo';
 import { OptionsPage } from './../options/options';
 import { CustomiseProfilePage } from './../customise-profile/customise-profile';
 import { AngularFirestore } from "angularfire2/firestore";
@@ -49,8 +50,14 @@ export class ProfilePage {
     this.navCtrl.push(OptionsPage);
   }
 
+  openPhoto(userID: string, photoID: string) {
+    this.navCtrl.push(PhotoPage, {
+      userID: userID,
+      photoID: photoID
+    });
+  }
+
   ionViewDidLoad() {
     this.getUser();
-    console.log("ionViewDidLoad ProfilePage");
   }
 }
