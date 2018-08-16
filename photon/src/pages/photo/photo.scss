@@ -1,4 +1,5 @@
 page-photo {
+
   #main-container {
     display: flex;
     flex-direction: column;
@@ -155,6 +156,7 @@ page-photo {
     flex-direction: row;
     justify-content: flex-start;
     align-content: center;
+    margin-bottom: 2vh;
   }
 
   .input {
