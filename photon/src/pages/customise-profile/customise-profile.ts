@@ -1,3 +1,4 @@
+import { ImagePicker } from '@ionic-native/image-picker';
 import { UserService } from "./../../services/user.service";
 import { User } from '../../app/models/user.interface';
 import { UUID } from "angular2-uuid";
@@ -25,14 +26,15 @@ import { UsernameValidator } from "../../validators/username.validator";
   templateUrl: "customise-profile.html"
 })
 export class CustomiseProfilePage {
-  customiseForm: FormGroup;
-  customiseError: string;
+  private customiseForm: FormGroup;
+  private customiseError: string;
   public user: User = {
     name: "",
     username: "",
     email: "",
     biography: ""
   };
+  public imageURL: URL = "https://instagram.fakl1-2.fna.fbcdn.net/vp/36bedd66b5fa8b8f6bf81650823a72f0/5BFC9C56/t51.2885-19/s150x150/38096749_208075379863871_8613051600635691008_n.jpg";
 
   validation_messages = {
     username: [
@@ -66,6 +68,7 @@ export class CustomiseProfilePage {
     private firestore: AngularFirestore,
     private fb: FormBuilder,
     private navCtrl: NavController,
+    public imagePicker: ImagePicker
   ) {
     this.customiseForm = fb.group({
       name: new FormControl("", Validators.required),
@@ -82,6 +85,7 @@ export class CustomiseProfilePage {
       biography: new FormControl("", Validators.maxLength(50))
     });
     this.getUser();
+    this.getImage();
   }
 
   getUser() {
@@ -92,6 +96,16 @@ export class CustomiseProfilePage {
       .subscribe((user: User) => {
         this.user = user;
       });
+  }
+
+  getImage() {
+
+  }
+
+  openImagePicker() {
+    if (!this.imagePicker.hasReadPermission()) {
+      this.imagePicker.requestReadPermission();
+    }
   }
 
   saveProfile() {

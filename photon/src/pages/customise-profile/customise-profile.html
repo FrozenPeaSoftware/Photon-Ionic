@@ -7,9 +7,8 @@
     </div>
 
     <div class="photo-button-container">
-      <img class="profile-picture" src="https://instagram.fakl1-2.fna.fbcdn.net/vp/36bedd66b5fa8b8f6bf81650823a72f0/5BFC9C56/t51.2885-19/s150x150/38096749_208075379863871_8613051600635691008_n.jpg"
-      />
-      <button ion-button round outline class="change-photo-button">Edit Picture</button>
+      <img class="profile-picture" src={{this.imageURL}}/>
+      <button ion-button round outline class="change-photo-button" (click)="this.openImagePicker()">Edit Picture</button>
     </div>
 
     <div class="form-div">
