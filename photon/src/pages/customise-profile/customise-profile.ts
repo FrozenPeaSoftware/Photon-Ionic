@@ -34,7 +34,7 @@ export class CustomiseProfilePage {
     email: "",
     biography: ""
   };
-  public imageURL: URL = "https://instagram.fakl1-2.fna.fbcdn.net/vp/36bedd66b5fa8b8f6bf81650823a72f0/5BFC9C56/t51.2885-19/s150x150/38096749_208075379863871_8613051600635691008_n.jpg";
+  public imageURL: string = "https://instagram.fakl1-2.fna.fbcdn.net/vp/36bedd66b5fa8b8f6bf81650823a72f0/5BFC9C56/t51.2885-19/s150x150/38096749_208075379863871_8613051600635691008_n.jpg";
 
   validation_messages = {
     username: [
