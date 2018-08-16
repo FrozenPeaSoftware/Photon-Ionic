@@ -225,8 +225,12 @@ export class PhotoPage {
   }
 
   showMap() {
-    let mapModal = this.modalCtrl.create(MapPage, { userId: 8675309 });
-    mapModal.present();
+    this.navCtrl.push(MapPage, {
+      latitude: -40.900263,
+      longitude: 176.231751
+    });
+    //let mapModal = this.modalCtrl.create(MapPage);
+    //mapModal.present();
   }
 
   generateCommentID(): string {

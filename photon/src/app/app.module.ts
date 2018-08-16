@@ -36,6 +36,7 @@ import { OptionsPage } from '../pages/options/options';
 import { Base64 } from '@ionic-native/base64';
 import { AngularFirestore } from '../../node_modules/angularfire2/firestore';
 import { LoadingScreenProvider } from '../providers/loading-screen/loading-screen';
+import { GoogleMaps } from '../../node_modules/@ionic-native/google-maps';
 
 @NgModule({
   declarations: [
@@ -97,7 +98,8 @@ import { LoadingScreenProvider } from '../providers/loading-screen/loading-scree
     AuthService,
     AngularFirestore,
     LoadingScreenProvider,
-    UserService
+    UserService,
+    GoogleMaps
   ],
 })
 export class AppModule {

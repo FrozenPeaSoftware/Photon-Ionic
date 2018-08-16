@@ -53,6 +53,11 @@ export class GoogleMapsApiProvider {
     );
   }
 
+  initialiseMap(mapElement: ElementRef): GoogleMap {
+    let element = mapElement.nativeElement;
+    return GoogleMaps.create(element);
+  }
+
   createMap(): any {
     console.log("Making map...");
     let mapOptions: GoogleMapOptions = {
