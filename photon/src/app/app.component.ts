@@ -1,3 +1,5 @@
+import { LoginPage } from './../pages/login/login';
+import { CustomiseProfilePage } from './../pages/customise-profile/customise-profile';
 import { ProfilePage } from './../pages/profile/profile';
 import { AuthService } from './../services/auth.service';
 import { TabsPage } from '../pages/tabs/tabs';
@@ -8,8 +10,6 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { Keyboard } from '@ionic-native/keyboard';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { initializeApp } from 'firebase';
-import { LoginPage } from '../pages/login/login';
-
 
 @Component({
   templateUrl: 'app.html',

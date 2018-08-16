@@ -28,7 +28,7 @@
     "@ionic-native/file-transfer": "^4.10.0",
     "@ionic-native/geolocation": "^4.11.0",
     "@ionic-native/google-maps": "^4.9.1",
-    "@ionic-native/image-picker": "^4.10.1",
+    "@ionic-native/image-picker": "^4.11.0",
     "@ionic-native/keyboard": "^4.11.0",
     "@ionic-native/splash-screen": "~4.10.0",
     "@ionic-native/status-bar": "^4.10.1",
@@ -87,7 +87,7 @@
       "cordova-plugin-ionic-keyboard": {},
       "cordova-plugin-statusbar": {},
       "cordova-plugin-telerik-imagepicker": {
-        "PHOTO_LIBRARY_USAGE_DESCRIPTION": "Select a photo"
+        "PHOTO_LIBRARY_USAGE_DESCRIPTION": "your usage message"
       },
       "cordova-plugin-crop": {},
       "cordova-plugin-ionic-webview": {},
