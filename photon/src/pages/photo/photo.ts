@@ -168,19 +168,6 @@ export class PhotoPage {
     });
   }
 
-  /*getCommentCount() {
-    const commentsRef = this.firestore
-      .collection('users')
-      .doc(this.photoUserID)
-      .collection('photos')
-      .doc(this.photoID)
-      .collection('comments');
-
-    commentsRef.snapshotChanges().subscribe(snapshot => {
-      this.commentCount = snapshot.length;
-    });
-  }*/
-
   toggleLike() {
     const likeRef = this.firestore.doc(
       'users/' +

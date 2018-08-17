@@ -5,6 +5,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { storage } from 'firebase';
 
+import { LoadingScreenProvider } from './../../providers/loading-screen/loading-screen';
+
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import {
@@ -19,11 +21,11 @@ import * as firebase from 'firebase';
 import { LatLng } from '../../../node_modules/@ionic-native/google-maps';
 
 export interface LocationItem {
-  valid: boolean,
-  description: string,
-  latitude: number,
-  longitude: number,
-  placeID: string
+  valid: boolean;
+  description: string;
+  latitude: number;
+  longitude: number;
+  placeID: string;
 }
 
 @IonicPage()
@@ -43,7 +45,7 @@ export class PhotoOptionsPage {
     description: '',
     latitude: -1,
     longitude: -1,
-    placeID: ''
+    placeID: '',
   };
 
   GooglePlaces: any;
@@ -54,6 +56,7 @@ export class PhotoOptionsPage {
     public googleMapsAPI: GoogleMapsApiProvider,
     private auth: AuthService,
     private firestore: AngularFirestore,
+    public loadingScreenProvider: LoadingScreenProvider
   ) {
     this.locationSearchInput = '';
     this.selectedLocation = false;
@@ -69,7 +72,10 @@ export class PhotoOptionsPage {
   back() {}
 
   upload() {
-    console.log(this.locationItem.latitude + " " + this.locationItem.longitude);
+    this.loadingScreenProvider.show('Uploading photo...');
+    console.log(this.locationItem.latitude + ' ' + this.locationItem.longitude);
+
+    let context = this;
 
     const userID = this.auth.getUID();
     const photoID = this.generatePhotoID();
@@ -98,15 +104,25 @@ export class PhotoOptionsPage {
               longitude: longitude,
             },
             timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-            url: url
+            url: url,
           })
           .then(function() {
-            console.log('Success');
+            console.log('Photo upload successful!');
+            context.goToPhoto(context, userID, photoID);
           })
           .catch(function(error) {
             console.log('Error: ' + error);
+            // TODO: Handle error when photo did not upload correctly.
           });
       });
+    });
+  }
+
+  goToPhoto(context, userID, photoID) {
+    context.loadingScreenProvider.dismiss();
+    context.navCtrl.push(PhotoPage, {
+      userID: userID,
+      photoID: photoID,
     });
   }
 
@@ -136,17 +152,20 @@ export class PhotoOptionsPage {
         description: item.description,
         latitude: place.geometry.location.lat(),
         longitude: place.geometry.location.lng(),
-        placeID: item.place_id
-      }
+        placeID: item.place_id,
+      };
     }
 
     let context = this;
 
-    this.GooglePlaces.getDetails({
-      placeId: item.place_id
-    }, function (place, status) {
-      setLocationCallback(context, place, status);
-    });
+    this.GooglePlaces.getDetails(
+      {
+        placeId: item.place_id,
+      },
+      function(place, status) {
+        setLocationCallback(context, place, status);
+      }
+    );
   }
 
   autocompleteItems() {
