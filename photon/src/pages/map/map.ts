@@ -19,6 +19,7 @@ export class MapPage {
     const latitude = this.navParams.get('latitude');
     const longitude = this.navParams.get('longitude');
     this.map = this.googleMapsAPI.initialiseMap(this.mapElement, latitude, longitude);
+    this.googleMapsAPI.addMarker(this.map, latitude, longitude);
   }
 
   dismiss() {

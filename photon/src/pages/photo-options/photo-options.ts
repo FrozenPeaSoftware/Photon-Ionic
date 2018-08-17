@@ -73,7 +73,6 @@ export class PhotoOptionsPage {
 
   upload() {
     this.loadingScreenProvider.show('Uploading photo...');
-    console.log(this.locationItem.latitude + ' ' + this.locationItem.longitude);
 
     let context = this;
 

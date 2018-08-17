@@ -217,8 +217,8 @@ export class PhotoPage {
 
   showMap() {
     this.navCtrl.push(MapPage, {
-      latitude: -40.900263,
-      longitude: 176.231751,
+      latitude: this.photoData.coordinates.latitude,
+      longitude: this.photoData.coordinates.longitude,
     });
   }
 

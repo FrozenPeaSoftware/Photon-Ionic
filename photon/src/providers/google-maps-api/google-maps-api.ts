@@ -9,8 +9,8 @@ import {
   GoogleMapOptions,
   LatLng,
   CameraPosition,
-  MarkerOptions,
-  Marker
+  Marker,
+  MarkerOptions
 } from '@ionic-native/google-maps';
 
 @Injectable()
@@ -69,18 +69,29 @@ export class GoogleMapsApiProvider {
     return GoogleMaps.create(element, mapOptions);
   }
 
-  createMap(): any {
+  addMarker(map: GoogleMap, latitude: number, longitude: number) {
+    let markerOptions: MarkerOptions = {
+      position: new LatLng(latitude, longitude)
+    }
+    return map.addMarker(markerOptions);
+  }
+
+  createMap(latitude: number, longitude: number): any {
     console.log("Making map...");
     let mapOptions: GoogleMapOptions = {
       camera: {
          target: {
-           lat: 43.0741904,
-           lng: -89.3809802
+           lat: latitude,
+           lng: longitude
          },
          zoom: 18,
          tilt: 30
        }
     };
-    return GoogleMaps.create('map_canvas', mapOptions);
+    let map = GoogleMaps.create('map_canvas', mapOptions);
+    let markerOptions: MarkerOptions = {
+      position: new LatLng(latitude, longitude)
+    }
+    return map.addMarker(markerOptions);
   }
 }
