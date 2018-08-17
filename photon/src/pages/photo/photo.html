@@ -7,7 +7,7 @@
     <div id="heading">
 
       <div id="back-container">
-        <button ion-fab mini id="back-button" class="circle-button" (click)="back()">
+        <button ion-fab mini id="back-button" class="circle-button circle-gradient-button" (click)="back()">
           <i id="back-icon" class="fa fa-chevron-left" aria-hidden="true"></i>
         </button>
       </div>
@@ -24,7 +24,11 @@
           <p id="location">{{locationDescription}}</p>
         </div>
       </div>
-      <i id="main-location-icon" (click)="showMap()" class="fa fa-map-marker gradient-icon" aria-hidden="true"></i>
+      <div id="location-button-container">
+        <button ion-fab mini id="location-button" class="circle-button" (click)="showMap()">
+          <i id="location-button-icon" class="fa fa-map-marker gradient-icon" aria-hidden="true"></i>
+        </button>
+      </div>
     </div>
 
     <ion-scroll id="scroll-area" scrollY="true">
@@ -58,7 +62,7 @@
             <ion-textarea [(ngModel)]="commentInput" rows="5" placeholder="Write a comment"></ion-textarea>
           </ion-item>
           <div id="send-container">
-            <button ion-fab mini class="circle-button" (click)="submitComment()">
+            <button ion-fab mini class="circle-button circle-gradient-button" (click)="submitComment()">
               <i id="send-icon" class="fa fa-paper-plane-o" aria-hidden="true"></i>
             </button>
           </div>

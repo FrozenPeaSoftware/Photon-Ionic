@@ -106,7 +106,7 @@ page-photo {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-left: -1vw;
+    //margin-left: -1vw;
     margin-right: 2vw;
   }
 
@@ -116,8 +116,22 @@ page-photo {
     margin-right: 2px;
   }
 
-  #back-button {
-    flex-shrink: 0;
+  #location-button-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: -1vw;
+    margin-right: 2vw;
+  }
+
+  #location-button-icon {
+    font-size: 25px;
+    margin-left: 2px;
+  }
+
+  #location-button {
+    background-color: color($colors, light);
   }
 
   #send-icon {
@@ -136,14 +150,6 @@ page-photo {
 
   .like-comment-item {
     margin-right: 2vw;
-  }
-
-  #main-location-icon {
-    font-size: 36px;
-    margin-top: auto;
-    margin-bottom: auto;
-    margin-left: auto;
-    margin-right: 4vw;
   }
 
   #description-container > p {
@@ -184,11 +190,15 @@ page-photo {
     width: 100%;
   }
 
-  .circle-button {
+  .circle-gradient-button {
     background: linear-gradient(
       to bottom right,
       color($colors, primary),
       color($colors, secondary)
     );
+  }
+
+  .circle-button {
+    flex-shrink: 0;
   }
 }
