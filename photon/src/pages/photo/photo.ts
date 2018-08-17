@@ -37,6 +37,8 @@ import { UUID } from 'angular2-uuid';
 export class PhotoPage {
   loaded: boolean;
 
+  source: string;
+
   photoUserID: string;
   currentUserID: string;
   photoID: string;
@@ -76,6 +78,7 @@ export class PhotoPage {
 
     this.photoUserID = navParams.get('userID');
     this.photoID = navParams.get('photoID');
+    this.source = navParams.get('source');
 
     const photoRef = this.getPhotoData(this.photoUserID, this.photoID);
     photoRef.valueChanges().subscribe((photo: Photo) => {
@@ -215,8 +218,16 @@ export class PhotoPage {
   showMap() {
     this.navCtrl.push(MapPage, {
       latitude: -40.900263,
-      longitude: 176.231751
+      longitude: 176.231751,
     });
+  }
+
+  back() {
+    if (this.source === 'profile') {
+      this.navCtrl.pop();
+    } else if (this.source === 'upload') {
+      this.navCtrl.popToRoot();
+    }
   }
 
   generateCommentID(): string {

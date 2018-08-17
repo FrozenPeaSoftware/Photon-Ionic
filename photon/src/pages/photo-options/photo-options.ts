@@ -123,6 +123,7 @@ export class PhotoOptionsPage {
     context.navCtrl.push(PhotoPage, {
       userID: userID,
       photoID: photoID,
+      source: 'upload'
     });
   }
 

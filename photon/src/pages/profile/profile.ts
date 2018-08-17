@@ -53,7 +53,8 @@ export class ProfilePage {
   openPhoto(userID: string, photoID: string) {
     this.navCtrl.push(PhotoPage, {
       userID: userID,
-      photoID: photoID
+      photoID: photoID,
+      source: 'profile'
     });
   }
 
