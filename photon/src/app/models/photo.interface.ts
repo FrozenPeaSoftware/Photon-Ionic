@@ -1,6 +1,6 @@
 export interface Photo {
   description: string;
-  location: string;
+  locationDescription: string;
   coordinates: {
     latitude: Number;
     longitude: Number;

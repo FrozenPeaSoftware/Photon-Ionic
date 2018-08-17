@@ -44,7 +44,7 @@ export class PhotoPage {
   photoUserName: string;
   currentUserName: string;
 
-  location: string;
+  locationDescription: string;
   likes: Number;
   commentCount: Number;
   description: string;
@@ -81,7 +81,7 @@ export class PhotoPage {
     photoRef.valueChanges().subscribe((photo: Photo) => {
       this.photoData = photo;
       this.description = photo.description;
-      this.location = photo.location;
+      this.locationDescription = photo.locationDescription;
       this.photoURL = photo.url;
     });
 

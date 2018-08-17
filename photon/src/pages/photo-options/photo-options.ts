@@ -19,8 +19,10 @@ import * as firebase from 'firebase';
 import { LatLng } from '../../../node_modules/@ionic-native/google-maps';
 
 export interface LocationItem {
+  valid: boolean,
   description: string,
-  location: LatLng,
+  latitude: number,
+  longitude: number,
   placeID: string
 }
 
@@ -36,7 +38,13 @@ export class PhotoOptionsPage {
   selectedLocation: boolean;
   description: string;
 
-  locationItem: LocationItem;
+  locationItem: LocationItem = {
+    valid: false,
+    description: '',
+    latitude: -1,
+    longitude: -1,
+    placeID: ''
+  };
 
   GooglePlaces: any;
 
@@ -61,6 +69,8 @@ export class PhotoOptionsPage {
   back() {}
 
   upload() {
+    console.log(this.locationItem.latitude + " " + this.locationItem.longitude);
+
     const userID = this.auth.getUID();
     const photoID = this.generatePhotoID();
 
@@ -72,14 +82,20 @@ export class PhotoOptionsPage {
         const photoRef = this.firestore.doc(
           'users/' + userID + '/photos/' + photoID
         );
+        let latitude = -1;
+        let longitude = -1;
+        if (this.locationItem.valid) {
+          latitude = this.locationItem.latitude;
+          longitude = this.locationItem.longitude;
+        }
         photoRef
           .set({
             userID: userID,
             description: this.description,
-            location: this.locationSearchInput,
+            locationDescription: this.locationSearchInput,
             coordinates: {
-              latitude: 0,
-              longitude: 0,
+              latitude: latitude,
+              longitude: longitude,
             },
             timestamp: firebase.firestore.FieldValue.serverTimestamp(),
             url: url
@@ -99,34 +115,38 @@ export class PhotoOptionsPage {
   }
 
   updateSearchResults() {
+    if (this.locationSearchInput !== this.locationItem.description) {
+      console.log('Setting location item as invalid.');
+      this.locationItem.valid = false;
+    }
     this.selectedLocation = false;
     this.googleMapsAPI.updateSearchResults(this.locationSearchInput);
   }
 
   selectSearchResult(item) {
-
-    let locationItem: LocationItem;
-
-    function fn(place, status) {
-      if (status != google.maps.places.PlacesServiceStatus.OK) {
-        console.log('Error getting place details, status code: ' + status);
-      }
-      locationItem = {
-        description: item.description,
-        location: place.geometry.location,
-        placeID: item.place_id
-      }
-      console.log(locationItem.location);
-    };
-
-    this.locationItem = locationItem;
-
     this.locationSearchInput = item.description;
     this.selectedLocation = true;
 
+    function setLocationCallback(context, place, status) {
+      if (status != google.maps.places.PlacesServiceStatus.OK) {
+        console.log('Error getting place details, status code: ' + status);
+      }
+      context.locationItem = {
+        valid: true,
+        description: item.description,
+        latitude: place.geometry.location.lat(),
+        longitude: place.geometry.location.lng(),
+        placeID: item.place_id
+      }
+    }
+
+    let context = this;
+
     this.GooglePlaces.getDetails({
       placeId: item.place_id
-    }, fn);
+    }, function (place, status) {
+      setLocationCallback(context, place, status);
+    });
   }
 
   autocompleteItems() {
