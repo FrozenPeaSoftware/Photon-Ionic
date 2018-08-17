@@ -82,8 +82,4 @@ export class RegisterPage {
       this.navCtrl.setRoot(CustomiseProfilePage);
     }, error => (this.registerError = error.message));
   }
-
-  ionViewDidLoad() {
-    console.log("ionViewDidLoad RegisterPage");
-  }
 }

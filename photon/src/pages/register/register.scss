@@ -28,7 +28,7 @@ page-register {
   }
 
   .error-message {
-    color: red;
+    color: color($colors, danger);
   }
 
   ion-grid {
