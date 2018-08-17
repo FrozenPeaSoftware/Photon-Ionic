@@ -4,6 +4,7 @@ import { User } from '../../app/models/user.interface';
 import { Comment } from '../../app/models/comment.interface';
 import { MapPage } from './../map/map';
 import { Component, ChangeDetectorRef } from '@angular/core';
+import { App } from 'ionic-angular';
 import {
   ModalController,
   IonicPage,
@@ -67,7 +68,7 @@ export class PhotoPage {
     private auth: AuthService,
     private firestore: AngularFirestore,
     public loadingScreenProvider: LoadingScreenProvider,
-    private alertCtrl: AlertController
+    public appCtrl: App
   ) {
     this.loaded = false;
     this.loadingScreenProvider.show('Loading photo...');
@@ -216,7 +217,7 @@ export class PhotoPage {
   }
 
   showMap() {
-    this.navCtrl.push(MapPage, {
+    this.appCtrl.getRootNav().push(MapPage, {
       latitude: this.photoData.coordinates.latitude,
       longitude: this.photoData.coordinates.longitude,
     });
