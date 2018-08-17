@@ -1,26 +1,29 @@
 page-map {
-
   #map {
     height: 100%;
   }
 
-  #back-icon {
-    font-size: 18px;
-    margin-top: 2px;
-    margin-right: 2px;
-  }
-
-  .circle-button {
+  .gradient-button {
     background: linear-gradient(
       to bottom right,
       color($colors, primary),
       color($colors, secondary)
     );
+    width: 40vw;
+    padding-top: 4vh;
+    padding-bottom: 4vh;
   }
 
-  ion-fab[top] {
-    top: 5px;
-    left: 5px;
+  #button-container {
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
   }
 
+  ion-fab[left] {
+    left: 0px;
+    bottom: 20px;
+  }
 }

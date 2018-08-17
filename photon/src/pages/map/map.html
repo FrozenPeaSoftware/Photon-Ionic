@@ -1,22 +1,13 @@
-<ion-header>
-
-  <!--<ion-navbar>
-    <ion-buttons start>
-      <button ion-button (click)="dismiss()">Close</button>
-    </ion-buttons>
-  </ion-navbar>-->
-
-</ion-header>
-
+<ion-header></ion-header>
 
 <ion-content>
 
-  <ion-fab top left>
-    <button ion-fab class="circle-button" (click)="this.navCtrl.pop()">
-      <i id="back-icon" class="fa fa-chevron-left" aria-hidden="true"></i>
-    </button>
-  </ion-fab>
-
   <div #map id="map"></div>
+
+  <ion-fab bottom left>
+    <div id="button-container">
+      <button class="gradient-button" id="back-button" (click)="back()" ion-button round>Back</button>
+    </div>
+  </ion-fab>
 
 </ion-content>
