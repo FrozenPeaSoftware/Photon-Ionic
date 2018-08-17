@@ -69,7 +69,9 @@ export class PhotoOptionsPage {
     this.base64Image = this.navParams.get('base64Image');
   }
 
-  back() {}
+  back() {
+    this.navCtrl.popToRoot();
+  }
 
   upload() {
     this.loadingScreenProvider.show('Uploading photo...');
