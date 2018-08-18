@@ -26,8 +26,8 @@ import { UsernameValidator } from "../../validators/username.validator";
   templateUrl: "customise-profile.html"
 })
 export class CustomiseProfilePage {
-  private customiseForm: FormGroup;
-  private customiseError: string;
+  public customiseForm: FormGroup;
+  public customiseError: string;
   public user: User = {
     name: "",
     username: "",
@@ -85,6 +85,7 @@ export class CustomiseProfilePage {
       ),
       biography: new FormControl("", Validators.maxLength(50))
     });
+    console.log("Customise profile uid: " + this.auth.getUID());
     this.getUser();
     this.getImage();
   }
@@ -95,7 +96,7 @@ export class CustomiseProfilePage {
       .doc(this.auth.getUID())
       .valueChanges()
       .subscribe((user: User) => {
-        this.user = user;
+        if (user !== undefined) { this.user = user; }
       });
   }
 
