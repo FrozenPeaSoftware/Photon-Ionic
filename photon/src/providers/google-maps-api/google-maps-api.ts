@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import { Injectable, ElementRef } from '@angular/core';
 import { Component, NgZone } from '@angular/core';
 import { LoadingController } from 'ionic-angular';
@@ -8,8 +9,8 @@ import {
   GoogleMapOptions,
   LatLng,
   CameraPosition,
-  MarkerOptions,
-  Marker
+  Marker,
+  MarkerOptions
 } from '@ionic-native/google-maps';
 
 @Injectable()
@@ -53,50 +54,44 @@ export class GoogleMapsApiProvider {
     );
   }
 
-  initialiseMap(mapElement: ElementRef): GoogleMap {
+  initialiseMap(mapElement: ElementRef, latitude: number, longitude: number): GoogleMap {
     let element = mapElement.nativeElement;
-    return GoogleMaps.create(element);
+    let mapOptions: GoogleMapOptions = {
+      camera: {
+         target: {
+           lat: latitude,
+           lng: longitude
+         },
+         zoom: 15,
+         tilt: 10
+       }
+    };
+    return GoogleMaps.create(element, mapOptions);
   }
 
-  createMap(): any {
+  addMarker(map: GoogleMap, latitude: number, longitude: number) {
+    let markerOptions: MarkerOptions = {
+      position: new LatLng(latitude, longitude)
+    }
+    return map.addMarker(markerOptions);
+  }
+
+  createMap(latitude: number, longitude: number): any {
     console.log("Making map...");
     let mapOptions: GoogleMapOptions = {
       camera: {
          target: {
-           lat: 43.0741904,
-           lng: -89.3809802
+           lat: latitude,
+           lng: longitude
          },
          zoom: 18,
          tilt: 30
        }
     };
-    return GoogleMaps.create('map_canvas', mapOptions);
-  }
-
-  selectSearchResult(item) {
-    /*this.loading.present();
-    this.autocompleteItems = [];
-    this.geocoder.geocode({ placeId: item.place_id }, (results, status) => {
-      if (status === 'OK' && results[0]) {
-        this.autocompleteItems = [];
-        this.GooglePlaces.nearbySearch(
-          {
-            location: results[0].geometry.location,
-            radius: '500',
-            types: ['restaurant'], //check other types here https://developers.google.com/places/web-service/supported_types
-            // key: 'YOUR_KEY_HERE'
-          },
-          near_places => {
-            this.zone.run(() => {
-              this.nearbyItems = [];
-              for (var i = 0; i < near_places.length; i++) {
-                this.nearbyItems.push(near_places[i]);
-              }
-              this.loading.dismiss();
-            });
-          }
-        );
-      }
-    });*/
+    let map = GoogleMaps.create('map_canvas', mapOptions);
+    let markerOptions: MarkerOptions = {
+      position: new LatLng(latitude, longitude)
+    }
+    return map.addMarker(markerOptions);
   }
 }

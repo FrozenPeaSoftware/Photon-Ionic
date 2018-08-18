@@ -1,16 +1,13 @@
-<ion-header>
+<ion-header></ion-header>
 
-  <!--<ion-navbar>
-    <ion-buttons start>
-      <button ion-button (click)="dismiss()">Close</button>
-    </ion-buttons>
-  </ion-navbar>-->
+<ion-content>
 
-</ion-header>
+  <ion-fab bottom left>
+    <div id="button-container">
+      <button ion-button round class="gradient-button" id="back-button" (click)="back()">Back</button>
+    </div>
+  </ion-fab>
 
-
-<ion-content padding>
-
-    <div #map id="map"></div>
+  <div #map id="map"></div>
 
 </ion-content>

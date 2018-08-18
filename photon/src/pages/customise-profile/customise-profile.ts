@@ -137,8 +137,4 @@ export class CustomiseProfilePage {
 
     this.navCtrl.push(TabsPage);
   }
-
-  ionViewDidLoad() {
-    console.log("ionViewDidLoad CustomiseProfilePage");
-  }
 }

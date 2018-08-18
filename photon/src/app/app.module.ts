@@ -38,6 +38,7 @@ import { Base64 } from '@ionic-native/base64';
 import { AngularFirestore } from '../../node_modules/angularfire2/firestore';
 import { LoadingScreenProvider } from '../providers/loading-screen/loading-screen';
 import { GoogleMaps } from '../../node_modules/@ionic-native/google-maps';
+import { Geolocation } from '@ionic-native/geolocation';
 
 @NgModule({
   declarations: [
@@ -101,7 +102,8 @@ import { GoogleMaps } from '../../node_modules/@ionic-native/google-maps';
     LoadingScreenProvider,
     UserService,
     GoogleMaps,
-    ImagePicker
+    ImagePicker,
+    Geolocation
   ],
 })
 export class AppModule {

@@ -1,7 +1,7 @@
 page-login {
 
   .form-error {
-    color: red;
+    color: color($colors, danger);
     text-align: center;
   }
 
@@ -49,7 +49,7 @@ page-login {
 
   .register {
     background: transparent;
-    color: color($colors, primary);
+    color: color($colors, mid);
     text-transform: none;
   }
 }

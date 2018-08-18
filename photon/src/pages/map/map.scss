@@ -1,7 +1,29 @@
 page-map {
-
   #map {
-    height: 90%;
+    height: 100%;
   }
 
+  .gradient-button {
+    background: linear-gradient(
+      to bottom right,
+      color($colors, primary),
+      color($colors, secondary)
+    );
+    width: 40vw;
+    padding-top: 4vh;
+    padding-bottom: 4vh;
+  }
+
+  #button-container {
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+
+  ion-fab[left] {
+    left: 0px;
+    bottom: 5vh;
+  }
 }

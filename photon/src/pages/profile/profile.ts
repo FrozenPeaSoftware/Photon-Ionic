@@ -8,13 +8,6 @@ import { Photo } from "./../../app/models/photo.interface";
 import { Component } from "@angular/core";
 import { IonicPage, NavController, NavParams } from "ionic-angular";
 
-/**
- * Generated class for the ProfilePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: "page-profile",
@@ -68,7 +61,8 @@ export class ProfilePage {
   openPhoto(userID: string, photoID: string) {
     this.navCtrl.push(PhotoPage, {
       userID: userID,
-      photoID: photoID
+      photoID: photoID,
+      source: 'profile'
     });
   }
 

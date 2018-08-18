@@ -14,13 +14,6 @@ import {
 import { AngularFireAuth } from "angularfire2/auth";
 import { AuthService } from "../../services/auth.service";
 
-/**
- * Generated class for the LoginPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: "page-login",
@@ -81,9 +74,5 @@ export class LoginPage {
           this.loginError = error.message;
         }
       );
-  }
-
-  ionViewDidLoad() {
-    console.log("ionViewDidLoad LoginPage");
   }
 }

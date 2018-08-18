@@ -4,12 +4,14 @@ import { User } from '../../app/models/user.interface';
 import { Comment } from '../../app/models/comment.interface';
 import { MapPage } from './../map/map';
 import { Component, ChangeDetectorRef } from '@angular/core';
+import { App } from 'ionic-angular';
 import {
   ModalController,
   IonicPage,
   NavController,
   NavParams,
   LoadingController,
+  AlertController,
 } from 'ionic-angular';
 import { AuthService } from '../../services/auth.service';
 import { AngularFireAuth } from 'angularfire2/auth';
@@ -36,6 +38,8 @@ import { UUID } from 'angular2-uuid';
 export class PhotoPage {
   loaded: boolean;
 
+  source: string;
+
   photoUserID: string;
   currentUserID: string;
   photoID: string;
@@ -43,7 +47,7 @@ export class PhotoPage {
   photoUserName: string;
   currentUserName: string;
 
-  location: string;
+  locationDescription: string;
   likes: Number;
   commentCount: Number;
   description: string;
@@ -64,7 +68,7 @@ export class PhotoPage {
     private auth: AuthService,
     private firestore: AngularFirestore,
     public loadingScreenProvider: LoadingScreenProvider,
-    private changeDetector: ChangeDetectorRef
+    public appCtrl: App
   ) {
     this.loaded = false;
     this.loadingScreenProvider.show('Loading photo...');
@@ -75,12 +79,13 @@ export class PhotoPage {
 
     this.photoUserID = navParams.get('userID');
     this.photoID = navParams.get('photoID');
+    this.source = navParams.get('source');
 
     const photoRef = this.getPhotoData(this.photoUserID, this.photoID);
     photoRef.valueChanges().subscribe((photo: Photo) => {
       this.photoData = photo;
       this.description = photo.description;
-      this.location = photo.location;
+      this.locationDescription = photo.locationDescription;
       this.photoURL = photo.url;
     });
 
@@ -167,19 +172,6 @@ export class PhotoPage {
     });
   }
 
-  /*getCommentCount() {
-    const commentsRef = this.firestore
-      .collection('users')
-      .doc(this.photoUserID)
-      .collection('photos')
-      .doc(this.photoID)
-      .collection('comments');
-
-    commentsRef.snapshotChanges().subscribe(snapshot => {
-      this.commentCount = snapshot.length;
-    });
-  }*/
-
   toggleLike() {
     const likeRef = this.firestore.doc(
       'users/' +
@@ -225,12 +217,18 @@ export class PhotoPage {
   }
 
   showMap() {
-    this.navCtrl.push(MapPage, {
-      latitude: -40.900263,
-      longitude: 176.231751
+    this.appCtrl.getRootNav().push(MapPage, {
+      latitude: this.photoData.coordinates.latitude,
+      longitude: this.photoData.coordinates.longitude,
     });
-    //let mapModal = this.modalCtrl.create(MapPage);
-    //mapModal.present();
+  }
+
+  back() {
+    if (this.source === 'profile') {
+      this.navCtrl.pop();
+    } else if (this.source === 'upload') {
+      this.navCtrl.popToRoot();
+    }
   }
 
   generateCommentID(): string {

@@ -5,6 +5,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { storage } from 'firebase';
 
+import { LoadingScreenProvider } from './../../providers/loading-screen/loading-screen';
+
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import {
@@ -16,6 +18,15 @@ import { AuthService } from './../../services/auth.service';
 import { UUID } from 'angular2-uuid';
 
 import * as firebase from 'firebase';
+import { LatLng } from '../../../node_modules/@ionic-native/google-maps';
+
+export interface LocationItem {
+  valid: boolean;
+  description: string;
+  latitude: number;
+  longitude: number;
+  placeID: string;
+}
 
 @IonicPage()
 @Component({
@@ -29,15 +40,28 @@ export class PhotoOptionsPage {
   selectedLocation: boolean;
   description: string;
 
+  locationItem: LocationItem = {
+    valid: false,
+    description: '',
+    latitude: -1,
+    longitude: -1,
+    placeID: '',
+  };
+
+  GooglePlaces: any;
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public googleMapsAPI: GoogleMapsApiProvider,
     private auth: AuthService,
-    private firestore: AngularFirestore
+    private firestore: AngularFirestore,
+    public loadingScreenProvider: LoadingScreenProvider
   ) {
     this.locationSearchInput = '';
     this.selectedLocation = false;
+    let elem = document.createElement('div');
+    this.GooglePlaces = new google.maps.places.PlacesService(elem);
   }
 
   ionViewDidLoad() {
@@ -45,9 +69,15 @@ export class PhotoOptionsPage {
     this.base64Image = this.navParams.get('base64Image');
   }
 
-  back() {}
+  back() {
+    this.navCtrl.popToRoot();
+  }
 
   upload() {
+    this.loadingScreenProvider.show('Uploading photo...');
+
+    let context = this;
+
     const userID = this.auth.getUID();
     const photoID = this.generatePhotoID();
 
@@ -59,42 +89,43 @@ export class PhotoOptionsPage {
         const photoRef = this.firestore.doc(
           'users/' + userID + '/photos/' + photoID
         );
+        let latitude = -1;
+        let longitude = -1;
+        if (this.locationItem.valid) {
+          latitude = this.locationItem.latitude;
+          longitude = this.locationItem.longitude;
+        }
         photoRef
           .set({
             userID: userID,
             description: this.description,
-            location: this.locationSearchInput,
+            locationDescription: this.locationSearchInput,
             coordinates: {
-              latitude: 0,
-              longitude: 0,
+              latitude: latitude,
+              longitude: longitude,
             },
             timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-            url: url
+            url: url,
           })
           .then(function() {
-            console.log('Success');
+            console.log('Photo upload successful!');
+            context.goToPhoto(context, userID, photoID);
           })
           .catch(function(error) {
             console.log('Error: ' + error);
+            // TODO: Handle error when photo did not upload correctly.
           });
       });
     });
+  }
 
-    /*const commentID = 2468;
-    const commentRef = this.firestore.doc(
-      'users/' + UID + '/photos/' + photoID + '/comments/' + commentID
-    );
-    commentRef
-      .set({
-        name: 'Celine Young',
-        comment: 'This is a comment'
-      })
-      .then(function() {
-        console.log('Success');
-      })
-      .catch(function(error) {
-        console.log('Error: ' + error);
-      });*/
+  goToPhoto(context, userID, photoID) {
+    context.loadingScreenProvider.dismiss();
+    context.navCtrl.push(PhotoPage, {
+      userID: userID,
+      photoID: photoID,
+      source: 'upload'
+    });
   }
 
   generatePhotoID(): string {
@@ -102,6 +133,10 @@ export class PhotoOptionsPage {
   }
 
   updateSearchResults() {
+    if (this.locationSearchInput !== this.locationItem.description) {
+      console.log('Setting location item as invalid.');
+      this.locationItem.valid = false;
+    }
     this.selectedLocation = false;
     this.googleMapsAPI.updateSearchResults(this.locationSearchInput);
   }
@@ -109,7 +144,30 @@ export class PhotoOptionsPage {
   selectSearchResult(item) {
     this.locationSearchInput = item.description;
     this.selectedLocation = true;
-    return this.googleMapsAPI.selectSearchResult(item);
+
+    function setLocationCallback(context, place, status) {
+      if (status != google.maps.places.PlacesServiceStatus.OK) {
+        console.log('Error getting place details, status code: ' + status);
+      }
+      context.locationItem = {
+        valid: true,
+        description: item.description,
+        latitude: place.geometry.location.lat(),
+        longitude: place.geometry.location.lng(),
+        placeID: item.place_id,
+      };
+    }
+
+    let context = this;
+
+    this.GooglePlaces.getDetails(
+      {
+        placeId: item.place_id,
+      },
+      function(place, status) {
+        setLocationCallback(context, place, status);
+      }
+    );
   }
 
   autocompleteItems() {

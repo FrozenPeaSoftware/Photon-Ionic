@@ -15,7 +15,7 @@
       <form (ngSubmit)="saveProfile()" [formGroup]="customiseForm">
         <div class="input-div">
           <ion-item no-lines class="input">
-            <ion-label color="primary">Full Name</ion-label>
+            <ion-label color="mid">Full Name</ion-label>
             <ion-input type="text" formControlName="name" class="form-control" value="{{this.user.name}}"></ion-input>
           </ion-item>
 
@@ -28,7 +28,7 @@
 
         <div class="input-div">
           <ion-item no-lines class="input">
-            <ion-label color="primary">Username</ion-label>
+            <ion-label color="mid">Username</ion-label>
             <ion-input type="text" formControlName="username" class="form-control" value="{{this.user.username}}"></ion-input>
           </ion-item>
 
@@ -41,7 +41,7 @@
 
         <div class="input-div">
           <ion-item no-lines class="input">
-            <ion-label color="primary">Biography</ion-label>
+            <ion-label color="mid">Biography</ion-label>
             <ion-textarea type="text" formControlName="biography" class="form-control" rows=4 value="{{this.user.biography}}"></ion-textarea>
           </ion-item>
 
