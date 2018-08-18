@@ -44,6 +44,7 @@ export class ProfilePage {
   }
 
   getPostedPhotos() {
+    /*
     this.firestore
       .collection("users")
       .doc(this.auth.getUID())
@@ -51,7 +52,7 @@ export class ProfilePage {
       .valueChanges()
       .subscribe(photos => {
         this.photos = photos;
-      });
+      });*/
   }
 
   optionsButtonClicked() {
