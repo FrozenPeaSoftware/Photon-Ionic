@@ -1,6 +1,6 @@
-import { ImagePicker } from '@ionic-native/image-picker';
+import { ImagePicker } from "@ionic-native/image-picker";
 import { UserService } from "./../../services/user.service";
-import { User } from '../../app/models/user.interface';
+import { User } from "../../app/models/user.interface";
 import { UUID } from "angular2-uuid";
 import { AngularFireAuth } from "angularfire2/auth";
 import { TabsPage } from "./../tabs/tabs";
@@ -34,7 +34,8 @@ export class CustomiseProfilePage {
     email: "",
     biography: ""
   };
-  public imageURL: string = "https://instagram.fakl1-2.fna.fbcdn.net/vp/36bedd66b5fa8b8f6bf81650823a72f0/5BFC9C56/t51.2885-19/s150x150/38096749_208075379863871_8613051600635691008_n.jpg";
+  public imageSource: string =
+    "https://instagram.fakl1-2.fna.fbcdn.net/vp/36bedd66b5fa8b8f6bf81650823a72f0/5BFC9C56/t51.2885-19/s150x150/38096749_208075379863871_8613051600635691008_n.jpg";
 
   validation_messages = {
     username: [
@@ -90,7 +91,7 @@ export class CustomiseProfilePage {
 
   getUser() {
     this.firestore
-      .collection('users')
+      .collection("users")
       .doc(this.auth.getUID())
       .valueChanges()
       .subscribe((user: User) => {
@@ -98,14 +99,22 @@ export class CustomiseProfilePage {
       });
   }
 
-  getImage() {
-
-  }
+  getImage() {}
 
   openImagePicker() {
     if (!this.imagePicker.hasReadPermission()) {
       this.imagePicker.requestReadPermission();
+      return;
     }
+    /*
+    this.imagePicker.getPictures(options).then(
+      results => {
+        for (var i = 0; i < results.length; i++) {
+          console.log("Image URI: " + results[i]);
+        }
+      },
+      err => {}
+    );*/
   }
 
   saveProfile() {
