@@ -52,10 +52,24 @@
       </div>
     </div>
     <div class="divider"></div>
+
+    <div class="profile-container">
+      <!-- Responsive Layout with Ion Grid-->
+      <ion-grid>
+        <ion-row>
+          <ion-col col-6 col-md-4 col-xl-3 *ngFor="let photo of this.postedPhotos">
+            <div class="image-container">
+              <img src="{{photo.url}}"/>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
   </div>
 
   <!-- Temporary button for testing passing photo parameters -->
   <!-- The first parameter is the ID of the user the photo belongs to, the second parameter is the ID of the photo. -->
-  <button ion-button round (click)="openPhoto('y3NVZPPkneNixFVfj37oTQvgn8M2','c17b5a4b-76cd-3963-5606-e603d0277291')">show me a cool photo</button>
+  <button ion-button round (click)="openPhoto('y3NVZPPkneNixFVfj37oTQvgn8M2','c17b5a4b-76cd-3963-5606-e603d0277291')">show
+    me a cool photo</button>
 
 </ion-content>
