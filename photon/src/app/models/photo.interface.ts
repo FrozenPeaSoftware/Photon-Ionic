@@ -7,4 +7,5 @@ export interface Photo {
   };
   timestamp: any,
   url: string;
+  id: string;
 }

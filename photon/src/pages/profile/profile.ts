@@ -1,7 +1,7 @@
 import { PhotoPage } from "./../photo/photo";
 import { OptionsPage } from "./../options/options";
 import { CustomiseProfilePage } from "./../customise-profile/customise-profile";
-import { AngularFirestore } from "angularfire2/firestore";
+import { AngularFirestore, fromDocRef } from "angularfire2/firestore";
 import { AuthService } from "./../../services/auth.service";
 import { User } from "./../../app/models/user.interface";
 import { Photo } from "./../../app/models/photo.interface";
@@ -14,6 +14,7 @@ import { IonicPage, NavController, NavParams } from "ionic-angular";
   templateUrl: "profile.html"
 })
 export class ProfilePage {
+  public userID: string = "";
   public user: User = {
     name: "",
     username: "",
@@ -32,6 +33,7 @@ export class ProfilePage {
   ) {
     this.getUser();
     this.getPostedPhotos();
+    this.userID = this.auth.getUID();
   }
 
   getUser() {
@@ -49,18 +51,19 @@ export class ProfilePage {
       .collection("users")
       .doc(this.auth.getUID())
       .collection("photos")
-      .valueChanges()
+      .snapshotChanges()
       .subscribe(photos => {
-        photos.forEach((photoData: Photo) => {
+        photos.forEach((photoData) => {
           const photo: Photo = {
-            description: photoData.description,
-            locationDescription: photoData.locationDescription,
-            coordinates: photoData.coordinates,
-            timestamp: photoData.timestamp,
-            url: photoData.url
+            description: photoData.payload.doc.data().description,
+            locationDescription: photoData.payload.doc.data().locationDescription,
+            coordinates: photoData.payload.doc.data().coordinates,
+            timestamp: photoData.payload.doc.data().timestamp,
+            url: photoData.payload.doc.data().url,
+            id: photoData.payload.doc.id 
           };
+          console.log(photo);
           this.postedPhotos[this.postedPhotos.length] = photo;
-          console.log(photo.description);
         });
       });
   }
