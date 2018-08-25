@@ -1,6 +1,5 @@
 import { PhotoPage } from "./../photo/photo";
 import { OptionsPage } from "./../options/options";
-import { CustomiseProfilePage } from "./../customise-profile/customise-profile";
 import { AngularFirestore, fromDocRef } from "angularfire2/firestore";
 import { AuthService } from "./../../services/auth.service";
 import { User } from "./../../app/models/user.interface";
@@ -31,9 +30,7 @@ export class ProfilePage {
     private auth: AuthService,
     private firestore: AngularFirestore
   ) {
-    this.getUser();
-    this.getPostedPhotos();
-    this.userID = this.auth.getUID();
+    
   }
 
   getUser() {
@@ -47,6 +44,8 @@ export class ProfilePage {
   }
 
   getPostedPhotos() {
+    this.postedPhotos = [];
+    console.log("Length of posted photos: " + this.postedPhotos.length);
     this.firestore
       .collection("users")
       .doc(this.auth.getUID())
@@ -61,11 +60,11 @@ export class ProfilePage {
             timestamp: photoData.payload.doc.data().timestamp,
             url: photoData.payload.doc.data().url,
             id: photoData.payload.doc.id 
-          };
-          console.log(photo);
-          this.postedPhotos[this.postedPhotos.length] = photo;
+          };       
+          this.postedPhotos[this.postedPhotos.length] = photo; 
         });
       });
+      //this.postedPhotos.reverse();      
   }
 
   optionsButtonClicked() {
@@ -80,7 +79,13 @@ export class ProfilePage {
     });
   }
 
+  ionViewWillEnter() {
+    this.postedPhotos = [];
+    this.getPostedPhotos();  
+  }	
+
   ionViewDidLoad() {
     this.getUser();
+    this.userID = this.auth.getUID();
   }
 }
