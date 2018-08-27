@@ -7,8 +7,8 @@
     </div>
 
     <div class="photo-button-container">
-      <img class="profile-picture" src={{this.imageSource}}/>
-      <button ion-button round outline class="change-photo-button" (click)="this.openImagePicker()">Edit Picture</button>
+      <img class="profile-picture" src={{this.imageSource}} (load)="this.loadingScreenProvider.dismiss()"/>
+      <button ion-button round outline class="change-photo-button" (click)="this.getImage()">Edit Picture</button>
     </div>
 
     <div class="form-div">

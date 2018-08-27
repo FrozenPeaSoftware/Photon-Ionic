@@ -1,3 +1,4 @@
+import { LoadingScreenProvider } from './../../providers/loading-screen/loading-screen';
 import { PhotoPage } from "./../photo/photo";
 import { OptionsPage } from "./../options/options";
 import { AngularFirestore, fromDocRef } from "angularfire2/firestore";
@@ -18,7 +19,8 @@ export class ProfilePage {
     name: "",
     username: "",
     email: "",
-    biography: ""
+    biography: "",
+    profilePicture: ""
   };
   public imageSource: string =
     "https://instagram.fakl1-2.fna.fbcdn.net/vp/36bedd66b5fa8b8f6bf81650823a72f0/5BFC9C56/t51.2885-19/s150x150/38096749_208075379863871_8613051600635691008_n.jpg";
@@ -28,9 +30,10 @@ export class ProfilePage {
     public navCtrl: NavController,
     public navParams: NavParams,
     private auth: AuthService,
-    private firestore: AngularFirestore
+    private firestore: AngularFirestore,
+    public loadingScreenProvider: LoadingScreenProvider
   ) {
-    
+    this.loadingScreenProvider.show('Loading...');        
   }
 
   getUser() {
@@ -40,6 +43,9 @@ export class ProfilePage {
       .valueChanges()
       .subscribe((user: User) => {
         this.user = user;
+        if (user.profilePicture !== null) {
+          this.imageSource = user.profilePicture;
+        }
       });
   }
 
@@ -63,7 +69,12 @@ export class ProfilePage {
           };       
           this.postedPhotos[this.postedPhotos.length] = photo; 
         });
+        this.postedPhotos.sort(function(a, b) {
+          return a.timestamp < b.timestamp ? 1 : -1;
+        });
       });
+
+
       //this.postedPhotos.reverse();      
   }
 
