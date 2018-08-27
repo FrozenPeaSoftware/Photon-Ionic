@@ -1,3 +1,4 @@
+import { SearchPage } from './../pages/search/search';
 import { LoginPage } from './../pages/login/login';
 import { CustomiseProfilePage } from './../pages/customise-profile/customise-profile';
 import { ProfilePage } from './../pages/profile/profile';
@@ -15,7 +16,7 @@ import { initializeApp } from 'firebase';
   templateUrl: 'app.html',
 })
 export class MyApp {
-  rootPage: any = LoginPage;
+  rootPage: any = SearchPage;
 
   constructor(
     platform: Platform,

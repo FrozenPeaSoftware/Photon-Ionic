@@ -1,9 +1,7 @@
 import { ProfilePage } from './../profile/profile';
-import { PhotoPage } from './../photo/photo';
 import { OptionsPage } from './../options/options';
-import { PhotoOptionsPage } from './../photo-options/photo-options';
 import { UploadPhotoPage } from './../upload-photo/upload-photo';
-import { MapPage } from './../map/map';
+import { SearchPage } from './../search/search';
 import { Component } from '@angular/core';
 
 @Component({
@@ -12,7 +10,7 @@ import { Component } from '@angular/core';
 export class TabsPage {
 
   tab1Root = UploadPhotoPage;
-  tab2Root = PhotoOptionsPage;
+  tab2Root = SearchPage;
   tab3Root = ProfilePage;
   tab4Root = OptionsPage;
   constructor() {
