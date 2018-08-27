@@ -1,11 +1,20 @@
 <ion-header></ion-header>
 
-
 <ion-content padding>
-  <ion-searchbar
-  [(ngModel)]="myInput"
-  [showCancelButton]="shouldShowCancel"
-  (ionInput)="onInput($event)"
-  (ionCancel)="onCancel($event)">
-</ion-searchbar>
+  <ion-searchbar [(ngModel)]="input" [showCancelButton]="shouldShowCancel" (ionInput)="onInput($event)" (ionCancel)="onCancel($event)">
+  </ion-searchbar>
+
+  <ion-list>
+    <div class="error-message" *ngIf="(this.resultUsers.length == 0); else elseBlock">
+      No searches match "{{this.input}}"<br>
+      <img class="error-image" src="/assets/imgs/error.png"/>
+    </div>
+
+    <ng-template #elseBlock>
+      <ion-item *ngFor="let user of this.resultUsers">
+        <h2> {{user.name}} </h2>
+      </ion-item>
+    </ng-template>
+  </ion-list>
+
 </ion-content>

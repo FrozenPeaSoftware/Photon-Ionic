@@ -112,7 +112,7 @@ export class CustomiseProfilePage {
         if (user !== undefined) {
           this.user = user;
         }
-        if (this.user.profilePicture !== null) {
+        if (this.user.profilePicture !== "") {
           this.imageSource = this.user.profilePicture;
         }
       });

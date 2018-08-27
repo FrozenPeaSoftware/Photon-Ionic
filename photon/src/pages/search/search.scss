@@ -1,3 +1,18 @@
 page-search {
+  .error-message {
+    padding-top: 10%;
+    //background: cyan;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    font-size: 20px;
+    color: gray;
+    margin: 3%;
+  }
 
+  .error-image {
+    margin: 5%;
+    width: 40%;
+  }
 }
