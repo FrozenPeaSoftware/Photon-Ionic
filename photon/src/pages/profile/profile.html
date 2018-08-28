@@ -38,8 +38,10 @@
               </ion-label>
             </div>
           </div>
-          <div class="options-button-div" *ngIf="(this.auth.getUID() == this.user.userID)">
-            <button ion-button round class="options-button" (click)="this.optionsButtonClicked()">Options</button>
+          <div class="button-div">
+            <div class="options-button-div" *ngIf="(this.auth.getUID() == this.user.userID)">
+              <button ion-button round class="options-button" (click)="this.optionsButtonClicked()">Options</button>
+            </div>
           </div>
         </div>
       </div>
@@ -55,7 +57,7 @@
     </div>
     <div class="divider"></div>
 
-    <div class="profile-container" *ngIf="(this.postedPhotos.length !== 0); else elseBlock">
+    <div class="photos-container" *ngIf="(this.postedPhotos.length !== 0); else elseBlock">
       <!-- Responsive Layout with Ion Grid-->
       <ion-grid>
         <ion-row>
