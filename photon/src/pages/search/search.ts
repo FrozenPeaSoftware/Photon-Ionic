@@ -1,4 +1,4 @@
-import { ProfilePage } from './../profile/profile';
+import { ProfilePage } from "./../profile/profile";
 import { AuthService } from "./../../services/auth.service";
 import { AngularFirestore } from "angularfire2/firestore";
 import { User } from "./../../app/models/user.interface";
@@ -31,21 +31,24 @@ export class SearchPage {
     const loadedUsers = [];
     this.firestore
       .collection("users")
-      .valueChanges()
+      .snapshotChanges()
       .subscribe(element => {
-        element.forEach((userData: User) => {
+        element.forEach(userData => {
+          const userTemp: any = userData.payload.doc.data();
+
           const user: User = {
-            name: userData.name,
-            username: userData.username,
-            email: userData.email,
-            biography: userData.biography,
-            profilePicture: userData.profilePicture
+            biography: userTemp.biography,
+            name: userTemp.name,
+            username: userTemp.username,
+            email: userTemp.email,
+            profilePicture: userTemp.profilePicture,
+            userID: userData.payload.doc.id
           };
           loadedUsers.push(user);
         });
       });
-      this.users = loadedUsers;
-      this.resultUsers = loadedUsers;
+    this.users = loadedUsers;
+    this.resultUsers = loadedUsers;
   }
 
   onInput($event) {
@@ -69,6 +72,9 @@ export class SearchPage {
   }
 
   clickedUser(user: User) {
-    this.navCtrl.push(ProfilePage, {user: user});
+    this.navCtrl.push(ProfilePage, { 
+      source: "search",
+      user: user 
+    });
   }
 }

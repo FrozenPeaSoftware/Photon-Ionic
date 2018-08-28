@@ -38,7 +38,9 @@
               </ion-label>
             </div>
           </div>
-          <button ion-button round class="options-button" (click)="this.optionsButtonClicked()">Options</button>
+          <div class="options-button-div" *ngIf="(this.auth.getUID() == this.user.userID)">
+            <button ion-button round class="options-button" (click)="this.optionsButtonClicked()">Options</button>
+          </div>
         </div>
       </div>
 

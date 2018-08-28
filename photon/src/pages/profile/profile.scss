@@ -66,6 +66,12 @@ page-profile {
     margin-top: 0;
   }
 
+  .options-button-div {
+    height: 30%;
+    width: 90%;  
+    margin-left: 5%;
+  }
+
   .options-button {
     margin: 0;
     background: linear-gradient(
@@ -73,9 +79,9 @@ page-profile {
       color($colors, primary),
       color($colors, secondary)
     );
-    height: 30%;
-    width: 90%;
+    height: 80%;
     margin-left: 5%;
+    width: 90%;
   }
 
   .profile-container-bottom {

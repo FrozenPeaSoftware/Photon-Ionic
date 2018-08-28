@@ -1,4 +1,4 @@
-import { LoadingScreenProvider } from './../../providers/loading-screen/loading-screen';
+import { LoadingScreenProvider } from "./../../providers/loading-screen/loading-screen";
 import { PhotoPage } from "./../photo/photo";
 import { OptionsPage } from "./../options/options";
 import { AngularFirestore, fromDocRef } from "angularfire2/firestore";
@@ -14,16 +14,16 @@ import { IonicPage, NavController, NavParams } from "ionic-angular";
   templateUrl: "profile.html"
 })
 export class ProfilePage {
-  public userID: string = "";
   public user: User = {
     name: "",
     username: "",
     email: "",
     biography: "",
-    profilePicture: ""
+    profilePicture: "",
+    userID: ""
   };
-  public imageSource: string =
-    "https://instagram.fakl1-2.fna.fbcdn.net/vp/36bedd66b5fa8b8f6bf81650823a72f0/5BFC9C56/t51.2885-19/s150x150/38096749_208075379863871_8613051600635691008_n.jpg";
+  public source: string;
+  public imageSource: string = "/assets/imgs/default.png";
   public postedPhotos: Photo[] = [];
 
   constructor(
@@ -33,7 +33,7 @@ export class ProfilePage {
     private firestore: AngularFirestore,
     public loadingScreenProvider: LoadingScreenProvider
   ) {
-    this.loadingScreenProvider.show('Loading...');        
+    this.loadingScreenProvider.show("Loading...");
   }
 
   getUser() {
@@ -42,8 +42,11 @@ export class ProfilePage {
       .doc(this.auth.getUID())
       .valueChanges()
       .subscribe((user: User) => {
-        this.user = user;
-        if (user.profilePicture !== null) {
+        this.user.name = user.name;
+        this.user.username = user.username;
+        this.user.biography = user.biography;
+        this.user.userID = this.auth.getUID();
+        if (user.profilePicture != null) {
           this.imageSource = user.profilePicture;
         }
       });
@@ -51,28 +54,28 @@ export class ProfilePage {
 
   getPostedPhotos() {
     this.postedPhotos = [];
-    console.log("Length of posted photos: " + this.postedPhotos.length);
     this.firestore
       .collection("users")
-      .doc(this.auth.getUID())
+      .doc(this.user.userID)
       .collection("photos")
       .snapshotChanges()
       .subscribe(photos => {
-        photos.forEach((photoData) => {
+        photos.forEach(photoData => {
           const photo: Photo = {
             description: photoData.payload.doc.data().description,
-            locationDescription: photoData.payload.doc.data().locationDescription,
+            locationDescription: photoData.payload.doc.data()
+              .locationDescription,
             coordinates: photoData.payload.doc.data().coordinates,
             timestamp: photoData.payload.doc.data().timestamp,
             url: photoData.payload.doc.data().url,
-            id: photoData.payload.doc.id 
-          };       
-          this.postedPhotos[this.postedPhotos.length] = photo; 
+            id: photoData.payload.doc.id
+          };
+          this.postedPhotos[this.postedPhotos.length] = photo;
         });
         this.postedPhotos.sort(function(a, b) {
           return a.timestamp < b.timestamp ? 1 : -1;
         });
-      });   
+      });
   }
 
   optionsButtonClicked() {
@@ -88,12 +91,18 @@ export class ProfilePage {
   }
 
   ionViewWillEnter() {
+    var tempUser = this.navParams.get("user");
+    this.source = this.navParams.get("source");
+    if (tempUser !== undefined) {
+      this.user = tempUser;
+      if (this.user.profilePicture != null) {
+        this.imageSource = this.user.profilePicture;
+      }
+    } else {
+      this.user.userID = this.auth.getUID();
+      this.getUser();
+    }
     this.postedPhotos = [];
-    this.getPostedPhotos();  
-  }	
-
-  ionViewDidLoad() {
-    if (this.user.name === "") { this.getUser(); }
-    this.userID = this.auth.getUID();
+    this.getPostedPhotos();
   }
 }
