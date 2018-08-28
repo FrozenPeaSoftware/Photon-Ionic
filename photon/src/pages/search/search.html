@@ -11,7 +11,7 @@
     </div>
 
     <ng-template #elseBlock>
-      <ion-item *ngFor="let user of this.resultUsers">
+      <ion-item class="search-result" *ngFor="let user of this.resultUsers" (click)="this.clickedUser(user)">
         <h2> {{user.name}} </h2>
       </ion-item>
     </ng-template>

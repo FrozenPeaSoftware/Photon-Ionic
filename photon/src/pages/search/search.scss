@@ -15,4 +15,13 @@ page-search {
     margin: 5%;
     width: 40%;
   }
+
+  .search-result {
+    margin-left: 3%;
+    width: 95%;
+  }
+
+  .search-result:hover {
+    background-color: rgb(180, 180, 180);
+  }
 }

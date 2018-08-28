@@ -1,3 +1,4 @@
+import { ProfilePage } from './../profile/profile';
 import { AuthService } from "./../../services/auth.service";
 import { AngularFirestore } from "angularfire2/firestore";
 import { User } from "./../../app/models/user.interface";
@@ -65,5 +66,9 @@ export class SearchPage {
       }
     });
     console.log(this.resultUsers.length);
+  }
+
+  clickedUser(user: User) {
+    this.navCtrl.push(ProfilePage, {user: user});
   }
 }

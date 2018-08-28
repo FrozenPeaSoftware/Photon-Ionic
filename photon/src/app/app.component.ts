@@ -16,7 +16,7 @@ import { initializeApp } from 'firebase';
   templateUrl: 'app.html',
 })
 export class MyApp {
-  rootPage: any = SearchPage;
+  rootPage: any = LoginPage;
 
   constructor(
     platform: Platform,

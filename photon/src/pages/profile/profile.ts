@@ -72,10 +72,7 @@ export class ProfilePage {
         this.postedPhotos.sort(function(a, b) {
           return a.timestamp < b.timestamp ? 1 : -1;
         });
-      });
-
-
-      //this.postedPhotos.reverse();      
+      });   
   }
 
   optionsButtonClicked() {
@@ -96,7 +93,7 @@ export class ProfilePage {
   }	
 
   ionViewDidLoad() {
-    this.getUser();
+    if (this.user.name === "") { this.getUser(); }
     this.userID = this.auth.getUID();
   }
 }
