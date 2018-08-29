@@ -87,7 +87,7 @@ page-profile {
     height: 40%;
     flex-direction: column;
     justify-content: space-evenly;
-    padding-top: 3%;
+    padding-top: 2%;
   }
 
   .name-label {
@@ -96,9 +96,11 @@ page-profile {
 
   .biography-label {
     margin-top: 2%;
+    margin-bottom: 0;
   }
 
   .divider {
+    //margin-top: 2%;
     height: 2px;
     background: linear-gradient(
       to bottom right,
