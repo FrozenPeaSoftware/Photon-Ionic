@@ -3,8 +3,22 @@ import { Photo } from '../../app/models/photo.interface';
 import { User } from '../../app/models/user.interface';
 import { Comment } from '../../app/models/comment.interface';
 import { MapPage } from './../map/map';
-import { Component, ChangeDetectorRef } from '@angular/core';
-import { App } from 'ionic-angular';
+import {
+  Component,
+  ChangeDetectorRef,
+  ElementRef,
+  ViewChild,
+} from '@angular/core';
+import { App, Gesture } from 'ionic-angular';
+import {
+  Directive,
+  ElementRef,
+  OnInit,
+  OnDestroy,
+  Output,
+  EventEmitter,
+} from '@angular/core';
+import { Gesture } from 'ionic-angular/gestures/gesture';
 import {
   ModalController,
   IonicPage,
@@ -233,5 +247,24 @@ export class PhotoPage {
 
   generateCommentID(): string {
     return UUID.UUID();
+  }
+
+  // Double tap gesture functionality
+
+  @ViewChild('image')
+  imageElementRef: ElementRef;
+  private pressGesture: Gesture;
+
+  ngAfterViewInit() {
+    this.pressGesture = new Gesture(this.imageElementRef.nativeElement);
+    this.pressGesture.listen();
+    this.pressGesture.on('doubletap', (e: Event) => {
+      console.log(e.type);
+      this.toggleLike();
+    });
+  }
+
+  ngOnDestroy() {
+    this.pressGesture.destroy();
   }
 }

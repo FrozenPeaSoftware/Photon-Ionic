@@ -1,3 +1,4 @@
+import { LoadingScreenProvider } from './../../providers/loading-screen/loading-screen';
 import { CustomiseProfilePage } from './../customise-profile/customise-profile';
 import { LoginPage } from "../login/login";
 import { Component } from "@angular/core";
@@ -44,7 +45,8 @@ export class RegisterPage {
     public navParams: NavParams,
     public fb: FormBuilder,
     public auth: AuthService,
-    public afAuth: AngularFireAuth
+    public afAuth: AngularFireAuth,
+    public loadingScreenProvider: LoadingScreenProvider
   ) {
     this.registerForm = fb.group(
       {
@@ -73,13 +75,18 @@ export class RegisterPage {
   }
 
   registerAccount() {
+    this.loadingScreenProvider.show('Creating account...');
     let data = this.registerForm.value;
     let credentials = {
       email: data.email,
       password: data.password
     };
     this.auth.register(credentials).then(() => {
+      this.loadingScreenProvider.dismiss();
       this.navCtrl.setRoot(CustomiseProfilePage);
-    }, error => (this.registerError = error.message));
+    }, error => {
+      this.loadingScreenProvider.dismiss();
+      this.registerError = error.message;
+    });
   }
 }

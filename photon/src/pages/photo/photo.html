@@ -33,7 +33,7 @@
     <ion-scroll id="scroll-area" scrollY="true">
       <div id=scroll-content>
         <div id="image-container">
-          <img id='image' src="{{this.photoURL}}" (load)="this.loadingScreenProvider.dismiss()" />
+          <img #image id='image' src="{{this.photoURL}}" (load)="this.loadingScreenProvider.dismiss()" />
         </div>
         <div id="like-comment-container">
           <i id="like-icon" (click)="toggleLike()" [ngClass]="liked ? 'fa-heart' : 'fa-heart-o'" class="fa gradient-icon like-comment-item"
