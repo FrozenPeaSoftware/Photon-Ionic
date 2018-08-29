@@ -5,7 +5,7 @@
   </ion-header>
 
 <ion-content padding>
-  <ion-searchbar [(ngModel)]="input" [showCancelButton]="shouldShowCancel" (ionInput)="onInput($event)" (ionCancel)="onCancel($event)">
+  <ion-searchbar [(ngModel)]="input" [showCancelButton]="shouldShowCancel" (ionInput)="onInput($event)" (ionCancel)="onCancel($event)" placeholder="Search for Full Name">
   </ion-searchbar>
 
   <ion-list>
