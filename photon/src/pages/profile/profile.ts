@@ -1,6 +1,6 @@
 import { LoadingScreenProvider } from "./../../providers/loading-screen/loading-screen";
 import { PhotoPage } from "./../photo/photo";
-import { OptionsPage } from "./../options/options";
+import { CustomiseProfilePage } from "./../customise-profile/customise-profile";
 import { AngularFirestore, fromDocRef } from "angularfire2/firestore";
 import { AuthService } from "./../../services/auth.service";
 import { User } from "./../../app/models/user.interface";
@@ -78,13 +78,13 @@ export class ProfilePage {
       });
   }
 
-  optionsButtonClicked() {
-    this.navCtrl.push(OptionsPage);
+  editButtonClicked() {
+    this.navCtrl.push(CustomiseProfilePage);
   }
 
-  openPhoto(userID: string, photoID: string) {
+  openPhoto(photoID: string) {
     this.navCtrl.push(PhotoPage, {
-      userID: userID,
+      userID: this.user.userID,
       photoID: photoID,
       source: "profile"
     });

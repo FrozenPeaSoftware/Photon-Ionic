@@ -40,7 +40,7 @@
           </div>
           <div class="button-div">
             <div class="options-button-div" *ngIf="(this.auth.getUID() == this.user.userID)">
-              <button ion-button round class="options-button" (click)="this.optionsButtonClicked()">Options</button>
+              <button ion-button round class="options-button" (click)="this.editButtonClicked()">Customise Profile</button>
             </div>
           </div>
         </div>
@@ -63,7 +63,7 @@
         <ion-row>
           <ion-col col-6 col-md-4 col-xl-3 *ngFor="let photo of this.postedPhotos">
             <div class="grid-image-container">
-              <img src="{{photo.url}}" (click)="openPhoto(this.userID, photo.id)" />
+              <img src="{{photo.url}}" (click)="openPhoto(photo.id)" />
             </div>
           </ion-col>
         </ion-row>
