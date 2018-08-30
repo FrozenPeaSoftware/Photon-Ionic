@@ -3,12 +3,6 @@ import { Photo } from '../../app/models/photo.interface';
 import { User } from '../../app/models/user.interface';
 import { Comment } from '../../app/models/comment.interface';
 import { MapPage } from './../map/map';
-import {
-  Component,
-  ChangeDetectorRef,
-  ElementRef,
-  ViewChild,
-} from '@angular/core';
 import { App, Gesture } from 'ionic-angular';
 import {
   Directive,
@@ -17,8 +11,10 @@ import {
   OnDestroy,
   Output,
   EventEmitter,
+  Component,
+  ChangeDetectorRef,
+  ViewChild,
 } from '@angular/core';
-import { Gesture } from 'ionic-angular/gestures/gesture';
 import {
   ModalController,
   IonicPage,
@@ -55,6 +51,7 @@ export class PhotoPage {
   source: string;
 
   photoUserID: string;
+  photoUserProfileImageURL: string = "/assets/imgs/default.png";
   currentUserID: string;
   photoID: string;
 
@@ -111,6 +108,9 @@ export class PhotoPage {
     const photoUserRef = this.getUserData(this.photoUserID);
     photoUserRef.valueChanges().subscribe((user: User) => {
       this.photoUserName = user.name;
+      if (user.profilePicture != null) {
+        this.photoUserProfileImageURL = user.profilePicture;
+      }
     });
 
     const currentUserRef = this.getUserData(this.currentUserID);
@@ -251,15 +251,13 @@ export class PhotoPage {
 
   // Double tap gesture functionality
 
-  @ViewChild('image')
-  imageElementRef: ElementRef;
+  @ViewChild('image') imageElementRef: ElementRef;
   private pressGesture: Gesture;
 
   ngAfterViewInit() {
     this.pressGesture = new Gesture(this.imageElementRef.nativeElement);
     this.pressGesture.listen();
     this.pressGesture.on('doubletap', (e: Event) => {
-      console.log(e.type);
       this.toggleLike();
     });
   }
