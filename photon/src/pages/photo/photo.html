@@ -1,6 +1,6 @@
 <ion-header></ion-header>
 
-<ion-content padding-top padding-horizontal>
+<ion-content padding-top class="content">
 
   <div id="main-container">
     <div id="heading">
@@ -11,8 +11,7 @@
         </button>
       </div>
 
-      <img id="profile-picture" src="{{this.photoUserProfileImageURL}}"
-      />
+      <img id="profile-picture" src="{{this.photoUserProfileImageURL}}" />
       <div class="header-gap"></div>
       <div id="name-location-container">
         <p id="name">
@@ -32,38 +31,41 @@
 
     <ion-scroll id="scroll-area" scrollY="true">
       <div id=scroll-content>
+
         <div id="image-container">
           <img #image id='image' src="{{this.photoURL}}" (load)="this.loadingScreenProvider.dismiss()" />
         </div>
-        <div id="like-comment-container">
-          <i id="like-icon" (click)="toggleLike()" [ngClass]="liked ? 'fa-heart' : 'fa-heart-o'" class="fa gradient-icon like-comment-item"
-            aria-hidden="true"></i>
-          <p class="like-comment-item">
-            <strong>{{likes}}</strong>
-          </p>
-          <i id="comment-icon" class="fa fa-comment-o gradient-icon like-comment-item" aria-hidden="true"></i>
-          <p class="like-comment-item">
-            <strong>{{this.comments.length}}</strong>
-          </p>
-        </div>
-        <div id="description-container">
-          <p>{{description}}</p>
-        </div>
-        <div id="separator"></div>
-        <div id="comment-container" *ngFor="let comment of comments">
-          <p>
-            <strong>{{comment.name}}</strong>&nbsp;&nbsp;&nbsp;{{comment.commentData.comment}}
-          </p>
-        </div>
-        <!-- Photo comment input field -->
-        <div id="new-comment-container">
-          <ion-item class="input" id="new-comment">
-            <ion-textarea [(ngModel)]="commentInput" rows="5" placeholder="Write a comment"></ion-textarea>
-          </ion-item>
-          <div id="send-container">
-            <button ion-fab mini class="circle-button circle-gradient-button" (click)="submitComment()">
-              <i id="send-icon" class="fa fa-paper-plane-o" aria-hidden="true"></i>
-            </button>
+        <div id="padded-scroll-content">
+          <div id="like-comment-container">
+            <i id="like-icon" (click)="toggleLike()" [ngClass]="liked ? 'fa-heart' : 'fa-heart-o'" class="fa gradient-icon like-comment-item"
+              aria-hidden="true"></i>
+            <p class="like-comment-item">
+              <strong>{{likes}}</strong>
+            </p>
+            <i id="comment-icon" class="fa fa-comment-o gradient-icon like-comment-item" aria-hidden="true"></i>
+            <p class="like-comment-item">
+              <strong>{{this.comments.length}}</strong>
+            </p>
+          </div>
+          <div id="description-container">
+            <p>{{description}}</p>
+          </div>
+          <div id="separator"></div>
+          <div id="comment-container" *ngFor="let comment of comments">
+            <p>
+              <strong>{{comment.name}}</strong>&nbsp;&nbsp;&nbsp;{{comment.commentData.comment}}
+            </p>
+          </div>
+          <!-- Photo comment input field -->
+          <div id="new-comment-container">
+            <ion-item class="input" id="new-comment">
+              <ion-textarea [(ngModel)]="commentInput" rows="5" placeholder="Write a comment"></ion-textarea>
+            </ion-item>
+            <div id="send-container">
+              <button ion-fab mini class="circle-button circle-gradient-button" (click)="submitComment()">
+                <i id="send-icon" class="fa fa-paper-plane-o" aria-hidden="true"></i>
+              </button>
+            </div>
           </div>
         </div>
       </div>
